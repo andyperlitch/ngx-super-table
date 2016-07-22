@@ -63,7 +63,7 @@ https://andyperlitch.github.io/ng2-super-table/docs/
 * Install local dev dependencies: `npm install` while current directory is this repo
 
 ### Development server
-Run `npm start` to start a development server on port 8000 with auto reload + tests. 
+Run `npm start` to start a development server on port 8000 with auto reload + tests.
 
 ### Testing
 Run `npm test` to run tests once or `npm run test:watch` to continually run tests.
@@ -73,6 +73,20 @@ Run `npm test` to run tests once or `npm run test:watch` to continually run test
 ```bash
 npm run release
 ```
+
+## TODO
+
+- [X] row virtualization
+- [ ] column resizing
+- [ ] row sorting (stacked, via columns)
+- [ ] column ordering
+- [ ] column-based filtering
+  - [ ] string
+  - [ ] number
+  - [ ] enum
+  - [ ] custom
+- [ ] hiding/showing columns
+
 
 ## License
 
