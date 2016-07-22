@@ -1,8 +1,10 @@
-import {HelloWorld} from './src/helloWorld.component';
+import {SuperTable} from './src/superTable.component';
+export {ISuperTableColumn} from './src/ISuperTableColumn';
+export {ISuperTableOptions} from './src/ISuperTableOptions';
 
-export * from './src/helloWorld.component';
+export * from './src/superTable.component';
 
 // for angular-cli
 export default {
-  directives: [HelloWorld]
+  directives: [SuperTable]
 };

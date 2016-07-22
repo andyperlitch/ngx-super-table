@@ -5,9 +5,9 @@ import {
   ComponentFixture
 } from '@angular/core/testing';
 import {expect} from 'chai';
-import {HelloWorld} from './../ng2-super-table';
+import {SuperTable} from './../ng2-super-table';
 
-describe('hello-world component', () => {
+describe('super-table component', () => {
 
   let builder: TestComponentBuilder;
   beforeEach(inject([TestComponentBuilder], (tcb) => {
@@ -15,7 +15,7 @@ describe('hello-world component', () => {
   }));
 
   it('should say hello world', async(() => {
-    builder.createAsync(HelloWorld).then((fixture: ComponentFixture<HelloWorld>) => {
+    builder.createAsync(SuperTable).then((fixture: ComponentFixture<SuperTable>) => {
       fixture.detectChanges();
       expect(fixture.nativeElement.innerHTML.trim()).to.equal('Hello world from the ng2 super table module!');
     });
