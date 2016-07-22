@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SuperTable, ISuperTableColumn, ISuperTableOptions} from '../ng2-super-table';
 
+const NUM_ROWS = 10000;
+
 @Component({
   selector: 'demo-app',
   directives: [SuperTable],
@@ -51,7 +53,7 @@ export class DemoApp implements OnInit {
   ];
 
   ngOnInit() {
-    this.rows = this.generateRows(50);
+    this.rows = this.generateRows(NUM_ROWS);
   }
 
   private generateRows (count: number) : Array<MyRow> {
