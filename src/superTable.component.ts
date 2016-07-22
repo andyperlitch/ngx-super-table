@@ -1,17 +1,18 @@
-import { Component, Input, AfterViewInit, AfterContentInit, ElementRef } from '@angular/core';
+import { Component, Input, AfterViewInit, AfterContentInit, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ISuperTableColumn } from './ISuperTableColumn';
 import { ISuperTableOptions } from './ISuperTableOptions';
 import { SuperTableHead } from './superTableHead.component';
 import { SuperTableBody } from './superTableBody.component';
+import { SuperTableState } from './SuperTableState';
 
 @Component({
   selector: 'super-table',
   template: `
-    <super-table-head [columns]="columns" [tableClasses]="tableClasses"></super-table-head>
+    <super-table-head [state]="state" [tableClasses]="tableClasses"></super-table-head>
 
     <super-table-body
       *ngIf="isReady"
-      [columns]="columns"
+      [state]="state"
       [rows]="rows"
       [tableClasses]="tableClasses"
       [options]="options"
@@ -38,7 +39,7 @@ import { SuperTableBody } from './superTableBody.component';
     }
   `]
 })
-export class SuperTable implements AfterContentInit {
+export class SuperTable implements AfterContentInit, OnChanges {
 
   // inputs
   @Input() rows: Array<any>;
@@ -47,23 +48,31 @@ export class SuperTable implements AfterContentInit {
   @Input() tableClasses: any;
 
   // properties
-  private isReady = false;
-  private hasError = false;
-  private bodyHeight: number;
+  private isReady : boolean = false;
+  private hasError : boolean = false;
+  private bodyHeight : number;
+  private state : SuperTableState = new SuperTableState();
 
-  constructor (private el:ElementRef) {}
+  constructor (private el: ElementRef) {}
 
-  ngAfterContentInit () {
+  ngAfterContentInit () : void {
     if (this.options.autoHeight) {
-      let parentHeight:number = this.el.nativeElement.parentElement.clientHeight;
+      let parentHeight : number = this.el.nativeElement.parentElement.clientHeight;
       this.setTableHeight(parentHeight);
     }
     this.isReady = true;
   }
 
-  private setTableHeight (totalHeight: number) {
+  ngOnChanges (changes: SimpleChanges) : void {
+    // Inform state of columns changes
+    if (changes['columns'].isFirstChange()) {
+      this.state.setColumns(changes['columns'].currentValue);
+    }
+  }
+
+  private setTableHeight (totalHeight: number) : void {
     // calculate header height
-    let headerHeight = this.el.nativeElement.querySelector('super-table-head').offsetHeight;
+    let headerHeight : number = this.el.nativeElement.querySelector('super-table-head').offsetHeight;
     // subtract it from totalHeight, set bodyHeight to result
     this.bodyHeight = totalHeight - headerHeight;
   }

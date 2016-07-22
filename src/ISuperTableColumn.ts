@@ -1,4 +1,6 @@
 export interface ISuperTableColumn {
-  key: string;
-  label: string;
+  id : string;
+  key : string;
+  label : string;
+  width? : number;
 }

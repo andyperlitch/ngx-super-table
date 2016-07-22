@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { ISuperTableColumn } from './ISuperTableColumn';
+import { SuperTableState } from './SuperTableState';
+import { TableHeader } from './tableHeader.component';
 
 @Component({
   selector: 'super-table-head',
+  directives: [TableHeader],
   template: `
     <table [ngClass]="tableClasses">
       <thead>
         <tr>
-          <th scope="col" *ngFor="let column of columns" title="{{ column.title }}">
-            {{ column.label }}
-          </th>
+          <th scope="col" *ngFor="let column of state.columns" table-header [column]="column"></th>
         </tr>
       </thead>
     </table>
@@ -28,6 +28,6 @@ import { ISuperTableColumn } from './ISuperTableColumn';
   `]
 })
 export class SuperTableHead {
-  @Input() columns: Array<ISuperTableColumn>;
-  @Input() tableClasses: any;
+  @Input() state : SuperTableState;
+  @Input() tableClasses : any;
 }

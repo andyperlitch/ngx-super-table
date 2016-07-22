@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SuperTable, ISuperTableColumn, ISuperTableOptions} from '../ng2-super-table';
 
-const NUM_ROWS = 10000;
+const NUM_ROWS: number = 10000;
 
 @Component({
   selector: 'demo-app',
@@ -18,14 +18,17 @@ const NUM_ROWS = 10000;
 })
 
 export class DemoApp implements OnInit {
-  tableClasses = ['table', 'table-bordered'];
-  rows: Array<MyRow> = [];
-  columns: Array<ISuperTableColumn> = [
+  tableClasses: string[] = ['table', 'table-bordered'];
+  rows: MyRow[] = [];
+  columns: ISuperTableColumn[] = [
     {
+      id: 'firstName',
       key: 'firstName',
-      label: 'First'
+      label: 'First',
+      width: 100
     },
     {
+      id: 'lastName',
       key: 'lastName',
       label: 'Last'
     }
@@ -34,7 +37,7 @@ export class DemoApp implements OnInit {
     autoHeight: true // auto size the table to the parent element
   };
 
-  private lastNames = [
+  private lastNames: string[] = [
     'Davis',
     'Monk',
     'Gordon',
@@ -43,7 +46,7 @@ export class DemoApp implements OnInit {
     'Rollins'
   ];
 
-  private firstNames = [
+  private firstNames: string[] = [
     'Miles',
     'Thelonious',
     'Dexter',
@@ -52,13 +55,13 @@ export class DemoApp implements OnInit {
     'Sonny'
   ];
 
-  ngOnInit() {
+  ngOnInit() : void {
     this.rows = this.generateRows(NUM_ROWS);
   }
 
-  private generateRows (count: number) : Array<MyRow> {
-    let result = [];
-    for (let i = 0; i < count; i++) {
+  private generateRows (count: number) : MyRow[] {
+    let result: MyRow[] = [];
+    for (let i: number = 0; i < count; i++) {
       result.push({
         firstName: this.chooseRandom(this.firstNames),
         lastName: this.chooseRandom(this.lastNames)
@@ -67,8 +70,8 @@ export class DemoApp implements OnInit {
     return result;
   }
 
-  private chooseRandom (choices: Array<string>) : string {
-    let randomIndex = Math.floor(Math.random() * choices.length);
+  private chooseRandom (choices: string[]) : string {
+    let randomIndex: number = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
   }
 }
