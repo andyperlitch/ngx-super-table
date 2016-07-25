@@ -1,9 +1,11 @@
 {
   "name": "ng2-super-table",
   "version": false,
-  "globalDependencies": {
-    "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
+  "dependencies": {
     "lodash": "registry:npm/lodash#4.0.0+20160701205107"
+  },
+  "globalDependencies": {
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504"
   },
   "globalDevDependencies": {
     "chai": "registry:dt/chai#3.4.0+20160601211834",

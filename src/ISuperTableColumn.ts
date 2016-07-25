@@ -3,4 +3,5 @@ export interface ISuperTableColumn {
   key : string;
   label : string;
   width? : number;
+  lockWidth? : boolean;
 }

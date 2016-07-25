@@ -77,7 +77,7 @@ npm run release
 ## TODO
 
 - [X] row virtualization
-- [ ] column resizing
+- [X] column resizing
 - [ ] row sorting (stacked, via columns)
 - [ ] column ordering
 - [ ] column-based filtering
