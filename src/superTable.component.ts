@@ -8,11 +8,10 @@ import { SuperTableState } from './SuperTableState';
 @Component({
   selector: 'super-table',
   template: `
-    <super-table-head [state]="state" [tableClasses]="tableClasses"></super-table-head>
+    <super-table-head [tableClasses]="tableClasses"></super-table-head>
 
     <super-table-body
       *ngIf="isReady"
-      [state]="state"
       [rows]="rows"
       [tableClasses]="tableClasses"
       [options]="options"
@@ -37,7 +36,8 @@ import { SuperTableState } from './SuperTableState';
     .loading-message {
       text-align: center;
     }
-  `]
+  `],
+  providers: [SuperTableState]
 })
 export class SuperTable implements AfterContentInit, OnChanges {
 
@@ -51,9 +51,8 @@ export class SuperTable implements AfterContentInit, OnChanges {
   private isReady : boolean = false;
   private hasError : boolean = false;
   private bodyHeight : number;
-  private state : SuperTableState = new SuperTableState();
 
-  constructor (private el: ElementRef) {}
+  constructor (private el: ElementRef, private state: SuperTableState) {}
 
   ngAfterContentInit () : void {
     if (this.options.autoHeight) {

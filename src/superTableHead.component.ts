@@ -28,6 +28,7 @@ import { TableHeader } from './tableHeader.component';
   `]
 })
 export class SuperTableHead {
-  @Input() state : SuperTableState;
   @Input() tableClasses : any;
+
+  constructor(private state: SuperTableState) {}
 }

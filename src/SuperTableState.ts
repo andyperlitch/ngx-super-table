@@ -11,9 +11,14 @@ export interface ColumnState {
   def : ISuperTableColumn;
 }
 
+export interface SortState {
+  id: string;
+}
+
 export class SuperTableState {
 
   public columns : Array<ColumnState>;
+  public sortStack : Array<SortState>;
 
   public setColumns ( columns : Array<ISuperTableColumn> ) : void {
     this.columns = columns.map(c => {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SuperTable, ISuperTableColumn, ISuperTableOptions} from '../ng2-super-table';
+import {SuperTable, ISuperTableColumn, ISuperTableOptions, superTableSorters} from '../ng2-super-table';
 
 const NUM_ROWS: number = 10000;
 
@@ -25,12 +25,20 @@ export class DemoApp implements OnInit {
       id: 'firstName',
       key: 'firstName',
       label: 'First',
-      width: 100
+      width: 100,
+      sort: superTableSorters.STRING
     },
     {
       id: 'lastName',
       key: 'lastName',
-      label: 'Last'
+      label: 'Last',
+      sort: superTableSorters.STRING
+    },
+    {
+      id: 'age',
+      key: 'age',
+      label: 'Age',
+      sort: superTableSorters.NUMBER
     }
   ];
   options: ISuperTableOptions = {
@@ -64,7 +72,8 @@ export class DemoApp implements OnInit {
     for (let i: number = 0; i < count; i++) {
       result.push({
         firstName: this.chooseRandom(this.firstNames),
-        lastName: this.chooseRandom(this.lastNames)
+        lastName: this.chooseRandom(this.lastNames),
+        age: Math.floor(Math.random() * 30) + 15
       });
     }
     return result;
@@ -79,4 +88,5 @@ export class DemoApp implements OnInit {
 interface MyRow {
   firstName: string;
   lastName: string;
+  age: number;
 }

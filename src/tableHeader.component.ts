@@ -1,5 +1,6 @@
 import { Component, Input, ElementRef } from '@angular/core';
 import { ColumnState } from './SuperTableState';
+import { SuperTableState } from './SuperTableState';
 
 @Component({
   selector: '[resizer]',
@@ -87,7 +88,9 @@ export class TableHeader {
   @Input() column : ColumnState;
   @Input() noHeight : boolean = false;
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private state: SuperTableState) {
+    console.log(state);
+  }
 
   private getWidth() : string {
     return (typeof this.column.width === 'number') ? this.column.width + 'px' : 'auto';

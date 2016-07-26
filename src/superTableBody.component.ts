@@ -26,7 +26,7 @@ const DEBOUNCE_DELAY : number = 250;
         [rowCount]="rowOffset">
       </tbody>
       <tbody class="visible-rows">
-        <tr *ngFor="let row of visibleRows" super-table-row [row]="row" [state]="state"></tr>
+        <tr *ngFor="let row of visibleRows" super-table-row [row]="row"></tr>
       </tbody>
       <tbody
         class="dummy-rows"
@@ -62,7 +62,6 @@ const DEBOUNCE_DELAY : number = 250;
 })
 export class SuperTableBody implements OnChanges {
   @Input() rows : Array<any>;
-  @Input() state : SuperTableState;
   @Input() tableClasses : any;
   @Input() bodyHeight : number;
 
@@ -77,7 +76,7 @@ export class SuperTableBody implements OnChanges {
     this.updateVisibleRows();
   }, DEBOUNCE_DELAY);
 
-  constructor (private el: ElementRef) {}
+  constructor (private el: ElementRef, private state: SuperTableState) {}
 
   ngOnChanges (changes: SimpleChanges) : void {
     this.updateVisibleRows();

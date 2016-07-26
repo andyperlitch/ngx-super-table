@@ -9,5 +9,5 @@ import { TableCell } from './tableCell.component';
 })
 export class SuperTableRow {
   @Input() row: any;
-  @Input() state : SuperTableState;
+  constructor(private state: SuperTableState) {}
 }
