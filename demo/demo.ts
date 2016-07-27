@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SuperTable, ISuperTableColumn, ISuperTableOptions, superTableSorters} from '../ng2-super-table';
+import {SuperTable, ISuperTableColumn, ISuperTableOptions, superTableSorters, superTableFilters} from '../ng2-super-table';
 
 const NUM_ROWS: number = 10000;
 
@@ -26,19 +26,29 @@ export class DemoApp implements OnInit {
       key: 'firstName',
       label: 'First',
       width: 100,
-      sort: superTableSorters.STRING
+      sort: superTableSorters.STRING,
+      filter: superTableFilters.STRING
     },
     {
       id: 'lastName',
       key: 'lastName',
       label: 'Last',
-      sort: superTableSorters.STRING
+      sort: superTableSorters.STRING,
+      filter: superTableFilters.STRING
     },
     {
-      id: 'age',
-      key: 'age',
-      label: 'Age',
-      sort: superTableSorters.NUMBER
+      id: 'height',
+      key: 'height',
+      label: 'Height',
+      sort: superTableSorters.NUMBER,
+      filter: superTableFilters.NUMBER
+    },
+    {
+      id: 'dob',
+      key: 'dob',
+      label: 'DOB',
+      sort: superTableSorters.NUMBER,
+      filter: superTableFilters.DATE
     }
   ];
   options: ISuperTableOptions = {
@@ -73,7 +83,8 @@ export class DemoApp implements OnInit {
       result.push({
         firstName: this.chooseRandom(this.firstNames),
         lastName: this.chooseRandom(this.lastNames),
-        age: Math.floor(Math.random() * 30) + 15
+        height: Math.floor(Math.random() * 30) + 60,
+        dob: new Date(Date.now() - (Math.random() * 30 + 15) * 365 * 24 * 60 * 60 * 1000)
       });
     }
     return result;
@@ -88,5 +99,6 @@ export class DemoApp implements OnInit {
 interface MyRow {
   firstName: string;
   lastName: string;
-  age: number;
+  height: number;
+  dob: Date;
 }

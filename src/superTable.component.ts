@@ -1,9 +1,20 @@
-import { Component, Input, AfterViewInit, AfterContentInit, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  AfterViewInit,
+  AfterContentInit,
+  ElementRef,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy
+} from '@angular/core';
 import { ISuperTableColumn } from './ISuperTableColumn';
 import { ISuperTableOptions } from './ISuperTableOptions';
 import { SuperTableHead } from './superTableHead.component';
 import { SuperTableBody } from './superTableBody.component';
-import { SuperTableState } from './SuperTableState';
+import { SuperTableState, ColumnState } from './SuperTableState';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'super-table',
@@ -12,7 +23,7 @@ import { SuperTableState } from './SuperTableState';
 
     <super-table-body
       *ngIf="isReady"
-      [rows]="rows"
+      [rows]="filteredSortedRows"
       [tableClasses]="tableClasses"
       [options]="options"
       [style.height]="bodyHeight + 'px'"
@@ -39,7 +50,7 @@ import { SuperTableState } from './SuperTableState';
   `],
   providers: [SuperTableState]
 })
-export class SuperTable implements AfterContentInit, OnChanges {
+export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnInit {
 
   // inputs
   @Input() rows: Array<any>;
@@ -51,8 +62,14 @@ export class SuperTable implements AfterContentInit, OnChanges {
   private isReady : boolean = false;
   private hasError : boolean = false;
   private bodyHeight : number;
+  private filteredSortedRows : Array<any>;
+  private subscription : Subscription;
 
   constructor (private el: ElementRef, private state: SuperTableState) {}
+
+  ngOnInit () {
+    this.subscription = this.state.stateChanged$.subscribe(()=>this.sortAndFilterRows());
+  }
 
   ngAfterContentInit () : void {
     if (this.options.autoHeight) {
@@ -67,6 +84,11 @@ export class SuperTable implements AfterContentInit, OnChanges {
     if (changes['columns'].isFirstChange()) {
       this.state.setColumns(changes['columns'].currentValue);
     }
+    this.sortAndFilterRows();
+  }
+
+  ngOnDestroy () : void {
+    this.subscription.unsubscribe();
   }
 
   private setTableHeight (totalHeight: number) : void {
@@ -76,4 +98,42 @@ export class SuperTable implements AfterContentInit, OnChanges {
     this.bodyHeight = totalHeight - headerHeight;
   }
 
+  private sortAndFilterRows () : void {
+    // Filtering
+    let activeFilterColumns : ColumnState[] = this.state.columns.filter((c) => {
+      return !! c.filterValue && !!c.def.filter;
+    });
+
+    if ( activeFilterColumns.length ){
+      this.filteredSortedRows = this.rows.filter((row) => {
+        for (let i = 0; i < activeFilterColumns.length; i++) {
+          let colState : ColumnState = activeFilterColumns[i];
+          let val : any = row[colState.def.key];
+          let filterResult : boolean = colState.def.filter.fn(colState.filterValue, val, row);
+          if (filterResult === false) {
+            return false;
+          }
+        }
+        return true;
+      });
+    } else {
+      this.filteredSortedRows = this.rows.slice();
+    }
+
+    // Sorting
+    this.filteredSortedRows.sort( (a,b) => {
+      for (let i = 0; i < this.state.sortStack.length; i++) {
+        let colState : ColumnState = this.state.sortStack[i];
+        let val1 = a[colState.def.key];
+        let val2 = b[colState.def.key];
+        let compareResult : number = colState.sortOrder === 'ASC'
+          ? colState.def.sort(val1, val2, a, b)
+          : colState.def.sort(val2, val1, b, a);
+        if (compareResult !== 0) {
+          return compareResult;
+        }
+      }
+      return 0;
+    });
+  }
 }

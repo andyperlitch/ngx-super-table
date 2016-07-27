@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, Input, ElementRef, HostBinding } from '@angular/core';
 import { ColumnState } from './SuperTableState';
 import { SuperTableState } from './SuperTableState';
 
@@ -66,7 +66,8 @@ class Resizer {
 @Component({
   selector: '[table-header]',
   host: {
-    '[style.width]': 'getWidth()'
+    '[style.width]': 'getWidth()',
+    '(click)': 'handleClick($event)'
   },
   template: `
     <div *ngIf="!noHeight" class="table-header-div">
@@ -77,6 +78,12 @@ class Resizer {
   styles: [`
     :host {
       position:relative;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     .table-header-div {
       position: relative;
@@ -88,9 +95,7 @@ export class TableHeader {
   @Input() column : ColumnState;
   @Input() noHeight : boolean = false;
 
-  constructor(private el: ElementRef, private state: SuperTableState) {
-    console.log(state);
-  }
+  constructor(private el: ElementRef, private state: SuperTableState) {}
 
   private getWidth() : string {
     return (typeof this.column.width === 'number') ? this.column.width + 'px' : 'auto';
@@ -101,7 +106,9 @@ export class TableHeader {
   }
 
   private handleClick( event : MouseEvent ) : void {
-    console.log(event.button);
     event.preventDefault();
+    if (this.column.hasSort) {
+      this.state.toggleSort(this.column, event.shiftKey);
+    }
   }
 }
