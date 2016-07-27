@@ -3,7 +3,14 @@ import { ColumnState } from './SuperTableState';
 
 @Component({
   selector: '[table-cell]',
-  template: `{{ getValue() }}`
+  template: `{{ getValue() }}`,
+  styles: [`
+    :host {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  `]
 })
 export class TableCell {
   @Input() row: any;

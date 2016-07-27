@@ -8,6 +8,7 @@ const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple 
   selector: '[resizer]',
   template: `<div class="notch" [ngClass]="{ explicit: column.width }"></div>`,
   host: {
+    '(click)': 'stopClick($event)',
     '(mousedown)': 'grab($event)',
     '[attr.title]': '"Click-and-drag to resize. Click to clear specified width."'
   },
@@ -21,7 +22,7 @@ const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple 
       cursor: col-resize;
     }
     .notch.explicit {
-      background-color: #e6e6e6;
+      background-color: rgba(22, 140, 239, 0.2);
     }
     .notch {
       width: 100%;
@@ -62,6 +63,11 @@ class Resizer {
 
   private getActualParentWidth () : number {
     return this.el.nativeElement.parentElement.offsetWidth;
+  }
+
+  private stopClick (event : MouseEvent) : void {
+    event.preventDefault();
+    event.stopPropagation();
   }
 }
 
