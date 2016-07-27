@@ -13,7 +13,7 @@ import { EnumFilter } from './enumFilter.component';
         <tr>
           <th scope="col" *ngFor="let column of state.columns" table-header [column]="column" [ngClass]="{ hasSort: column.hasSort }"></th>
         </tr>
-        <tr *ngIf="state.hasAnyFilters">
+        <tr *ngIf="state.hasAnyFilters" class="filter-row">
           <td *ngFor="let column of state.columns">
             <div [ngSwitch]="column.def.filter.type">
               <div *ngSwitchCase="'TEXT'" text-filter [filter]="column.def.filter" [column]="column"></div>
@@ -37,6 +37,9 @@ import { EnumFilter } from './enumFilter.component';
       width: 100%;
       margin-bottom: 0;
       border-bottom: none;
+    }
+    .filter-row td {
+      padding: 0;
     }
   `]
 })

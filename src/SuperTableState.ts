@@ -73,12 +73,10 @@ export class SuperTableState {
       });
     }
 
-    // Notify observable of state change
-    this.stateChangedSource.next(this);
+    this.notify()
   }
 
-  public setColumnTextFilter (colState : ColumnState, searchTerm : string ) : void {
-    colState.filterValue = searchTerm.trim();
+  public notify () : void {
     this.stateChangedSource.next(this);
   }
 

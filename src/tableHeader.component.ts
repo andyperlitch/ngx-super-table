@@ -2,6 +2,8 @@ import { Component, Input, ElementRef, HostBinding } from '@angular/core';
 import { ColumnState } from './SuperTableState';
 import { SuperTableState } from './SuperTableState';
 
+const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple columns.';
+
 @Component({
   selector: '[resizer]',
   template: `<div class="notch" [ngClass]="{ explicit: column.width }"></div>`,
@@ -70,8 +72,15 @@ class Resizer {
     '(click)': 'handleClick($event)'
   },
   template: `
-    <div *ngIf="!noHeight" class="table-header-div">
-      <div>{{ getValue() }}</div>
+    <div *ngIf="!noHeight" class="table-header-div" title="${SORT_TITLE}">
+      <span *ngIf="column.def.sort" class="sort-icon">
+        <span [ngSwitch]="column.sortOrder">
+          <span class="asc-sort glyphicon glyphicon-sort-by-attributes" *ngSwitchCase="'ASC'"></span>
+          <span class="desc-sort glyphicon glyphicon-sort-by-attributes-alt" *ngSwitchCase="'DESC'"></span>
+          <span class="no-sort glyphicon glyphicon-sort" *ngSwitchDefault></span>
+        </span>
+      </span>
+      {{ getValue() }}
     </div>
     <div *ngIf="!noHeight && !column.def.lockWidth" resizer [column]="column"></div>
   `,
@@ -85,8 +94,22 @@ class Resizer {
       -ms-user-select: none;
       user-select: none;
     }
+    :host:hover .sort-icon {
+      opacity: 1;
+    }
     .table-header-div {
       position: relative;
+    }
+    .sort-icon {
+      font-size: 70%;
+      opacity: 1;
+      color: #168cef;
+      text-shadow: 0 1px 2px rgba(22, 140, 239, 0.6);
+    }
+    .sort-icon .no-sort {
+      opacity: 0.3;
+      text-shadow: none;
+      color: black;
     }
   `],
   directives: [Resizer]

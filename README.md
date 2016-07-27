@@ -75,14 +75,15 @@ npm run release
 ```
 
 ## TODO
-
 - [X] row virtualization
 - [X] column resizing
-- [ ] row sorting (stacked, via columns)
+- [X] row sorting (stacked, via columns)
+- [ ] cell formatting (text)
+- [ ] custom cell component
 - [ ] column ordering
-- [ ] column-based filtering
-  - [ ] string
-  - [ ] number
+- [-] column-based filtering
+  - [X] string
+  - [X] number
   - [ ] enum
   - [ ] custom
 - [ ] hiding/showing columns

@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, ElementRef, SimpleChanges, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { SuperTableState } from './SuperTableState';
 import { SuperTableRow } from './superTableRow.component';
 import { TableHeader } from './tableHeader.component';
@@ -60,7 +60,7 @@ const DEBOUNCE_DELAY : number = 250;
     }
   `]
 })
-export class SuperTableBody implements OnChanges {
+export class SuperTableBody implements OnChanges, OnInit, OnDestroy {
   @Input() rows : Array<any>;
   @Input() tableClasses : any;
   @Input() bodyHeight : number;
@@ -70,25 +70,27 @@ export class SuperTableBody implements OnChanges {
   // assume small row height at first.
   // The real height will be detected once rows are rendered.
   private rowHeight : number = DEFAULT_ROW_HEIGHT;
-  private rowHeightDetected : boolean = false;
   private rowOffset : number = 0;
   private trackScroll : Function = _.debounce( () => {
     this.updateVisibleRows();
   }, DEBOUNCE_DELAY);
+  private onWindowResize : EventListener = _.debounce( () => {
+    this.detectRowHeight();
+    this.updateVisibleRows();
+  });
 
   constructor (private el: ElementRef, private state: SuperTableState) {}
 
+  ngOnInit () {
+    window.addEventListener('resize', this.onWindowResize);
+  }
+
+  ngOnDestroy () {
+    window.removeEventListener('resize', this.onWindowResize);
+  }
+
   ngOnChanges (changes: SimpleChanges) : void {
     this.updateVisibleRows();
-
-    // detect row height if not already done
-    if (!this.rowHeightDetected && changes['rows'].currentValue.length && this.visibleRows.length) {
-      setTimeout( () => {
-        let tr : HTMLTableSectionElement = this.el.nativeElement.querySelector('tbody.visible-rows tr');
-        this.rowHeight = tr.offsetHeight;
-        this.rowHeightDetected = true;
-      });
-    }
   }
 
   private updateVisibleRows () : void {
@@ -102,6 +104,19 @@ export class SuperTableBody implements OnChanges {
     endIndex = Math.ceil((currentScroll + this.bodyHeight) / this.rowHeight + PADDING_ROW_COUNT);
     endIndex = Math.min(this.rows.length - 1, endIndex);
     this.visibleRows = this.rows.slice(startIndex, endIndex);
+    setTimeout( () => {
+      this.detectRowHeight();
+    });
 
+  }
+
+  private detectRowHeight () : void {
+    let tr : HTMLTableSectionElement = this.el.nativeElement.querySelector('tbody.visible-rows tr');
+    if (tr != null) {
+      this.rowHeight = tr.offsetHeight;
+      console.log('this.rowHeight', this.rowHeight);
+    } else {
+      console.log('tr is null');
+    }
   }
 }
