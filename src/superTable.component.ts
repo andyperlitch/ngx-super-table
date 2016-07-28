@@ -9,11 +9,10 @@ import {
   SimpleChanges,
   OnDestroy
 } from '@angular/core';
-import { ISuperTableColumn } from './ISuperTableColumn';
-import { ISuperTableOptions } from './ISuperTableOptions';
+import { ISuperTableColumn, ColumnState, ISuperTableOptions } from './interfaces';
 import { SuperTableHead } from './superTableHead.component';
 import { SuperTableBody } from './superTableBody.component';
-import { SuperTableState, ColumnState } from './SuperTableState';
+import { SuperTableState } from './SuperTableState';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
@@ -67,8 +66,8 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
 
   constructor (private el: ElementRef, private state: SuperTableState) {}
 
-  ngOnInit () {
-    this.subscription = this.state.stateChanged$.subscribe(()=>this.sortAndFilterRows());
+  ngOnInit () : void {
+    this.subscription = this.state.stateChanged$.subscribe(() => this.sortAndFilterRows());
   }
 
   ngAfterContentInit () : void {

@@ -1,5 +1,5 @@
 import { Component, Input, ElementRef, HostBinding } from '@angular/core';
-import { ColumnState } from './SuperTableState';
+import { ColumnState } from './interfaces';
 import { SuperTableState } from './SuperTableState';
 
 const SORT_TITLE: string = 'Click to change sort order. Shift-click to sort on multiple columns.';

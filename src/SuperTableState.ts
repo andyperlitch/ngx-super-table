@@ -1,25 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject }    from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { ISuperTableColumn } from './ISuperTableColumn';
+import { ISuperTableColumn, ColumnState, SORT_ORDER } from './interfaces';
 
-export type SORT_ORDER = 'ASC' | 'DESC';
 const sortCycle : SORT_ORDER[] = ['ASC', 'DESC', null];
 const getNextSortOrder : Function = function(currentSortOrder : SORT_ORDER) : SORT_ORDER {
   let nextIndex : number = (sortCycle.indexOf(currentSortOrder) + 1) % sortCycle.length;
   return sortCycle[nextIndex];
 };
-
-export interface ColumnState {
-  id : string;
-  filterValue : any;
-  sortOrder : SORT_ORDER;
-  isHidden : boolean;
-  width : number;
-  def : ISuperTableColumn;
-  hasSort : boolean;
-  hasFilter : boolean;
-}
 
 @Injectable()
 export class SuperTableState {

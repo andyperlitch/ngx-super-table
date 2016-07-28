@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SuperTable, ISuperTableColumn, ISuperTableOptions, superTableSorters, superTableFilters } from '../ng2-super-table';
+import {
+  SuperTable,
+  ISuperTableColumn,
+  ISuperTableOptions,
+  superTableSorters,
+  superTableFilters,
+  ColumnState
+} from '../ng2-super-table';
 import { InstrumentComponent } from './instrument.component';
 
 const NUM_ROWS: number = 10000;
@@ -56,7 +63,13 @@ export class DemoApp implements OnInit {
       key: 'height',
       label: 'Height',
       sort: superTableSorters.NUMBER,
-      filter: superTableFilters.NUMBER
+      filter: superTableFilters.NUMBER,
+      format: function(value: any, row: Object, colState: ColumnState) : string {
+        let numValue: number = value as number;
+        let feet: number = Math.floor(numValue / 12);
+        let inches: number = numValue % 12;
+        return `${feet}'${inches}"`;
+      }
     },
     {
       id: 'dob',

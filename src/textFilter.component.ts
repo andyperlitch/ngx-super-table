@@ -1,6 +1,5 @@
 import { Component, Input, Output, ElementRef, EventEmitter } from '@angular/core';
-import { ISuperTableFilter } from './superTableFilters';
-import { ColumnState } from './SuperTableState';
+import { ISuperTableFilter, ColumnState } from './interfaces';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 import { SuperTableState } from './SuperTableState';

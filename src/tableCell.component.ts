@@ -1,10 +1,10 @@
 import { Component, Input, ComponentResolver, ComponentRef, Injector, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { ColumnState } from './SuperTableState';
+import { ColumnState } from './interfaces';
 
 @Component({
   selector: '[table-cell]',
   template: `
-    <span *ngIf="!column.def.component" [attr.title]="getValue()">{{ getValue() }}</span>
+    <span *ngIf="!column.def.component" [attr.title]="getFormattedValue()">{{ getFormattedValue() }}</span>
     <span *ngIf="column.def.component" #cmpContainer></span>
   `,
   styles: [`
@@ -19,10 +19,17 @@ export class TableCell implements OnInit {
   @Input() row: any;
   @Input() column: ColumnState;
   @ViewChild('cmpContainer', { read: ViewContainerRef }) cmpContainer: ViewContainerRef;
+
+  constructor(private viewContainer: ViewContainerRef, private resolver: ComponentResolver) {}
+
   getValue () : any {
     return this.row[this.column.def.key];
   }
-  constructor(private viewContainer: ViewContainerRef, private resolver: ComponentResolver) {}
+  getFormattedValue() : any {
+    return (this.column.def.format)
+      ? this.column.def.format(this.getValue(), this.row, this.column)
+      : this.getValue();
+  }
 
   ngOnInit () : void {
     if (this.column.def.component) {

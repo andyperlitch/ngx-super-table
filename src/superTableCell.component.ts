@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ColumnState } from './SuperTableState';
+import { ColumnState } from './interfaces';
 
 @Component({
   template: ``

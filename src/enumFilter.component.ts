@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISuperTableFilter } from './superTableFilters';
-import { ColumnState } from './SuperTableState';
+import { ISuperTableFilter, ColumnState } from './interfaces';
 
 @Component({
   selector: '[enum-filter]',

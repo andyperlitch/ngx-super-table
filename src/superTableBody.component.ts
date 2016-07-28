@@ -33,7 +33,7 @@ const DEBOUNCE_DELAY : number = 250;
         dummy-rows
         [columnCount]="state.columns.length"
         [rowHeight]="rowHeight"
-        [rowCount]="rows.length - rowOffset - visibleRows.length">
+        [rowCount]="rows.length - rowOffset - visibleRows.length - 1">
       </tbody>
     </table>
   `,
