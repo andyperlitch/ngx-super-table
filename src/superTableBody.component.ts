@@ -81,11 +81,11 @@ export class SuperTableBody implements OnChanges, OnInit, OnDestroy {
 
   constructor (private el: ElementRef, private state: SuperTableState) {}
 
-  ngOnInit () {
+  ngOnInit () : void {
     window.addEventListener('resize', this.onWindowResize);
   }
 
-  ngOnDestroy () {
+  ngOnDestroy () : void {
     window.removeEventListener('resize', this.onWindowResize);
   }
 
@@ -114,9 +114,6 @@ export class SuperTableBody implements OnChanges, OnInit, OnDestroy {
     let tr : HTMLTableSectionElement = this.el.nativeElement.querySelector('tbody.visible-rows tr');
     if (tr != null) {
       this.rowHeight = tr.offsetHeight;
-      console.log('this.rowHeight', this.rowHeight);
-    } else {
-      console.log('tr is null');
     }
   }
 }

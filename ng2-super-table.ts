@@ -3,6 +3,7 @@ export {ISuperTableColumn} from './src/ISuperTableColumn';
 export {ISuperTableOptions} from './src/ISuperTableOptions';
 export {superTableSorters} from './src/superTableSorters';
 export {superTableFilters} from './src/superTableFilters';
+export {SuperTableCell} from './src/superTableCell.component';
 
 export * from './src/superTable.component';
 

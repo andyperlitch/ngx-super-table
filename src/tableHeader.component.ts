@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, HostBinding } from '@angular/core';
 import { ColumnState } from './SuperTableState';
 import { SuperTableState } from './SuperTableState';
 
-const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple columns.';
+const SORT_TITLE: string = 'Click to change sort order. Shift-click to sort on multiple columns.';
 
 @Component({
   selector: '[resizer]',
@@ -33,11 +33,12 @@ const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple 
   `]
 })
 class Resizer {
-  @Input() column: ColumnState;
-  @Input() actualWidth: number;
 
   private static MAX_CLICK_WAIT : number = 250;
   private static MIN_COLUMN_WIDTH : number = 30;
+
+  @Input() column: ColumnState;
+  @Input() actualWidth: number;
 
   constructor (private el: ElementRef) {}
 

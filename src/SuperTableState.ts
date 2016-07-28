@@ -8,7 +8,7 @@ const sortCycle : SORT_ORDER[] = ['ASC', 'DESC', null];
 const getNextSortOrder : Function = function(currentSortOrder : SORT_ORDER) : SORT_ORDER {
   let nextIndex : number = (sortCycle.indexOf(currentSortOrder) + 1) % sortCycle.length;
   return sortCycle[nextIndex];
-}
+};
 
 export interface ColumnState {
   id : string;
@@ -24,20 +24,27 @@ export interface ColumnState {
 @Injectable()
 export class SuperTableState {
 
-  // source of observable
-  private stateChangedSource : BehaviorSubject<SuperTableState> = new BehaviorSubject<SuperTableState>(this);
-
   // publicly exposed properties
   hasAnyFilters : boolean = false;
   columns : ColumnState[];
   sortStack : ColumnState[] = [];
-  stateChanged$ : Observable<SuperTableState> = this.stateChangedSource.asObservable();
+  stateChanged$ : Observable<SuperTableState>;
+
+  // source of observable
+  private stateChangedSource : BehaviorSubject<SuperTableState> = new BehaviorSubject<SuperTableState>(this);
+
+  constructor() {
+    this.stateChanged$ = this.stateChangedSource.asObservable();
+  }
 
   public setColumns ( columns : Array<ISuperTableColumn> ) : void {
     this.columns = columns.map(c => {
       if (!!c.filter) {
         this.hasAnyFilters = true;
       }
+      // if (c.id === 'instrument') {
+      //   debugger;
+      // }
       return {
         id: c.id,
         filterValue: null,
@@ -73,7 +80,7 @@ export class SuperTableState {
       });
     }
 
-    this.notify()
+    this.notify();
   }
 
   public notify () : void {

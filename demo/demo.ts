@@ -1,12 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {SuperTable, ISuperTableColumn, ISuperTableOptions, superTableSorters, superTableFilters} from '../ng2-super-table';
+import { Component, OnInit } from '@angular/core';
+import { SuperTable, ISuperTableColumn, ISuperTableOptions, superTableSorters, superTableFilters } from '../ng2-super-table';
+import { InstrumentComponent } from './instrument.component';
 
 const NUM_ROWS: number = 10000;
+type INSTRUMENT_TYPE = 'sax' | 'trumpet' | 'trombone' | 'piano' | 'keys' | 'drums';
 
 @Component({
   selector: 'demo-app',
   directives: [SuperTable],
-  template: `<super-table [rows]="rows" [columns]="columns" [options]="options" [tableClasses]="tableClasses"></super-table>`,
+  template: `
+    <super-table
+      [rows]="rows"
+      [columns]="columns"
+      [options]="options"
+      [tableClasses]="tableClasses">
+    </super-table>
+  `,
   styles: [`
     :host {
       width: 80%;
@@ -16,7 +25,6 @@ const NUM_ROWS: number = 10000;
     }
   `]
 })
-
 export class DemoApp implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
   rows: MyRow[] = [];
@@ -37,6 +45,13 @@ export class DemoApp implements OnInit {
       filter: superTableFilters.STRING
     },
     {
+      id: 'instrument',
+      key: 'instrument',
+      label: 'Instrument',
+      sort: superTableSorters.STRING,
+      component: InstrumentComponent
+    },
+    {
       id: 'height',
       key: 'height',
       label: 'Height',
@@ -46,7 +61,7 @@ export class DemoApp implements OnInit {
     {
       id: 'dob',
       key: 'dob',
-      label: 'DOB',
+      label: 'Birthday',
       sort: superTableSorters.NUMBER,
       filter: superTableFilters.DATE
     }
@@ -73,6 +88,15 @@ export class DemoApp implements OnInit {
     'Sonny'
   ];
 
+  private instruments: string[] = [
+    'sax',
+    'trumpet',
+    'trombone',
+    'piano',
+    'keys',
+    'drums'
+  ];
+
   ngOnInit() : void {
     this.rows = this.generateRows(NUM_ROWS);
   }
@@ -84,7 +108,8 @@ export class DemoApp implements OnInit {
         firstName: this.chooseRandom(this.firstNames),
         lastName: this.chooseRandom(this.lastNames),
         height: Math.floor(Math.random() * 30) + 60,
-        dob: new Date(Date.now() - (Math.random() * 30 + 15) * 365 * 24 * 60 * 60 * 1000)
+        dob: new Date(Date.now() - (Math.random() * 30 + 15) * 365 * 24 * 60 * 60 * 1000),
+        instrument: this.chooseRandom(this.instruments)
       });
     }
     return result;
@@ -101,4 +126,5 @@ interface MyRow {
   lastName: string;
   height: number;
   dob: Date;
+  instrument: string;
 }

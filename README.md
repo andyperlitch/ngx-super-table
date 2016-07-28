@@ -79,7 +79,7 @@ npm run release
 - [X] column resizing
 - [X] row sorting (stacked, via columns)
 - [ ] cell formatting (text)
-- [ ] custom cell component
+- [X] custom cell component
 - [ ] column ordering
 - [-] column-based filtering
   - [X] string

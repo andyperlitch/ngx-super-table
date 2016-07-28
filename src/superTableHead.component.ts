@@ -15,7 +15,7 @@ import { EnumFilter } from './enumFilter.component';
         </tr>
         <tr *ngIf="state.hasAnyFilters" class="filter-row">
           <td *ngFor="let column of state.columns">
-            <div [ngSwitch]="column.def.filter.type">
+            <div *ngIf="column.hasFilter" [ngSwitch]="column.def.filter.type">
               <div *ngSwitchCase="'TEXT'" text-filter [filter]="column.def.filter" [column]="column"></div>
               <div *ngSwitchCase="'ENUM'" enum-filter [filter]="column.def.filter" [column]="column"></div>
             </div>
