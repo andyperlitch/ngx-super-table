@@ -13,6 +13,7 @@ import { SuperTableState } from './SuperTableState';
       [(ngModel)]="column.filterValue"
       (ngModelChange)="onModelChange($event)"
       [attr.placeholder]="filter.placeholder"
+      [attr.title]="filter.title"
       [ngClass]="{ hasContent: !!column.filterValue }" />
 
     <button *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
@@ -45,7 +46,7 @@ export class TextFilter {
   @Input() filter: ISuperTableFilter;
   @Input() column: ColumnState;
 
-  onModelChange: Function = _.debounce(function() {
+  onModelChange: Function = _.debounce(function() : void {
     this.state.notify();
   }, 200);
 

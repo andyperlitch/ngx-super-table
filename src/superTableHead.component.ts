@@ -40,6 +40,7 @@ import { EnumFilter } from './enumFilter.component';
     }
     .filter-row td {
       padding: 0;
+      vertical-align: middle;
     }
   `]
 })

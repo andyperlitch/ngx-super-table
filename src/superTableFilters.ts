@@ -4,6 +4,7 @@ interface IBuiltInFilters {
   STRING: ISuperTableFilter;
   NUMBER: ISuperTableFilter;
   DATE: ISuperTableFilter;
+  ENUM: ISuperTableFilter;
 }
 
 // For date filter
@@ -44,6 +45,9 @@ export const superTableFilters: IBuiltInFilters = {
     title: 'Search by text, eg. "foo". Use "!" to ' +
            'exclude and "=" to match exact text, e.g. ' +
            '"!bar" or "=baz".',
+    isActive: function(filterValue: any) : boolean {
+      return !!filterValue && !!(filterValue as string).trim();
+    },
     placeholder: 'string search',
     fn: function(term: string, value: any, row: Object) : boolean {
       term = term.toLowerCase().trim();
@@ -78,6 +82,9 @@ export const superTableFilters: IBuiltInFilters = {
     title: 'Search by number, e.g. "123". Optionally use comparator ' +
            'expressions like ">=10" or "<1000". Use "~" for approx. ' +
            'int values, eg. "~3" will match "3.2"',
+    isActive: function(filterValue: any) : boolean {
+      return !!filterValue && !!(filterValue as string).trim();
+    },
     placeholder: 'number search',
     fn: function(term: string, value: any, row: Object) : boolean {
       let parsedValue : number = parseFloat(value);
@@ -112,6 +119,9 @@ export const superTableFilters: IBuiltInFilters = {
     title: 'Search by date. Enter a date string (RFC2822 or ' +
            'ISO 8601 date). You can also type "today", "yesterday", ' +
            '"> 2 days ago", "< 1 day 2 hours ago", etc.',
+    isActive: function(filterValue: any) : boolean {
+      return !!filterValue && !!(filterValue as string).trim();
+    },
     placeholder: 'date search',
     fn: function(term: string, value: Date | number) : boolean{
       // today
@@ -159,6 +169,24 @@ export const superTableFilters: IBuiltInFilters = {
       }
 
       return false;
+    }
+  },
+  ENUM: {
+    type: 'ENUM',
+    title: 'Click to filter rows by discreet values',
+    placeholder: 'filters',
+    isActive: function(filterValue: any) : boolean {
+      if (!filterValue) {
+        return false;
+      }
+      let filterValueObj: Object = filterValue as Object;
+      return Object.keys( filterValueObj ).some(key => {
+        return !filterValueObj[key];
+      });
+    },
+    fn: function(filterValue: any, value: any, row: Object) : boolean {
+      let filterValueObj: Object = filterValue as Object;
+      return filterValueObj[value];
     }
   }
 };

@@ -33,11 +33,12 @@ export class TableCell implements OnInit {
 
   ngOnInit () : void {
     if (this.column.def.component) {
-      this.resolver.resolveComponent(this.column.def.component)
+      this.resolver
+        .resolveComponent(this.column.def.component)
         .then(cmpFactory => {
           const ctxInjector: Injector = this.cmpContainer.injector;
           const cmpRef: ComponentRef<any> = this.cmpContainer.createComponent(cmpFactory, 0, ctxInjector);
-          const instance: ComponentRef<any> = cmpRef.instance;
+          const instance: any = cmpRef.instance;
           instance['row'] = this.row;
           instance['column'] = this.column;
           instance['key'] = this.column.def.key;

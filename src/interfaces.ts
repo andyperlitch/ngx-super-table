@@ -32,13 +32,14 @@ export interface ColumnState {
 export interface ISuperTableFilter {
   type: FILTER_TYPE; // text or enum
   title: string;     // tooltip for filter field
-
-  // for TEXT type only
-  fn?: (searchTerm: string, value: any, row: Object) => boolean;
-  placeholder?: string; // the placeholder text for the input
+  // given the current value of filterValue, returns true or false based on
+  // whether that value is considered "active"
+  isActive: (filterValue: any) => boolean;
+  fn: (filterValue: any, value: any, row: Object) => boolean;
+  placeholder: string; // the placeholder text for the input
 
   // for ENUM type only
-  choices?: any;
+  choices?: any[];
 }
 
 export interface ISuperTableColumn {
@@ -51,4 +52,5 @@ export interface ISuperTableColumn {
   filter?: ISuperTableFilter;
   format?: ISuperTableCellFormatter;
   component?: any;
+  filterChoices?: any[];
 }

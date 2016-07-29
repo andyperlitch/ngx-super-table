@@ -80,11 +80,11 @@ npm run release
 - [X] row sorting (stacked, via columns)
 - [X] cell formatting (text)
 - [X] custom cell component
-- [ ] column-based filtering
+- [X] column-based filtering
   - [X] string
   - [X] number
-  - [ ] enum
-  - [ ] custom
+  - [X] enum
+  - [X] custom
 - [ ] hiding/showing columns
 
 

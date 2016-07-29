@@ -100,12 +100,12 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
   private sortAndFilterRows () : void {
     // Filtering
     let activeFilterColumns : ColumnState[] = this.state.columns.filter((c) => {
-      return !! c.filterValue && !!c.def.filter;
+      return !!c.def.filter && !!c.def.filter.isActive(c.filterValue);
     });
 
-    if ( activeFilterColumns.length ){
+    if ( activeFilterColumns.length ) {
       this.filteredSortedRows = this.rows.filter((row) => {
-        for (let i = 0; i < activeFilterColumns.length; i++) {
+        for (let i: number = 0; i < activeFilterColumns.length; i++) {
           let colState : ColumnState = activeFilterColumns[i];
           let val : any = row[colState.def.key];
           let filterResult : boolean = colState.def.filter.fn(colState.filterValue, val, row);
@@ -120,7 +120,7 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
     }
 
     // Sorting
-    this.filteredSortedRows.sort( (a,b) => {
+    this.filteredSortedRows.sort( (a, b) => {
       for (let i = 0; i < this.state.sortStack.length; i++) {
         let colState : ColumnState = this.state.sortStack[i];
         let val1 = a[colState.def.key];

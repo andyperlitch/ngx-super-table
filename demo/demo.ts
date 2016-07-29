@@ -11,6 +11,14 @@ import { InstrumentComponent } from './instrument.component';
 
 const NUM_ROWS: number = 10000;
 type INSTRUMENT_TYPE = 'sax' | 'trumpet' | 'trombone' | 'piano' | 'keys' | 'drums';
+const INSTRUMENTS: string[] = [
+  'sax',
+  'trumpet',
+  'trombone',
+  'piano',
+  'keys',
+  'drums'
+];
 
 @Component({
   selector: 'demo-app',
@@ -56,7 +64,9 @@ export class DemoApp implements OnInit {
       key: 'instrument',
       label: 'Instrument',
       sort: superTableSorters.STRING,
-      component: InstrumentComponent
+      component: InstrumentComponent,
+      filter: superTableFilters.ENUM,
+      filterChoices: INSTRUMENTS
     },
     {
       id: 'height',
@@ -101,14 +111,7 @@ export class DemoApp implements OnInit {
     'Sonny'
   ];
 
-  private instruments: string[] = [
-    'sax',
-    'trumpet',
-    'trombone',
-    'piano',
-    'keys',
-    'drums'
-  ];
+  private instruments: string[] = INSTRUMENTS;
 
   ngOnInit() : void {
     this.rows = this.generateRows(NUM_ROWS);
