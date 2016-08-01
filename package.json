@@ -1,6 +1,6 @@
 {
   "name": "ng2-super-table",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A table component for angular2 projects",
   "main": "./ng2-super-table.js",
   "typings": "./ng2-super-table.d.ts",
