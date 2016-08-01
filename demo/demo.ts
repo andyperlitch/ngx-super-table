@@ -24,6 +24,11 @@ const INSTRUMENTS: string[] = [
   selector: 'demo-app',
   directives: [SuperTable],
   template: `
+    <p>
+      The following table has ${NUM_ROWS} rows, and uses row-virtualization so
+      the DOM is not overloaded. All sorting and filtering occurs on the client
+      side.
+    </p>
     <super-table
       [rows]="rows"
       [columns]="columns"
