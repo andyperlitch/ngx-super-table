@@ -6,6 +6,22 @@
 [![GitHub stars](https://img.shields.io/github/stars/andyperlitch/ng2-super-table.svg)](https://github.com/andyperlitch/ng2-super-table/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ng2-super-table/master/LICENSE)
 
+A table component with the following features:
+
+- row virtualization
+- row sorting (stackable)
+- cell formatting (text)
+- custom cell component
+- column resizing
+- column-based filtering
+  - string
+  - number
+  - enum
+  - custom
+
+![angular2 super table screenshot](http://i.imgur.com/ERUHmza.png)
+
+
 ## Demo
 https://andyperlitch.github.io/ng2-super-table/demo/
 
@@ -32,17 +48,41 @@ Then use it in your app like so:
 
 ```typescript
 import {Component} from '@angular/core';
-import {HelloWorld} from 'ng2-super-table';
+import {SuperTable, ISuperTableColumn} from 'ng2-super-table';
 
 @Component({
   selector: 'demo-app',
-  directives: [HelloWorld],
-  template: '<hello-world></hello-world>'
+  directives: [SuperTable],
+  template: `<super-table
+    [rows]="rows"
+    [columns]="columns"
+    [options]="options">
+  </super-table>`
 })
-export class DemoApp {}
+export class DemoApp {
+  rows = [
+    { name: 'thing1', age: 7 },
+    { name: 'thing2', age: 7 },
+    { name: 'cat', age: 10 },
+    { name: 'fish', age: 1 },
+  ];
+  columns: ISuperTableColumn[] = [
+    {
+      id: 'name',
+      key: 'name'
+      label: 'Name'
+    },
+    {
+      id: 'age',
+      key: 'age'
+      label: 'Age'
+    }
+  ];
+  options = {}
+}
 ```
 
-You may also find it useful to view the [demo source](https://github.com/andyperlitch/ng2-super-table/blob/master/demo/demo.ts).
+Please view the [demo source](https://github.com/andyperlitch/ng2-super-table/blob/master/demo/demo.ts) for a much more feature-complete example.
 
 ### Usage without a module bundler
 ```
