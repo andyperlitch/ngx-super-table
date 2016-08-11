@@ -142,7 +142,7 @@ export class DemoApp implements OnInit {
   }
 }
 
-interface MyRow {
+export interface MyRow {
   firstName: string;
   lastName: string;
   height: number;

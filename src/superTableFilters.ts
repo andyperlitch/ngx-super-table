@@ -1,6 +1,6 @@
 import {FILTER_TYPE, ISuperTableFilter} from './interfaces';
 
-interface IBuiltInFilters {
+export interface IBuiltInFilters {
   STRING: ISuperTableFilter;
   NUMBER: ISuperTableFilter;
   DATE: ISuperTableFilter;
