@@ -4,7 +4,7 @@ import {
   OnInit,
   OnDestroy,
   ElementRef,
-  ComponentResolver,
+  ComponentFactoryResolver,
   ViewContainerRef,
   ComponentRef,
   Injector
@@ -149,7 +149,7 @@ export class EnumFilter implements OnInit, OnDestroy {
     private state: SuperTableState,
     private el: ElementRef,
     private viewContainer: ViewContainerRef,
-    private resolver: ComponentResolver
+    private resolver: ComponentFactoryResolver
   ) {}
 
   ngOnInit () : void {
@@ -174,25 +174,19 @@ export class EnumFilter implements OnInit, OnDestroy {
       this.dropdown.destroy();
       this.dropdown = null;
     } else {
-      let clientRect: ClientRect = this.el.nativeElement.getBoundingClientRect();
-      this.resolver
-      .resolveComponent(EnumFilterDropdown)
-      .then(cmpFactory => {
-        const ctxInjector: Injector = this.viewContainer.injector;
-        const cmpRef: ComponentRef<EnumFilterDropdown> = this.viewContainer.createComponent(cmpFactory, 0, ctxInjector);
-        cmpRef.instance.column = this.column;
-        cmpRef.instance.top = clientRect.top + clientRect.height;
-        cmpRef.instance.left = clientRect.left;
-        cmpRef.instance.width = clientRect.width;
-        cmpRef.instance.destroyMe = () => {
-          this.toggleVisibility();
-        };
-        return cmpRef;
-      })
-      .then((cmpRef: ComponentRef<EnumFilterDropdown>) => {
-        this.dropdown = cmpRef;
-        document.body.appendChild(cmpRef.location.nativeElement);
-      });
+      const clientRect: ClientRect = this.el.nativeElement.getBoundingClientRect();
+      const cmpFactory = this.resolver.resolveComponentFactory(EnumFilterDropdown);
+      const ctxInjector: Injector = this.viewContainer.injector;
+      const cmpRef: ComponentRef<EnumFilterDropdown> = this.viewContainer.createComponent(cmpFactory, 0, ctxInjector);
+      cmpRef.instance.column = this.column;
+      cmpRef.instance.top = clientRect.top + clientRect.height;
+      cmpRef.instance.left = clientRect.left;
+      cmpRef.instance.width = clientRect.width;
+      cmpRef.instance.destroyMe = () => {
+        this.toggleVisibility();
+      };
+      this.dropdown = cmpRef;
+      document.body.appendChild(cmpRef.location.nativeElement);
     }
   }
 }

@@ -1,8 +1,5 @@
 import { Component, Input, ElementRef, SimpleChanges, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { SuperTableState } from './SuperTableState';
-import { SuperTableRow } from './superTableRow.component';
-import { TableHeader } from './tableHeader.component';
-import { DummyRows } from './dummyRows.component';
 import * as _ from 'lodash';
 
 const DEFAULT_ROW_HEIGHT : number = 20;
@@ -40,7 +37,6 @@ const DEBOUNCE_DELAY : number = 250;
   host: {
     '(scroll)': 'trackScroll($event)'
   },
-  directives: [SuperTableRow, DummyRows, TableHeader],
   styles: [`
     :host {
       display: block;

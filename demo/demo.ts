@@ -1,6 +1,8 @@
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import {
-  SuperTable,
+  SuperTableModule,
   ISuperTableColumn,
   ISuperTableOptions,
   superTableSorters,
@@ -22,7 +24,6 @@ const INSTRUMENTS: string[] = [
 
 @Component({
   selector: 'demo-app',
-  directives: [SuperTable],
   template: `
     <p>
       The following table has ${NUM_ROWS} rows, and uses row-virtualization so
@@ -45,7 +46,7 @@ const INSTRUMENTS: string[] = [
     }
   `]
 })
-export class DemoApp implements OnInit {
+class DemoApp implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
   rows: MyRow[] = [];
   columns: ISuperTableColumn[] = [
@@ -149,3 +150,10 @@ export interface MyRow {
   dob: Date;
   instrument: string;
 }
+
+@NgModule({
+  imports: [ BrowserModule ],
+  declarations: [ DemoApp ],
+  bootstrap:    [ DemoApp ]
+})
+export class DemoAppModule { }

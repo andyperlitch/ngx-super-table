@@ -30,9 +30,6 @@ export class SuperTableState {
       if (!!c.filter) {
         this.hasAnyFilters = true;
       }
-      // if (c.id === 'instrument') {
-      //   debugger;
-      // }
       return {
         id: c.id,
         filterValue: null,

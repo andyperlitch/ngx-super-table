@@ -10,8 +10,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { ISuperTableColumn, ColumnState, ISuperTableOptions } from './interfaces';
-import { SuperTableHead } from './superTableHead.component';
-import { SuperTableBody } from './superTableBody.component';
 import { SuperTableState } from './SuperTableState';
 import { Subscription }   from 'rxjs/Subscription';
 
@@ -37,7 +35,6 @@ import { Subscription }   from 'rxjs/Subscription';
 
     <div *ngIf="hasError">An error occurred.</div>
   `,
-  directives: [SuperTableHead, SuperTableBody],
   styles: [`
     :host {
       position: relative;

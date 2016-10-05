@@ -32,7 +32,7 @@ const SORT_TITLE: string = 'Click to change sort order. Shift-click to sort on m
     }
   `]
 })
-class Resizer {
+export class Resizer {
 
   private static MAX_CLICK_WAIT : number = 250;
   private static MIN_COLUMN_WIDTH : number = 30;
@@ -118,8 +118,7 @@ class Resizer {
       text-shadow: none;
       color: black;
     }
-  `],
-  directives: [Resizer]
+  `]
 })
 export class TableHeader {
   @Input() column : ColumnState;

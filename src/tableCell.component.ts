@@ -1,4 +1,13 @@
-import { Component, Input, ComponentResolver, ComponentRef, Injector, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Injector,
+  OnInit,
+  ViewContainerRef,
+  ViewChild
+} from '@angular/core';
 import { ColumnState } from './interfaces';
 
 @Component({
@@ -20,7 +29,7 @@ export class TableCell implements OnInit {
   @Input() column: ColumnState;
   @ViewChild('cmpContainer', { read: ViewContainerRef }) cmpContainer: ViewContainerRef;
 
-  constructor(private viewContainer: ViewContainerRef, private resolver: ComponentResolver) {}
+  constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) {}
 
   getValue () : any {
     return this.row[this.column.def.key];
@@ -33,18 +42,14 @@ export class TableCell implements OnInit {
 
   ngOnInit () : void {
     if (this.column.def.component) {
-      this.resolver
-        .resolveComponent(this.column.def.component)
-        .then(cmpFactory => {
-          const ctxInjector: Injector = this.cmpContainer.injector;
-          const cmpRef: ComponentRef<any> = this.cmpContainer.createComponent(cmpFactory, 0, ctxInjector);
-          const instance: any = cmpRef.instance;
-          instance['row'] = this.row;
-          instance['column'] = this.column;
-          instance['key'] = this.column.def.key;
-          instance['value'] = this.getValue();
-          return cmpRef;
-        });
+      const cmpFactory = this.resolver.resolveComponentFactory(this.column.def.component);
+      const ctxInjector: Injector = this.cmpContainer.injector;
+      const cmpRef: ComponentRef<any> = this.cmpContainer.createComponent(cmpFactory, 0, ctxInjector);
+      const instance: any = cmpRef.instance;
+      instance['row'] = this.row;
+      instance['column'] = this.column;
+      instance['key'] = this.column.def.key;
+      instance['value'] = this.getValue();
     }
   }
 }

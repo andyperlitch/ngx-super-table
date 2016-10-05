@@ -1,12 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { SuperTableState } from './SuperTableState';
-import { TableHeader } from './tableHeader.component';
-import { TextFilter } from './textFilter.component';
-import { EnumFilter } from './enumFilter.component';
 
 @Component({
   selector: 'super-table-head',
-  directives: [TableHeader, TextFilter, EnumFilter],
   template: `
     <table [ngClass]="tableClasses">
       <thead>

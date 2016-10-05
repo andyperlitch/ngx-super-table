@@ -1,12 +1,8 @@
-import 'reflect-metadata';
-import 'zone.js/dist/zone';
-import {enableProdMode} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {DemoApp} from './demo';
+// The browser platform with a compiler
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-declare var ENV: string;
-if (ENV === 'production') {
-  enableProdMode();
-}
+// The app module
+import { DemoAppModule } from './demo';
 
-bootstrap(DemoApp);
+// Compile and launch the module
+platformBrowserDynamic().bootstrapModule(DemoAppModule);
