@@ -6,6 +6,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/andyperlitch/ng2-super-table.svg)](https://github.com/andyperlitch/ng2-super-table/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ng2-super-table/master/LICENSE)
 
+**NOTE: This library currently does not support the latest version of angular2 with @NgModules. See [this issue](https://github.com/andyperlitch/ng2-super-table/issues/3).**
+
 A table component with the following features:
 
 - row virtualization
