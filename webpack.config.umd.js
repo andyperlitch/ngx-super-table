@@ -1,9 +1,12 @@
+const path = require('path');
+
 module.exports = {
-  entry: './ng2-super-table.ts',
+  entry: './src/index.ts',
   output: {
+    path: path.join(__dirname, 'dist', 'umd'),
     filename: './ng2-super-table.js',
     libraryTarget: 'umd',
-    library: 'ng2SuperTable'
+    library: 'superTable'
   },
   externals: {
     '@angular/core': {
@@ -22,15 +25,10 @@ module.exports = {
   devtool: 'source-map',
   module: {
     preLoaders: [{
-      test: /\.ts$/, loader: 'tslint?emitErrors=true&failOnHint=true', exclude: /node_modules/
+      test: /\.ts$/, loader: 'tslint-loader?emitErrors=true&failOnHint=true', exclude: /node_modules/
     }],
     loaders: [{
-      test: /\.ts$/, loader: 'ts', exclude: /node_modules/,
-      query: {
-        compilerOptions: {
-          declaration: true
-        }
-      }
+      test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/
     }]
   },
   resolve: {

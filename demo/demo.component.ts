@@ -1,5 +1,3 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import {
   SuperTableModule,
@@ -46,7 +44,7 @@ const INSTRUMENTS: string[] = [
     }
   `]
 })
-class DemoApp implements OnInit {
+export class Demo implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
   rows: MyRow[] = [];
   columns: ISuperTableColumn[] = [
@@ -150,10 +148,3 @@ export interface MyRow {
   dob: Date;
   instrument: string;
 }
-
-@NgModule({
-  imports: [ BrowserModule ],
-  declarations: [ DemoApp ],
-  bootstrap:    [ DemoApp ]
-})
-export class DemoAppModule { }

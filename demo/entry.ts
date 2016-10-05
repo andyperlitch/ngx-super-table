@@ -1,8 +1,12 @@
-// The browser platform with a compiler
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import 'core-js';
+import 'zone.js/dist/zone';
+import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {DemoModule} from './demo.module';
 
-// The app module
-import { DemoAppModule } from './demo';
+declare var ENV: string;
+if (ENV === 'production') {
+  enableProdMode();
+}
 
-// Compile and launch the module
-platformBrowserDynamic().bootstrapModule(DemoAppModule);
+platformBrowserDynamic().bootstrapModule(DemoModule);

@@ -11,7 +11,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'source-map-support'],
+    frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -29,7 +29,6 @@ module.exports = function(config) {
     },
 
     webpack: {
-      devtool: 'inline-source-map',
       resolve: {
         extensions: ['', '.ts', '.js'],
         alias: {
@@ -38,49 +37,36 @@ module.exports = function(config) {
       },
       module: {
         preLoaders: [{
-          test: /\.ts$/, loader: 'tslint', exclude: /node_modules/
+          test: /\.ts$/, loader: 'tslint-loader', exclude: /node_modules/
         }],
         loaders: [{
-          test: /\.ts$/, loader: 'ts', exclude: /node_modules/
+          test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/
         }, {
-          test: /sinon.js$/, loader: 'imports?define=>false,require=>false'
+          test: /sinon.js$/, loader: 'imports-loader?define=>false,require=>false'
         }],
         postLoaders: [{
           test: /src\/.+\.ts$/,
           exclude: /(test|node_modules)/,
-          loader: 'istanbul-instrumenter'
+          loader: 'sourcemap-istanbul-instrumenter-loader?force-sourcemap=true'
         }]
       },
       tslint: {
         emitErrors: !WATCH,
         failOnHint: false
       },
-      ts: {
-        compilerOptions: {
-          sourceMap: false,
-          inlineSourceMap: true
-        }
-      },
-      plugins: WATCH ? [] : [new webpack.NoErrorsPlugin()]
-    },
-
-    coverageReporter: {
-      reporters: [{
-        type: 'json',
-        subdir: '.',
-        file: 'coverage-final.json'
-      }]
+      plugins: [
+        new webpack.SourceMapDevToolPlugin({
+          filename: null,
+          test: /\.(ts|js)($|\?)/i
+        })
+      ].concat(WATCH ? [] : [new webpack.NoErrorsPlugin()])
     },
 
     remapIstanbulReporter: {
-      src: 'coverage/coverage-final.json',
       reports: { // eslint-disable-line
-        lcovonly: 'coverage/lcov.info',
-        html: 'coverage/html',
+        'html': 'coverage/html',
         'text-summary': null
-      },
-      timeoutNotCreated: 5000,
-      timeoutNoMoreFiles: 1000
+      }
     },
 
     // test results reporter to use
