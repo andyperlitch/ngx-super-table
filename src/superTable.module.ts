@@ -1,5 +1,6 @@
 import { NgModule }      from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { FormsModule }   from '@angular/forms';
 import {SuperTable} from './superTable.component';
 import { SuperTableHead } from './superTableHead.component';
 import { SuperTableBody } from './superTableBody.component';
@@ -31,7 +32,7 @@ import { EnumFilter } from './enumFilter.component';
     TextFilter,
     EnumFilter
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   exports: [SuperTable, SuperTableCell]
 })
 export class SuperTableModule {}

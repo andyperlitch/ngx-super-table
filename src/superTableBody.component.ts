@@ -1,5 +1,6 @@
 import { Component, Input, ElementRef, SimpleChanges, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { SuperTableState } from './SuperTableState';
+import { ISuperTableOptions } from './interfaces';
 import * as _ from 'lodash';
 
 const DEFAULT_ROW_HEIGHT : number = 20;
@@ -60,6 +61,7 @@ export class SuperTableBody implements OnChanges, OnInit, OnDestroy {
   @Input() rows : Array<any>;
   @Input() tableClasses : any;
   @Input() bodyHeight : number;
+  @Input() options : ISuperTableOptions;
 
   private visibleRows : Array<any> = [];
 

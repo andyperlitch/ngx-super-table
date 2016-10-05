@@ -6,8 +6,9 @@ import {
   superTableSorters,
   superTableFilters,
   ColumnState
-} from '../ng2-super-table';
+} from '../src';
 import { InstrumentComponent } from './instrument.component';
+export { InstrumentComponent } from './instrument.component';
 
 const NUM_ROWS: number = 10000;
 type INSTRUMENT_TYPE = 'sax' | 'trumpet' | 'trombone' | 'piano' | 'keys' | 'drums';
@@ -42,7 +43,8 @@ const INSTRUMENTS: string[] = [
       margin: 0 auto;
       height: 600px;
     }
-  `]
+  `],
+  entryComponents: [InstrumentComponent]
 })
 export class Demo implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];

@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {SuperTableModule} from '../src';
-import {Demo} from './demo.component';
+import {Demo, InstrumentComponent} from './demo.component';
 
 @NgModule({
-  declarations: [Demo],
+  declarations: [Demo, InstrumentComponent],
   imports: [BrowserModule, SuperTableModule],
   bootstrap: [Demo],
   providers: []

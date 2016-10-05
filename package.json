@@ -37,6 +37,7 @@
   "homepage": "https://github.com/andyperlitch/ng2-super-table#readme",
   "devDependencies": {
     "@angular/common": "~2.0.0",
+    "@angular/forms": "~2.0.0",
     "@angular/compiler": "~2.0.0",
     "@angular/compiler-cli": "~0.6.3",
     "@angular/core": "~2.0.0",
@@ -83,6 +84,9 @@
   },
   "peerDependencies": {
     "@angular/core": "^2.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1"
   },
   "files": [
     "dist"

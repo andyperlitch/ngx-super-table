@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { SuperTableCell } from '../ng2-super-table';
+import { SuperTableCell } from '../src';
 
 @Component({
   selector: 'instrument-cell',
