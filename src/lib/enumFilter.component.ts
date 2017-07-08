@@ -55,7 +55,7 @@ import * as _ from 'lodash';
     }
   `]
 })
-class EnumFilterDropdown implements OnInit, OnDestroy {
+export class EnumFilterDropdown implements OnInit, OnDestroy {
   @Input() column: ColumnState;
   top: number;
   left: number;

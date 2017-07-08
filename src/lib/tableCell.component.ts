@@ -1,12 +1,13 @@
 import {
   Component,
-  Input,
   ComponentFactoryResolver,
   ComponentRef,
   Injector,
-  OnInit,
-  ViewContainerRef,
-  ViewChild
+  Input,
+  AfterViewInit,
+  OnDestroy,
+  ViewChild,
+  ViewContainerRef
 } from '@angular/core';
 import { ColumnState } from './interfaces';
 
@@ -24,32 +25,47 @@ import { ColumnState } from './interfaces';
     }
   `]
 })
-export class TableCell implements OnInit {
+export class TableCell implements AfterViewInit, OnDestroy {
   @Input() row: any;
   @Input() column: ColumnState;
   @ViewChild('cmpContainer', { read: ViewContainerRef }) cmpContainer: ViewContainerRef;
 
+  private componentRef: ComponentRef<any>;
+
   constructor(private viewContainer: ViewContainerRef, private resolver: ComponentFactoryResolver) {}
 
-  getValue () : any {
+  getValue(): any {
     return this.row[this.column.def.key];
   }
-  getFormattedValue() : any {
-    return (this.column.def.format)
-      ? this.column.def.format(this.getValue(), this.row, this.column)
-      : this.getValue();
+
+  getFormattedValue(): any {
+    if (this.column.def.format) {
+      this.column.def.format(this.getValue(), this.row, this.column);
+    }
+
+    return this.getValue();
   }
 
-  ngOnInit () : void {
+  ngAfterViewInit(): void {
     if (this.column.def.component) {
+      if (this.componentRef) {
+        this.componentRef.destroy();
+      }
       const cmpFactory = this.resolver.resolveComponentFactory(this.column.def.component);
       const ctxInjector: Injector = this.cmpContainer.injector;
-      const cmpRef: ComponentRef<any> = this.cmpContainer.createComponent(cmpFactory, 0, ctxInjector);
-      const instance: any = cmpRef.instance;
+      this.componentRef = this.cmpContainer.createComponent(cmpFactory, 0, ctxInjector);
+      const instance: any = this.componentRef.instance;
       instance['row'] = this.row;
       instance['column'] = this.column;
       instance['key'] = this.column.def.key;
       instance['value'] = this.getValue();
+      this.componentRef.changeDetectorRef.detectChanges();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.componentRef) {
+      this.componentRef.destroy();
     }
   }
 }

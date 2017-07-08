@@ -1,98 +1,44 @@
-'use strict';
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/0.13/config/configuration-file.html
 
-const webpack = require('webpack');
-const WATCH = process.argv.indexOf('--watch') > -1;
-
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
-
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: './',
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
-    // list of files / patterns to load in the browser
+    basePath: '',
+    frameworks: ['jasmine', '@angular/cli'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular/cli/plugins/karma')
+    ],
+    client:{
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
     files: [
-      'test/entry.ts'
+      { pattern: './src/test.ts', watched: false }
     ],
-
-    // list of files to exclude
-    exclude: [
-    ],
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/entry.ts': ['webpack', 'sourcemap']
+      './src/test.ts': ['@angular/cli']
     },
-
-    webpack: {
-      resolve: {
-        extensions: ['', '.ts', '.js'],
-        alias: {
-          sinon: 'sinon/pkg/sinon'
-        }
-      },
-      module: {
-        preLoaders: [{
-          test: /\.ts$/, loader: 'tslint-loader', exclude: /node_modules/
-        }],
-        loaders: [{
-          test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/
-        }, {
-          test: /sinon.js$/, loader: 'imports-loader?define=>false,require=>false'
-        }],
-        postLoaders: [{
-          test: /src\/.+\.ts$/,
-          exclude: /(test|node_modules)/,
-          loader: 'sourcemap-istanbul-instrumenter-loader?force-sourcemap=true'
-        }]
-      },
-      tslint: {
-        emitErrors: !WATCH,
-        failOnHint: false
-      },
-      plugins: [
-        new webpack.SourceMapDevToolPlugin({
-          filename: null,
-          test: /\.(ts|js)($|\?)/i
-        })
-      ].concat(WATCH ? [] : [new webpack.NoErrorsPlugin()])
+    mime: {
+      'text/x-typescript': ['ts','tsx']
     },
-
-    remapIstanbulReporter: {
-      reports: { // eslint-disable-line
-        'html': 'coverage/html',
-        'text-summary': null
-      }
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
     },
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage', 'karma-remap-istanbul'],
-
-    // web server port
+    angularCli: {
+      environment: 'dev'
+    },
+    reporters: config.angularCli && config.angularCli.codeCoverage
+              ? ['progress', 'coverage-istanbul']
+              : ['progress', 'kjhtml'],
     port: 9876,
-
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: WATCH,
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: !WATCH
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false
   });
 };

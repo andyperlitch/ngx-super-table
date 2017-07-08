@@ -6,11 +6,10 @@ import {
   superTableSorters,
   superTableFilters,
   ColumnState
-} from '../src';
+} from '../lib';
 import { InstrumentComponent } from './instrument.component';
-export { InstrumentComponent } from './instrument.component';
 
-const NUM_ROWS: number = 10000;
+const NUM_ROWS = 10000;
 type INSTRUMENT_TYPE = 'sax' | 'trumpet' | 'trombone' | 'piano' | 'keys' | 'drums';
 const INSTRUMENTS: string[] = [
   'sax',
@@ -22,7 +21,7 @@ const INSTRUMENTS: string[] = [
 ];
 
 @Component({
-  selector: 'demo-app',
+  selector: 'app-demo-app',
   template: `
     <p>
       The following table has ${NUM_ROWS} rows, and uses row-virtualization so
@@ -43,10 +42,9 @@ const INSTRUMENTS: string[] = [
       margin: 0 auto;
       height: 600px;
     }
-  `],
-  entryComponents: [InstrumentComponent]
+  `]
 })
-export class Demo implements OnInit {
+export class DemoComponent implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
   rows: MyRow[] = [];
   columns: ISuperTableColumn[] = [
@@ -80,10 +78,10 @@ export class Demo implements OnInit {
       label: 'Height',
       sort: superTableSorters.NUMBER,
       filter: superTableFilters.NUMBER,
-      format: function(value: any, row: Object, colState: ColumnState) : string {
-        let numValue: number = value as number;
-        let feet: number = Math.floor(numValue / 12);
-        let inches: number = numValue % 12;
+      format: function(value: any, row: Object, colState: ColumnState): string {
+        const numValue: number = value as number;
+        const feet: number = Math.floor(numValue / 12);
+        const inches: number = numValue % 12;
         return `${feet}'${inches}"`;
       }
     },
@@ -119,13 +117,13 @@ export class Demo implements OnInit {
 
   private instruments: string[] = INSTRUMENTS;
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.rows = this.generateRows(NUM_ROWS);
   }
 
-  private generateRows (count: number) : MyRow[] {
-    let result: MyRow[] = [];
-    for (let i: number = 0; i < count; i++) {
+  private generateRows (count: number): MyRow[] {
+    const result: MyRow[] = [];
+    for (let i = 0; i < count; i++) {
       result.push({
         firstName: this.chooseRandom(this.firstNames),
         lastName: this.chooseRandom(this.lastNames),
@@ -137,8 +135,8 @@ export class Demo implements OnInit {
     return result;
   }
 
-  private chooseRandom (choices: string[]) : string {
-    let randomIndex: number = Math.floor(Math.random() * choices.length);
+  private chooseRandom (choices: string[]): string {
+    const randomIndex: number = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
   }
 }
