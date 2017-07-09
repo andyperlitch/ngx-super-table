@@ -1,17 +1,17 @@
 import {
-  Component,
-  Input,
-  OnInit,
-  AfterViewInit,
   AfterContentInit,
+  AfterViewInit,
+  Component,
   ElementRef,
+  Input,
   OnChanges,
-  SimpleChanges,
-  OnDestroy
+  OnDestroy,
+  OnInit,
+  SimpleChanges
 } from '@angular/core';
 import { ISuperTableColumn, ColumnState, ISuperTableOptions } from './interfaces';
 import { SuperTableState } from './SuperTableState';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'super-table',
@@ -55,27 +55,27 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
   @Input() tableClasses: any;
 
   // properties
-  private isReady : boolean = false;
-  private hasError : boolean = false;
-  private bodyHeight : number;
-  private filteredSortedRows : Array<any>;
-  private subscription : Subscription;
+  isReady = false;
+  hasError = false;
+  bodyHeight: number;
+  filteredSortedRows: Array<any>;
+  private subscription: Subscription;
 
   constructor (private el: ElementRef, private state: SuperTableState) {}
 
-  ngOnInit () : void {
+  ngOnInit(): void {
     this.subscription = this.state.stateChanged$.subscribe(() => this.sortAndFilterRows());
   }
 
-  ngAfterContentInit () : void {
+  ngAfterContentInit(): void {
     if (this.options.autoHeight) {
-      let parentHeight : number = this.el.nativeElement.parentElement.clientHeight;
+      const parentHeight: number = this.el.nativeElement.parentElement.clientHeight;
       this.setTableHeight(parentHeight);
     }
     this.isReady = true;
   }
 
-  ngOnChanges (changes: SimpleChanges) : void {
+  ngOnChanges(changes: SimpleChanges): void {
     // Inform state of columns changes
     if (changes['columns'].isFirstChange()) {
       this.state.setColumns(changes['columns'].currentValue);
@@ -83,29 +83,29 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
     this.sortAndFilterRows();
   }
 
-  ngOnDestroy () : void {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  private setTableHeight (totalHeight: number) : void {
+  private setTableHeight(totalHeight: number): void {
     // calculate header height
-    let headerHeight : number = this.el.nativeElement.querySelector('super-table-head').offsetHeight;
+    const headerHeight: number = this.el.nativeElement.querySelector('super-table-head').offsetHeight;
     // subtract it from totalHeight, set bodyHeight to result
     this.bodyHeight = totalHeight - headerHeight;
   }
 
-  private sortAndFilterRows () : void {
+  private sortAndFilterRows(): void {
     // Filtering
-    let activeFilterColumns : ColumnState[] = this.state.columns.filter((c) => {
+    const activeFilterColumns: ColumnState[] = this.state.columns.filter((c) => {
       return !!c.def.filter && !!c.def.filter.isActive(c.filterValue);
     });
 
-    if ( activeFilterColumns.length ) {
+    if (activeFilterColumns.length) {
       this.filteredSortedRows = this.rows.filter((row) => {
-        for (let i: number = 0; i < activeFilterColumns.length; i++) {
-          let colState : ColumnState = activeFilterColumns[i];
-          let val : any = row[colState.def.key];
-          let filterResult : boolean = colState.def.filter.fn(colState.filterValue, val, row);
+        for (let i = 0; i < activeFilterColumns.length; i++) {
+          const colState: ColumnState = activeFilterColumns[i];
+          const val: any = row[colState.def.key];
+          const filterResult: boolean = colState.def.filter.fn(colState.filterValue, val, row);
           if (filterResult === false) {
             return false;
           }
@@ -119,10 +119,10 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
     // Sorting
     this.filteredSortedRows.sort( (a, b) => {
       for (let i = 0; i < this.state.sortStack.length; i++) {
-        let colState : ColumnState = this.state.sortStack[i];
-        let val1 = a[colState.def.key];
-        let val2 = b[colState.def.key];
-        let compareResult : number = colState.sortOrder === 'ASC'
+        const colState: ColumnState = this.state.sortStack[i];
+        const val1 = a[colState.def.key];
+        const val2 = b[colState.def.key];
+        const compareResult: number = colState.sortOrder === 'ASC'
           ? colState.def.sort(val1, val2, a, b)
           : colState.def.sort(val2, val1, b, a);
         if (compareResult !== 0) {

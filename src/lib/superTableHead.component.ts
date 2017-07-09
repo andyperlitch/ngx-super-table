@@ -41,7 +41,7 @@ import { SuperTableState } from './SuperTableState';
   `]
 })
 export class SuperTableHead {
-  @Input() tableClasses : any;
+  @Input() tableClasses: any;
 
-  constructor(private state: SuperTableState) {}
+  constructor(public state: SuperTableState) {}
 }

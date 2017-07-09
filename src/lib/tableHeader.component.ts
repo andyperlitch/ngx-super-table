@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, HostBinding } from '@angular/core';
 import { ColumnState } from './interfaces';
 import { SuperTableState } from './SuperTableState';
 
-const SORT_TITLE: string = 'Click to change sort order. Shift-click to sort on multiple columns.';
+const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple columns.';
 
 @Component({
   selector: '[resizer]',
@@ -34,24 +34,24 @@ const SORT_TITLE: string = 'Click to change sort order. Shift-click to sort on m
 })
 export class Resizer {
 
-  private static MAX_CLICK_WAIT : number = 250;
-  private static MIN_COLUMN_WIDTH : number = 30;
+  private static MAX_CLICK_WAIT = 250;
+  private static MIN_COLUMN_WIDTH = 30;
 
   @Input() column: ColumnState;
   @Input() actualWidth: number;
 
   constructor (private el: ElementRef) {}
 
-  private grab (grabEvt: MouseEvent) : void {
+  private grab (grabEvt: MouseEvent): void {
     grabEvt.preventDefault();
-    let mousedownTime : number = Date.now();
-    let initClientX : number = grabEvt.clientX;
-    let initWidth : number = this.column.width || this.getActualParentWidth();
-    let drag : EventListener = (event : MouseEvent) => {
-      let change : number = event.clientX - initClientX;
+    const mousedownTime: number = Date.now();
+    const initClientX: number = grabEvt.clientX;
+    const initWidth: number = this.column.width || this.getActualParentWidth();
+    const drag: EventListener = (event: MouseEvent) => {
+      const change: number = event.clientX - initClientX;
       this.column.width = Math.max(initWidth + change, Resizer.MIN_COLUMN_WIDTH);
     };
-    let unbindDrag : EventListener = () => {
+    const unbindDrag: EventListener = () => {
       window.removeEventListener('mousemove', drag);
       window.removeEventListener('mouseup', unbindDrag);
       if (Date.now() - mousedownTime < Resizer.MAX_CLICK_WAIT) {
@@ -62,11 +62,11 @@ export class Resizer {
     window.addEventListener('mouseup', unbindDrag);
   }
 
-  private getActualParentWidth () : number {
+  private getActualParentWidth(): number {
     return this.el.nativeElement.parentElement.offsetWidth;
   }
 
-  private stopClick (event : MouseEvent) : void {
+  private stopClick(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
   }
@@ -121,20 +121,20 @@ export class Resizer {
   `]
 })
 export class TableHeader {
-  @Input() column : ColumnState;
-  @Input() noHeight : boolean = false;
+  @Input() column: ColumnState;
+  @Input() noHeight = false;
 
   constructor(private el: ElementRef, private state: SuperTableState) {}
 
-  private getWidth() : string {
+  private getWidth(): string {
     return (typeof this.column.width === 'number') ? this.column.width + 'px' : 'auto';
   }
 
-  private getValue() : string {
+  private getValue(): string {
     return this.column.def.label;
   }
 
-  private handleClick( event : MouseEvent ) : void {
+  private handleClick(event: MouseEvent): void {
     event.preventDefault();
     if (this.column.hasSort) {
       this.state.toggleSort(this.column, event.shiftKey);

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject }    from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { ISuperTableColumn, ColumnState, SORT_ORDER } from './interfaces';
 
-const sortCycle : SORT_ORDER[] = ['ASC', 'DESC', null];
-const getNextSortOrder : Function = function(currentSortOrder : SORT_ORDER) : SORT_ORDER {
-  let nextIndex : number = (sortCycle.indexOf(currentSortOrder) + 1) % sortCycle.length;
+const sortCycle: SORT_ORDER[] = ['ASC', 'DESC', null];
+const getNextSortOrder: Function = function(currentSortOrder: SORT_ORDER): SORT_ORDER {
+  const nextIndex: number = (sortCycle.indexOf(currentSortOrder) + 1) % sortCycle.length;
   return sortCycle[nextIndex];
 };
 
@@ -13,19 +13,19 @@ const getNextSortOrder : Function = function(currentSortOrder : SORT_ORDER) : SO
 export class SuperTableState {
 
   // publicly exposed properties
-  hasAnyFilters : boolean = false;
-  columns : ColumnState[];
-  sortStack : ColumnState[] = [];
-  stateChanged$ : Observable<SuperTableState>;
+  hasAnyFilters = false;
+  columns: ColumnState[];
+  sortStack: ColumnState[] = [];
+  stateChanged$: Observable<SuperTableState>;
 
   // source of observable
-  private stateChangedSource : BehaviorSubject<SuperTableState> = new BehaviorSubject<SuperTableState>(this);
+  private stateChangedSource: BehaviorSubject<SuperTableState> = new BehaviorSubject<SuperTableState>(this);
 
   constructor() {
     this.stateChanged$ = this.stateChangedSource.asObservable();
   }
 
-  public setColumns ( columns : Array<ISuperTableColumn> ) : void {
+  public setColumns(columns: Array<ISuperTableColumn>): void {
     this.columns = columns.map(c => {
       if (!!c.filter) {
         this.hasAnyFilters = true;
@@ -43,14 +43,14 @@ export class SuperTableState {
     });
   }
 
-  public toggleSort ( colState : ColumnState, doNotClear : boolean ) : void {
+  toggleSort(colState: ColumnState, doNotClear: boolean): void {
 
     // Set next sort order
     colState.sortOrder = getNextSortOrder(colState.sortOrder);
 
     // Check if we are clearing the rest of the sort stack or not
     if (doNotClear) {
-      let curIndex : number = this.sortStack.indexOf(colState);
+      const curIndex: number = this.sortStack.indexOf(colState);
       if (curIndex === -1) {
         this.sortStack.push(colState);
       } else if (!colState.sortOrder) {
@@ -68,7 +68,7 @@ export class SuperTableState {
     this.notify();
   }
 
-  public notify () : void {
+  notify(): void {
     this.stateChangedSource.next(this);
   }
 

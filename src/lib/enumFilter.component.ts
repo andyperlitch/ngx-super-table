@@ -67,24 +67,24 @@ export class EnumFilterDropdown implements OnInit, OnDestroy {
     private el: ElementRef
   ) {}
 
-  ngOnInit () : void {
-    let styles: CSSStyleDeclaration = this.el.nativeElement.style;
+  ngOnInit (): void {
+    const styles: CSSStyleDeclaration = this.el.nativeElement.style;
     styles.top = this.top + 'px';
     styles.left = this.left + 'px';
     styles.width = this.width + 'px';
   }
 
-  ngOnDestroy () : void {
+  ngOnDestroy (): void {
     // to ensure that references to parent component
     // do not prevent GC
     this.destroyMe = null;
   }
 
-  private onChoiceChange() : void {
+  onChoiceChange(): void {
     this.state.notify();
   }
 
-  private showAll() : void {
+  showAll(): void {
     _.forEach(this.column.filterValue, (val, key) => {
       this.column.filterValue[key] = true;
     });
@@ -142,8 +142,8 @@ export class EnumFilter implements OnInit, OnDestroy {
 
   private dropdown: ComponentRef<EnumFilterDropdown>;
   private disabledChoices: Set<any> = new Set<any>();
+  disabledFilterCount = 0;
   private subscription: Subscription;
-  private disabledFilterCount: number = 0;
 
   constructor(
     private state: SuperTableState,
@@ -152,7 +152,7 @@ export class EnumFilter implements OnInit, OnDestroy {
     private resolver: ComponentFactoryResolver
   ) {}
 
-  ngOnInit () : void {
+  ngOnInit (): void {
     // initialize filtered values to include all
     this.column.filterValue = {};
     this.column.def.filterChoices.forEach(choice => {
@@ -165,11 +165,11 @@ export class EnumFilter implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy () : void {
+  ngOnDestroy (): void {
     this.subscription.unsubscribe();
   }
 
-  private toggleVisibility() : void {
+  toggleVisibility(): void {
     if (this.dropdown) {
       this.dropdown.destroy();
       this.dropdown = null;

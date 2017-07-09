@@ -5,4 +5,6 @@ import { SuperTableCell } from '../lib';
   selector: 'app-instrument-cell',
   template: `<span class="badge badge-primary">{{ value }}</span>`
 })
-export class InstrumentComponent extends SuperTableCell { }
+export class InstrumentComponent extends SuperTableCell {
+  value: any;
+}

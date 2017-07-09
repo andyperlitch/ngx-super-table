@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-const BG_IMAGE_DATA : string = [
+const BG_IMAGE_DATA: string = [
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAlCAYAAACDKIOp',
   'AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiuH',
   'v37n+G////MzAxAMHQIQACDAC7twbaN2nkgwAAAABJRU5ErkJggg=='].join('');

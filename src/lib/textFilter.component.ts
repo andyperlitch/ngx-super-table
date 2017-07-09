@@ -46,16 +46,15 @@ export class TextFilter {
   @Input() filter: ISuperTableFilter;
   @Input() column: ColumnState;
 
-  onModelChange: Function = _.debounce(function() : void {
+  onModelChange: Function = _.debounce(function() {
     this.state.notify();
   }, 200);
 
-  public clearFilter () : void {
+  public clearFilter(): void {
     this.column.filterValue = '';
     this.state.notify();
   }
 
-  constructor(private state : SuperTableState) {}
-
+  constructor(private state: SuperTableState) {}
 
 }

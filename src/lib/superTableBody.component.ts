@@ -1,11 +1,18 @@
-import { Component, Input, ElementRef, SimpleChanges, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import {
+ Component,
+ ElementRef,
+ HostListener,
+ Input,
+ OnChanges,
+ SimpleChanges
+} from '@angular/core';
 import { SuperTableState } from './SuperTableState';
 import { ISuperTableOptions } from './interfaces';
 import * as _ from 'lodash';
 
-const DEFAULT_ROW_HEIGHT : number = 20;
-const PADDING_ROW_COUNT : number = 20;
-const DEBOUNCE_DELAY : number = 250;
+const DEFAULT_ROW_HEIGHT = 20;
+const PADDING_ROW_COUNT = 20;
+const DEBOUNCE_DELAY = 250;
 
 @Component({
   selector: 'super-table-body',
@@ -35,9 +42,6 @@ const DEBOUNCE_DELAY : number = 250;
       </tbody>
     </table>
   `,
-  host: {
-    '(scroll)': 'trackScroll($event)'
-  },
   styles: [`
     :host {
       display: block;
@@ -57,43 +61,43 @@ const DEBOUNCE_DELAY : number = 250;
     }
   `]
 })
-export class SuperTableBody implements OnChanges, OnInit, OnDestroy {
-  @Input() rows : Array<any>;
-  @Input() tableClasses : any;
-  @Input() bodyHeight : number;
-  @Input() options : ISuperTableOptions;
+export class SuperTableBody implements OnChanges {
+  @Input() rows: Array<any>;
+  @Input() tableClasses: any;
+  @Input() bodyHeight: number;
+  @Input() options: ISuperTableOptions;
 
-  private visibleRows : Array<any> = [];
+  visibleRows: Array<any> = [];
 
   // assume small row height at first.
   // The real height will be detected once rows are rendered.
-  private rowHeight : number = DEFAULT_ROW_HEIGHT;
-  private rowOffset : number = 0;
-  private trackScroll : Function = _.debounce( () => {
-    this.updateVisibleRows();
-  }, DEBOUNCE_DELAY);
-  private onWindowResize : EventListener = _.debounce( () => {
-    this.detectRowHeight();
-    this.updateVisibleRows();
-  });
+  rowHeight: number = DEFAULT_ROW_HEIGHT;
+  rowOffset = 0;
 
-  constructor (private el: ElementRef, private state: SuperTableState) {}
+  constructor (private el: ElementRef, public state: SuperTableState) {}
 
-  ngOnInit () : void {
-    window.addEventListener('resize', this.onWindowResize);
-  }
-
-  ngOnDestroy () : void {
-    window.removeEventListener('resize', this.onWindowResize);
-  }
-
-  ngOnChanges (changes: SimpleChanges) : void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.updateVisibleRows();
   }
 
-  private updateVisibleRows () : void {
-    let startIndex : number, endIndex : number;
-    let currentScroll : number = this.el.nativeElement.scrollTop;
+  @HostListener('scroll')
+  trackScroll() {
+    _.debounce( () => {
+      this.updateVisibleRows();
+    }, DEBOUNCE_DELAY);
+  }
+
+  @HostListener('resize')
+  onWindowResize() {
+    _.debounce( () => {
+      this.detectRowHeight();
+      this.updateVisibleRows();
+    });
+  }
+
+  private updateVisibleRows(): void {
+    let startIndex: number, endIndex: number;
+    const currentScroll: number = this.el.nativeElement.scrollTop;
 
     startIndex = Math.floor(currentScroll / this.rowHeight - PADDING_ROW_COUNT);
     startIndex = Math.max(0, startIndex);
@@ -108,8 +112,8 @@ export class SuperTableBody implements OnChanges, OnInit, OnDestroy {
 
   }
 
-  private detectRowHeight () : void {
-    let tr : HTMLTableSectionElement = this.el.nativeElement.querySelector('tbody.visible-rows tr');
+  private detectRowHeight(): void {
+    const tr: HTMLTableSectionElement = this.el.nativeElement.querySelector('tbody.visible-rows tr');
     if (tr != null) {
       this.rowHeight = tr.offsetHeight;
     }
