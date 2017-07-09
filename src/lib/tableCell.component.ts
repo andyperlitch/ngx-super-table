@@ -40,7 +40,7 @@ export class TableCell implements AfterViewInit, OnDestroy {
 
   getFormattedValue(): any {
     if (this.column.def.format) {
-      this.column.def.format(this.getValue(), this.row, this.column);
+      return this.column.def.format(this.getValue(), this.row, this.column);
     }
 
     return this.getValue();
