@@ -2,6 +2,8 @@
 
 # compiled output
 /dist
+/deploy
+/waste
 /tmp
 
 # dependencies

@@ -1,6 +1,6 @@
 export default {
-  entry: './deploy/super-table.js',
-  dest: './deploy/super-table.umd.js',
+  entry: './deploy/index.js',
+  dest: './deploy/index.umd.js',
   format: 'umd',
   moduleName: 'ng2-super-table',
   globals: {
