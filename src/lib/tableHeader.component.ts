@@ -2,8 +2,6 @@ import { Component, Input, ElementRef, HostBinding } from '@angular/core';
 import { ColumnState } from './interfaces';
 import { SuperTableState } from './SuperTableState';
 
-const SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple columns.';
-
 @Component({
   selector: '[resizer]',
   template: `<div class="notch" [ngClass]="{ explicit: column.width }"></div>`,
@@ -79,7 +77,7 @@ export class Resizer {
     '(click)': 'handleClick($event)'
   },
   template: `
-    <div *ngIf="!noHeight" class="table-header-div" title="${SORT_TITLE}">
+    <div *ngIf="!noHeight" class="table-header-div" title="SORT_TITLE">
       <span *ngIf="column.def.sort" class="sort-icon">
         <span [ngSwitch]="column.sortOrder">
           <span class="asc-sort glyphicon glyphicon-sort-by-attributes" *ngSwitchCase="'ASC'"></span>
@@ -123,6 +121,8 @@ export class Resizer {
 export class TableHeader {
   @Input() column: ColumnState;
   @Input() noHeight = false;
+
+  SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple columns.';
 
   constructor(private el: ElementRef, private state: SuperTableState) {}
 

@@ -1,16 +1,16 @@
-import { Component, Input, OnChanges } from '@angular/core';
-const BG_IMAGE_DATA: string = [
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAlCAYAAACDKIOp',
-  'AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiuH',
-  'v37n+G////MzAxAMHQIQACDAC7twbaN2nkgwAAAABJRU5ErkJggg=='].join('');
+import {
+  Component,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: '[dummy-rows]',
   template: `
-    <tr [style.height]="(rowHeight * rowCount) + 'px'">
+    <tr [style.height]="rowStyleHeight()">
       <td
         [attr.colspan]="columnCount"
-        [style.backgroundSize]="'auto ' + rowHeight + 'px'">
+        [style.backgroundImage]="'url(' + BG_IMAGE_DATA + ')'"
+        [style.backgroundSize]="backgroundSize()">
       </td>
     </tr>
   `,
@@ -21,7 +21,6 @@ const BG_IMAGE_DATA: string = [
     td {
       padding: 0 !important;
       border: none !important;
-      background-image: url('${BG_IMAGE_DATA}');
       background-repeat: repeat;
       background-position: 0 -1px;
     }
@@ -32,4 +31,19 @@ export class DummyRows {
   @Input() rowHeight: number;
   @Input() rowCount: number;
   @Input() columnCount: number;
+
+  BG_IMAGE_DATA: string = [
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAlCAYAAACDKIOp',
+    'AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiuH',
+    'v37n+G////MzAxAMHQIQACDAC7twbaN2nkgwAAAABJRU5ErkJggg=='
+  ].join('');
+
+  rowStyleHeight(): string {
+    const height = this.rowHeight * this.rowCount;
+    return `${height}px`;
+  }
+
+  backgroundSize(): string {
+    return `auto ${this.rowHeight}px`;
+  }
 }
