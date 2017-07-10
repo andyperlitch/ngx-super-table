@@ -48,8 +48,8 @@ npm install --save ng2-super-table
 Then use it in your app like so:
 
 ```typescript
-import {Component} from '@angular/core';
-import {SuperTable, ISuperTableColumn} from 'ng2-super-table';
+import { Component } from '@angular/core';
+import { SuperTable, ISuperTableColumn } from 'ng2-super-table';
 
 @Component({
   selector: 'demo-app',
@@ -87,7 +87,7 @@ Please view the [demo source](https://github.com/andyperlitch/ng2-super-table/bl
 
 ### Usage without a module bundler
 ```
-<script src="node_modules/ng2-super-table/ng2-super-table.js"></script>
+<script src="node_modules/ng2-super-table/index.js"></script>
 <script>
     // everything is exported ng2SuperTable namespace
 </script>
