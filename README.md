@@ -32,7 +32,7 @@ A table component with the following features:
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Development](#development)
-- [License](#licence)
+- [License](#license)
 
 ## About
 
