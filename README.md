@@ -4,7 +4,7 @@
 [![devDependency Status](https://david-dm.org/andyperlitch/ng2-super-table/dev-status.svg)](https://david-dm.org/andyperlitch/ng2-super-table#info=devDependencies)
 [![GitHub issues](https://img.shields.io/github/issues/andyperlitch/ng2-super-table.svg)](https://github.com/andyperlitch/ng2-super-table/issues)
 [![GitHub stars](https://img.shields.io/github/stars/andyperlitch/ng2-super-table.svg)](https://github.com/andyperlitch/ng2-super-table/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ng2-super-table/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ng2-super-table/master/MIT-LICENSE)
 
 A table component with the following features:
 

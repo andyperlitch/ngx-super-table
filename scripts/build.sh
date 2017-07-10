@@ -20,7 +20,7 @@ rm -rf waste
 # for d in ./deploy/*; do cp LICENSE "$d"; done
 # single
 cp README.md ./deploy
-cp LICENSE ./deploy
+cp MIT-LICENSE ./deploy
 
 # copy package.json files that are in lib folders
 # find src/lib -name 'package.json' -type f -exec cp {} ./deploy \;
