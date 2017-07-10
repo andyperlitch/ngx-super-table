@@ -74,7 +74,16 @@ export class SuperTableBody implements OnChanges {
   rowHeight: number = DEFAULT_ROW_HEIGHT;
   rowOffset = 0;
 
-  constructor (private el: ElementRef, public state: SuperTableState) {}
+  private scrollHandler = _.debounce(() => {
+    this.updateVisibleRows();
+  }, DEBOUNCE_DELAY);
+
+  private resizeHandler = _.debounce(() => {
+    this.detectRowHeight();
+    this.updateVisibleRows();
+  });
+
+  constructor (private el: ElementRef, public state: SuperTableState) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updateVisibleRows();
@@ -82,17 +91,12 @@ export class SuperTableBody implements OnChanges {
 
   @HostListener('scroll')
   trackScroll() {
-    _.debounce( () => {
-      this.updateVisibleRows();
-    }, DEBOUNCE_DELAY);
+    this.scrollHandler();
   }
 
   @HostListener('resize')
   onWindowResize() {
-    _.debounce( () => {
-      this.detectRowHeight();
-      this.updateVisibleRows();
-    });
+    this.resizeHandler();
   }
 
   private updateVisibleRows(): void {
