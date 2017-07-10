@@ -69,7 +69,7 @@
     "standard-version": "~2.4.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.0.0",
+    "typescript": "~2.1.0",
     "validate-commit-msg": "~2.8.0"
   },
   "config": {
