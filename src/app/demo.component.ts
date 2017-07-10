@@ -22,7 +22,7 @@ const INSTRUMENTS: string[] = [
 @Component({
   selector: 'app-demo-app',
   template: `
-    <p>
+    <p class="mt-3 mb-2">
       The following table has {{NUM_ROWS}} rows, and uses row-virtualization so
       the DOM is not overloaded. All sorting and filtering occurs on the client
       side.
