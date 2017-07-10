@@ -48,7 +48,7 @@
     "@angular/cli": "1.0.0-rc.2",
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.38",
-    "@types/lodash": "^4.14.68",
+    "@types/lodash": "4.14.51",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
     "commitizen": "~2.8.1",
