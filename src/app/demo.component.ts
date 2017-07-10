@@ -9,7 +9,6 @@ import {
 } from '../lib';
 import { InstrumentComponent } from './instrument.component';
 
-const NUM_ROWS = 10000;
 type INSTRUMENT_TYPE = 'sax' | 'trumpet' | 'trombone' | 'piano' | 'keys' | 'drums';
 const INSTRUMENTS: string[] = [
   'sax',
@@ -24,7 +23,7 @@ const INSTRUMENTS: string[] = [
   selector: 'app-demo-app',
   template: `
     <p>
-      The following table has ${NUM_ROWS} rows, and uses row-virtualization so
+      The following table has {{NUM_ROWS}} rows, and uses row-virtualization so
       the DOM is not overloaded. All sorting and filtering occurs on the client
       side.
     </p>
@@ -47,6 +46,7 @@ const INSTRUMENTS: string[] = [
 export class DemoComponent implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
   rows: MyRow[] = [];
+  NUM_ROWS = 10000;
   columns: ISuperTableColumn[] = [
     {
       id: 'firstName',
@@ -118,7 +118,7 @@ export class DemoComponent implements OnInit {
   private instruments: string[] = INSTRUMENTS;
 
   ngOnInit(): void {
-    this.rows = this.generateRows(NUM_ROWS);
+    this.rows = this.generateRows(this.NUM_ROWS);
   }
 
   private generateRows (count: number): MyRow[] {
