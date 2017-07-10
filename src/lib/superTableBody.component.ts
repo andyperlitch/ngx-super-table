@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { SuperTableState } from './SuperTableState';
 import { ISuperTableOptions } from './interfaces';
-import * as _ from 'lodash';
+import { debounce } from 'lodash';
 
 const DEFAULT_ROW_HEIGHT = 20;
 const PADDING_ROW_COUNT = 20;
@@ -74,11 +74,11 @@ export class SuperTableBody implements OnChanges {
   rowHeight: number = DEFAULT_ROW_HEIGHT;
   rowOffset = 0;
 
-  private scrollHandler = _.debounce(() => {
+  private scrollHandler = debounce(() => {
     this.updateVisibleRows();
   }, DEBOUNCE_DELAY);
 
-  private resizeHandler = _.debounce(() => {
+  private resizeHandler = debounce(() => {
     this.detectRowHeight();
     this.updateVisibleRows();
   });

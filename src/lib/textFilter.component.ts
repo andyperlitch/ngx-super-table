@@ -1,7 +1,7 @@
 import { Component, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 import { ISuperTableFilter, ColumnState } from './interfaces';
 import { Observable } from 'rxjs/Observable';
-import * as _ from 'lodash';
+import { debounce } from 'lodash';
 import { SuperTableState } from './SuperTableState';
 
 @Component({
@@ -46,7 +46,7 @@ export class TextFilter {
   @Input() filter: ISuperTableFilter;
   @Input() column: ColumnState;
 
-  onModelChange: Function = _.debounce(function() {
+  onModelChange: Function = debounce(function() {
     this.state.notify();
   }, 200);
 

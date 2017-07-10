@@ -12,7 +12,7 @@ import {
 import { ISuperTableFilter, ColumnState } from './interfaces';
 import { SuperTableState } from './SuperTableState';
 import { Subscription } from 'rxjs/Subscription';
-import * as _ from 'lodash';
+import { forEach, values } from 'lodash';
 
 @Component({
   selector: 'super-table-enum-filter-dropdown',
@@ -85,7 +85,7 @@ export class EnumFilterDropdown implements OnInit, OnDestroy {
   }
 
   showAll(): void {
-    _.forEach(this.column.filterValue, (val, key) => {
+    forEach(this.column.filterValue, (val, key) => {
       this.column.filterValue[key] = true;
     });
     this.state.notify();
@@ -159,7 +159,7 @@ export class EnumFilter implements OnInit, OnDestroy {
       this.column.filterValue[choice] = true;
     });
     this.subscription = this.state.stateChanged$.subscribe(() => {
-      this.disabledFilterCount = _.values(this.column.filterValue)
+      this.disabledFilterCount = values(this.column.filterValue)
         .filter(isEnabled => !isEnabled)
         .length;
     });
