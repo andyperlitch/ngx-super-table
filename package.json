@@ -21,7 +21,7 @@
     "build": "ng build",
     "build:dist": "./scripts/build.sh",
     "publish": "./scripts/publish.sh",
-    "test": "ng test",
+    "test": "ng test --watch false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "gh-pages": "git checkout gh-pages && git merge master && npm run build:demo && npm run typedoc && git add . && git commit -m 'chore: build demo and docs' && git push && git checkout master",
