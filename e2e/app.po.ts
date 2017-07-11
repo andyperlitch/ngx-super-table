@@ -5,7 +5,7 @@ export class Ng2SuperTablePage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getNavbarText() {
+    return element(by.css('.navbar-brand')).getText();
   }
 }

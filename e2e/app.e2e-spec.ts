@@ -7,8 +7,8 @@ describe('ngx-super-table App', () => {
     page = new Ng2SuperTablePage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display navbar title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getNavbarText()).toEqual('ngx super table');
   });
 });
