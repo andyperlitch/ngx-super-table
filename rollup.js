@@ -2,7 +2,7 @@ export default {
   entry: './deploy/index.js',
   dest: './deploy/index.umd.js',
   format: 'umd',
-  moduleName: 'ng2-super-table',
+  moduleName: 'ngx-super-table',
   globals: {
     '@angular/core': 'ng.core',
     '@angular/common': 'ng.common',

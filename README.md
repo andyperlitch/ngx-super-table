@@ -1,14 +1,12 @@
-# ng2 super table
-[![Build Status](https://travis-ci.org/andyperlitch/ng2-super-table.svg?branch=master)](https://travis-ci.org/andyperlitch/ng2-super-table)
-[![npm version](https://badge.fury.io/js/ng2-super-table.svg)](http://badge.fury.io/js/ng2-super-table)
-[![devDependency Status](https://david-dm.org/andyperlitch/ng2-super-table/dev-status.svg)](https://david-dm.org/andyperlitch/ng2-super-table#info=devDependencies)
-[![GitHub issues](https://img.shields.io/github/issues/andyperlitch/ng2-super-table.svg)](https://github.com/andyperlitch/ng2-super-table/issues)
-[![GitHub stars](https://img.shields.io/github/stars/andyperlitch/ng2-super-table.svg)](https://github.com/andyperlitch/ng2-super-table/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ng2-super-table/master/MIT-LICENSE)
+# ngx super table
+[![Build Status](https://travis-ci.org/andyperlitch/ngx-super-table.svg?branch=master)](https://travis-ci.org/andyperlitch/ngx-super-table)
+[![npm version](https://badge.fury.io/js/ngx-super-table.svg)](http://badge.fury.io/js/ngx-super-table)
+[![devDependency Status](https://david-dm.org/andyperlitch/ngx-super-table/dev-status.svg)](https://david-dm.org/andyperlitch/ngx-super-table#info=devDependencies)
+[![GitHub issues](https://img.shields.io/github/issues/andyperlitch/ngx-super-table.svg)](https://github.com/andyperlitch/ngx-super-table/issues)
+[![GitHub stars](https://img.shields.io/github/stars/andyperlitch/ngx-super-table.svg)](https://github.com/andyperlitch/ngx-super-table/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ngx-super-table/master/MIT-LICENSE)
 
-**NOTE: This library currently does not support the latest version of angular2 with @NgModules. See [this issue](https://github.com/andyperlitch/ng2-super-table/issues/3).**
-
-A table component with the following features:
+A table component built in [angular](https://angular.io) with the following features:
 
 - row virtualization
 - row sorting (stackable)
@@ -21,12 +19,15 @@ A table component with the following features:
   - enum
   - custom
 
-![angular2 super table screenshot](http://i.imgur.com/ERUHmza.png)
+![ngx super table screenshot](http://i.imgur.com/ERUHmza.png)
+
+
+> **Note:** This project was formerly named `ng2-super-table`.
 
 
 ## Demo
 
-[https://andyperlitch.github.io/ng2-super-table/demo/](https://andyperlitch.github.io/ng2-super-table/demo/)
+[https://andyperlitch.github.io/ngx-super-table/demo/](https://andyperlitch.github.io/ngx-super-table/demo/)
 
 ## Table of contents
 
@@ -44,14 +45,14 @@ A table component for Angular projects
 
 Install through npm:
 ```
-npm install --save ng2-super-table
+npm install --save ngx-super-table
 ```
 
 Then use it in your app like so:
 
 ```typescript
 import { Component } from '@angular/core';
-import { SuperTable, ISuperTableColumn } from 'ng2-super-table';
+import { SuperTable, ISuperTableColumn } from 'ngx-super-table';
 
 @Component({
   selector: 'demo-app',
@@ -65,7 +66,7 @@ import { SuperTable, ISuperTableColumn } from 'ng2-super-table';
 export class DemoApp {
   rows = [
     { name: 'thing1', age: 7 },
-    { name: 'thing2', age: 7 },
+    { name: 'thingx', age: 7 },
     { name: 'cat', age: 10 },
     { name: 'fish', age: 1 },
   ];
@@ -85,20 +86,20 @@ export class DemoApp {
 }
 ```
 
-Please view the [demo source](https://github.com/andyperlitch/ng2-super-table/blob/master/src/app/demo.component.ts) for a much more feature-complete example.
+Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/blob/master/src/app/demo.component.ts) for a much more feature-complete example.
 
 ### Usage without a module bundler
 ```
-<script src="node_modules/ng2-super-table/index.js"></script>
+<script src="node_modules/ngx-super-table/index.js"></script>
 <script>
-    // everything is exported ng2SuperTable namespace
+    // everything is exported ngxSuperTable namespace
 </script>
 ```
 
 ## Documentation
 All documentation is auto-generated from the source via typedoc and can be viewed here:
 
-[https://andyperlitch.github.io/ng2-super-table/docs/](https://andyperlitch.github.io/ng2-super-table/docs/)
+[https://andyperlitch.github.io/ngx-super-table/docs/](https://andyperlitch.github.io/ngx-super-table/docs/)
 
 ## Development
 
@@ -151,6 +152,7 @@ npm run release
   - [X] number
   - [X] enum
   - [X] custom
+  - [ ] formatted string
 - [ ] hiding/showing columns
 
 

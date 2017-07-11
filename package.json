@@ -1,13 +1,13 @@
 {
-  "name": "ng2-super-table",
-  "description": "A table component for angular2 projects",
-  "homepage": "https://github.com/andyperlitch/ng2-super-table#readme",
+  "name": "ngx-super-table",
+  "description": "A table component for angular projects (angular versions >=2)",
+  "homepage": "https://github.com/andyperlitch/ngx-super-table#readme",
   "bugs": {
-    "url": "https://github.com/andyperlitch/ng2-super-table/issues"
+    "url": "https://github.com/andyperlitch/ngx-super-table/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andyperlitch/ng2-super-table.git"
+    "url": "git+https://github.com/andyperlitch/ngx-super-table.git"
   },
   "license": "MIT",
   "author": "Andy Perlitch",
@@ -26,7 +26,7 @@
     "prerelease": "npm test",
     "release": "standard-version --first-release && git push --follow-tags origin master && npm run build:dist && npm publish",
     "postrelease": "npm run build:clean && npm run gh-pages",
-    "typedoc": "typedoc --options typedoc.json ng2-super-table.ts src/*.ts"
+    "typedoc": "typedoc --options typedoc.json ngx-super-table.ts src/*.ts"
   },
   "private": true,
   "dependencies": {

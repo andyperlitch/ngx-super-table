@@ -1,14 +1,14 @@
 {
-  "name": "ng2-super-table",
+  "name": "ngx-super-table",
   "version": "0.1.1",
   "description": "A table component for angular2 projects",
-  "homepage": "https://github.com/andyperlitch/ng2-super-table#readme",
+  "homepage": "https://github.com/andyperlitch/ngx-super-table#readme",
   "bugs": {
-    "url": "https://github.com/andyperlitch/ng2-super-table/issues"
+    "url": "https://github.com/andyperlitch/ngx-super-table/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andyperlitch/ng2-super-table.git"
+    "url": "git+https://github.com/andyperlitch/ngx-super-table.git"
   },
   "license": "MIT",
   "keywords": [
