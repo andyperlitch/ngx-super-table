@@ -30,7 +30,6 @@
     "postrelease": "npm run build:clean && npm run gh-pages",
     "typedoc": "typedoc --options typedoc.json ngx-super-table.ts src/*.ts"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",
