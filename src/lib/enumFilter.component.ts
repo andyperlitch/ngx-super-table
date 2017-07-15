@@ -18,7 +18,7 @@ import { forEach, values } from 'lodash';
   selector: 'super-table-enum-filter-dropdown',
   template: `
     <div class="clear-filter">
-      <button class="clear-filter-btn" role="button" (click)="showAll()">show all</button>
+      <button class="btn btn-secondary clear-filter-btn" role="button" (click)="showAll()">show all</button>
     </div>
     <div *ngFor="let choice of column.def.filterChoices">
       <input type="checkbox" [(ngModel)]="column.filterValue[choice]" (ngModelChange)="onChoiceChange($event)" />
