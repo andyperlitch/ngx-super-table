@@ -1,5 +1,5 @@
 # ngx super table
-[![Gitter.im Chat](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/andyperlitch/ngx-super-table)
+[![Gitter.im Chat](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/ngx-super-table)
 [![Build Status](https://travis-ci.org/andyperlitch/ngx-super-table.svg?branch=master)](https://travis-ci.org/andyperlitch/ngx-super-table)
 [![npm version](https://badge.fury.io/js/ngx-super-table.svg)](http://badge.fury.io/js/ngx-super-table)
 [![devDependency Status](https://david-dm.org/andyperlitch/ngx-super-table/dev-status.svg)](https://david-dm.org/andyperlitch/ngx-super-table#info=devDependencies)
