@@ -77,7 +77,7 @@ export class SuperTable implements AfterContentInit, OnChanges, OnDestroy, OnIni
 
   ngOnChanges(changes: SimpleChanges): void {
     // Inform state of columns changes
-    if (changes['columns'].isFirstChange()) {
+    if (changes['columns'] && changes['columns'].isFirstChange()) {
       this.state.setColumns(changes['columns'].currentValue);
     }
     this.sortAndFilterRows();
