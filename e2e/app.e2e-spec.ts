@@ -1,10 +1,10 @@
-import { Ng2SuperTablePage } from './app.po';
+import { NgxSuperTablePage } from './app.po';
 
 describe('ngx-super-table App', () => {
-  let page: Ng2SuperTablePage;
+  let page: NgxSuperTablePage;
 
   beforeEach(() => {
-    page = new Ng2SuperTablePage();
+    page = new NgxSuperTablePage();
   });
 
   it('should display navbar title', () => {
