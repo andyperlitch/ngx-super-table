@@ -78,7 +78,7 @@ export class ResizerComponent {
   /* tslint:disable-next-line */
   selector: '[super-table-header]',
   template: `
-    <div *ngIf="!noHeight" class="table-header-div" title="SORT_TITLE">
+    <div *ngIf="!noHeight" class="table-header-div" [title]="SORT_TITLE">
       <span *ngIf="column.def.sort" class="sort-icon">
         <span [ngSwitch]="column.sortOrder">
           <span class="asc-sort glyphicon glyphicon-sort-by-attributes" *ngSwitchCase="'ASC'"></span>
