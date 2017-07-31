@@ -4,7 +4,8 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: '[dummy-rows]',
+  /* tslint:disable-next-line */
+  selector: '[super-table-dummy-rows]',
   template: `
     <tr [style.height]="rowStyleHeight()">
       <td
@@ -27,7 +28,8 @@ import {
 
   `]
 })
-export class DummyRows {
+export class DummyRowsComponent {
+
   @Input() rowHeight: number;
   @Input() rowCount: number;
   @Input() columnCount: number;
@@ -46,4 +48,5 @@ export class DummyRows {
   backgroundSize(): string {
     return `auto ${this.rowHeight}px`;
   }
+
 }

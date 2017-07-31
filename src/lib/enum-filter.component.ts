@@ -10,7 +10,7 @@ import {
   Injector
 } from '@angular/core';
 import { ISuperTableFilter, ColumnState } from './interfaces';
-import { SuperTableState } from './SuperTableState';
+import { SuperTableState } from './super-table-state';
 import { Subscription } from 'rxjs/Subscription';
 import { forEach, values } from 'lodash';
 
@@ -55,7 +55,7 @@ import { forEach, values } from 'lodash';
     }
   `]
 })
-export class EnumFilterDropdown implements OnInit, OnDestroy {
+export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   @Input() column: ColumnState;
   top: number;
   left: number;
@@ -94,7 +94,8 @@ export class EnumFilterDropdown implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: '[enum-filter]',
+  /* tslint:disable-next-line */
+  selector: '[super-table-enum-filter]',
   template: `
     <button
       [attr.title]="filter.title"
@@ -136,11 +137,11 @@ export class EnumFilterDropdown implements OnInit, OnDestroy {
     }
   `]
 })
-export class EnumFilter implements OnInit, OnDestroy {
+export class EnumFilterComponent implements OnInit, OnDestroy {
   @Input() filter: ISuperTableFilter;
   @Input() column: ColumnState;
 
-  private dropdown: ComponentRef<EnumFilterDropdown>;
+  private dropdown: ComponentRef<EnumFilterDropdownComponent>;
   private disabledChoices: Set<any> = new Set<any>();
   disabledFilterCount = 0;
   private subscription: Subscription;
@@ -175,9 +176,9 @@ export class EnumFilter implements OnInit, OnDestroy {
       this.dropdown = null;
     } else {
       const clientRect: ClientRect = this.el.nativeElement.getBoundingClientRect();
-      const cmpFactory = this.resolver.resolveComponentFactory(EnumFilterDropdown);
+      const cmpFactory = this.resolver.resolveComponentFactory(EnumFilterDropdownComponent);
       const ctxInjector: Injector = this.viewContainer.injector;
-      const cmpRef: ComponentRef<EnumFilterDropdown> = this.viewContainer.createComponent(cmpFactory, 0, ctxInjector);
+      const cmpRef: ComponentRef<EnumFilterDropdownComponent> = this.viewContainer.createComponent(cmpFactory, 0, ctxInjector);
       cmpRef.instance.column = this.column;
       cmpRef.instance.top = clientRect.top + clientRect.height;
       cmpRef.instance.left = clientRect.left;

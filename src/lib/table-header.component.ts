@@ -1,15 +1,11 @@
-import { Component, Input, ElementRef, HostBinding } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ColumnState } from './interfaces';
-import { SuperTableState } from './SuperTableState';
+import { SuperTableState } from './super-table-state';
 
 @Component({
-  selector: '[resizer]',
+  /* tslint:disable-next-line */
+  selector: '[super-table-resizer]',
   template: `<div class="notch" [ngClass]="{ explicit: column.width }"></div>`,
-  host: {
-    '(click)': 'stopClick($event)',
-    '(mousedown)': 'grab($event)',
-    '[attr.title]': '"Click-and-drag to resize. Click to clear specified width."'
-  },
   styles: [`
     :host {
       position: absolute;
@@ -30,7 +26,7 @@ import { SuperTableState } from './SuperTableState';
     }
   `]
 })
-export class Resizer {
+export class ResizerComponent {
 
   private static MAX_CLICK_WAIT = 250;
   private static MIN_COLUMN_WIDTH = 30;
@@ -38,21 +34,27 @@ export class Resizer {
   @Input() column: ColumnState;
   @Input() actualWidth: number;
 
-  constructor (private el: ElementRef) {}
+  constructor (private el: ElementRef) { }
 
-  private grab (grabEvt: MouseEvent): void {
+  @HostBinding('attr.title')
+  get title(): string {
+    return 'Click-and-drag to resize. Click to clear specified width.';
+  }
+
+  @HostListener('mousedown', ['$event'])
+  grab(grabEvt: MouseEvent): void {
     grabEvt.preventDefault();
     const mousedownTime: number = Date.now();
     const initClientX: number = grabEvt.clientX;
     const initWidth: number = this.column.width || this.getActualParentWidth();
     const drag: EventListener = (event: MouseEvent) => {
       const change: number = event.clientX - initClientX;
-      this.column.width = Math.max(initWidth + change, Resizer.MIN_COLUMN_WIDTH);
+      this.column.width = Math.max(initWidth + change, ResizerComponent.MIN_COLUMN_WIDTH);
     };
     const unbindDrag: EventListener = () => {
       window.removeEventListener('mousemove', drag);
       window.removeEventListener('mouseup', unbindDrag);
-      if (Date.now() - mousedownTime < Resizer.MAX_CLICK_WAIT) {
+      if (Date.now() - mousedownTime < ResizerComponent.MAX_CLICK_WAIT) {
         this.column.width = null;
       }
     };
@@ -60,22 +62,21 @@ export class Resizer {
     window.addEventListener('mouseup', unbindDrag);
   }
 
+  @HostListener('click', ['$event'])
+  stopClick(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   private getActualParentWidth(): number {
     return this.el.nativeElement.parentElement.offsetWidth;
   }
 
-  private stopClick(event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-  }
 }
 
 @Component({
-  selector: '[table-header]',
-  host: {
-    '[style.width]': 'getWidth()',
-    '(click)': 'handleClick($event)'
-  },
+  /* tslint:disable-next-line */
+  selector: '[super-table-header]',
   template: `
     <div *ngIf="!noHeight" class="table-header-div" title="SORT_TITLE">
       <span *ngIf="column.def.sort" class="sort-icon">
@@ -87,7 +88,7 @@ export class Resizer {
       </span>
       {{ getValue() }}
     </div>
-    <div *ngIf="!noHeight && !column.def.lockWidth" resizer [column]="column"></div>
+    <div *ngIf="!noHeight && !column.def.lockWidth" super-table-resizer [column]="column"></div>
   `,
   styles: [`
     :host {
@@ -118,23 +119,25 @@ export class Resizer {
     }
   `]
 })
-export class TableHeader {
+export class TableHeaderComponent {
   @Input() column: ColumnState;
   @Input() noHeight = false;
 
   SORT_TITLE = 'Click to change sort order. Shift-click to sort on multiple columns.';
 
-  constructor(private el: ElementRef, private state: SuperTableState) {}
+  constructor(private el: ElementRef, private state: SuperTableState) { }
 
-  private getWidth(): string {
-    return (typeof this.column.width === 'number') ? this.column.width + 'px' : 'auto';
-  }
-
-  private getValue(): string {
+  getValue(): string {
     return this.column.def.label;
   }
 
-  private handleClick(event: MouseEvent): void {
+  @HostBinding('style.width')
+  get width(): string {
+    return (typeof this.column.width === 'number') ? this.column.width + 'px' : 'auto';
+  }
+
+  @HostListener('click', ['$event'])
+  handleClick(event: MouseEvent): void {
     event.preventDefault();
     if (this.column.hasSort) {
       this.state.toggleSort(this.column, event.shiftKey);

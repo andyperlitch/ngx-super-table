@@ -1,4 +1,4 @@
-import {ISuperTableSorter, IBuiltInSorters} from './interfaces';
+import { ISuperTableSorter, IBuiltInSorters } from './interfaces';
 
 export const superTableSorters: IBuiltInSorters = {
   STRING: function(val1: string, val2: string): number {

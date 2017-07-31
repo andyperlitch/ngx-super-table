@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SuperTableState } from './SuperTableState';
+import { SuperTableState } from './super-table-state';
 
 @Component({
   selector: 'super-table-head',
@@ -7,13 +7,13 @@ import { SuperTableState } from './SuperTableState';
     <table [ngClass]="tableClasses">
       <thead>
         <tr>
-          <th scope="col" *ngFor="let column of state.columns" table-header [column]="column" [ngClass]="{ hasSort: column.hasSort }"></th>
+          <th scope="col" *ngFor="let column of state.columns" super-table-header [column]="column" [ngClass]="{ hasSort: column.hasSort }"></th>
         </tr>
         <tr *ngIf="state.hasAnyFilters" class="filter-row">
           <td *ngFor="let column of state.columns">
             <div *ngIf="column.hasFilter" [ngSwitch]="column.def.filter.type">
-              <div *ngSwitchCase="'TEXT'" text-filter [filter]="column.def.filter" [column]="column"></div>
-              <div *ngSwitchCase="'ENUM'" enum-filter [filter]="column.def.filter" [column]="column"></div>
+              <div *ngSwitchCase="'TEXT'" super-table-text-filter [filter]="column.def.filter" [column]="column"></div>
+              <div *ngSwitchCase="'ENUM'" super-table-enum-filter [filter]="column.def.filter" [column]="column"></div>
             </div>
           </td>
         </tr>
@@ -40,7 +40,7 @@ import { SuperTableState } from './SuperTableState';
     }
   `]
 })
-export class SuperTableHead {
+export class SuperTableHeadComponent {
   @Input() tableClasses: any;
 
   constructor(public state: SuperTableState) {}

@@ -6,7 +6,7 @@ import {
  OnChanges,
  SimpleChanges
 } from '@angular/core';
-import { SuperTableState } from './SuperTableState';
+import { SuperTableState } from './super-table-state';
 import { ISuperTableOptions } from './interfaces';
 import { debounce } from 'lodash';
 
@@ -20,12 +20,12 @@ const DEBOUNCE_DELAY = 250;
     <table [ngClass]="tableClasses">
       <thead class="sizing-thead">
         <tr>
-          <th scope="col" *ngFor="let column of state.columns" table-header [column]="column" [noHeight]="true"></th>
+          <th scope="col" *ngFor="let column of state.columns" super-table-header [column]="column" [noHeight]="true"></th>
         </tr>
       </thead>
       <tbody
         class="dummy-rows"
-        dummy-rows
+        super-table-dummy-rows
         [columnCount]="state.columns.length"
         [rowHeight]="rowHeight"
         [rowCount]="rowOffset">
@@ -35,7 +35,7 @@ const DEBOUNCE_DELAY = 250;
       </tbody>
       <tbody
         class="dummy-rows"
-        dummy-rows
+        super-table-dummy-rows
         [columnCount]="state.columns.length"
         [rowHeight]="rowHeight"
         [rowCount]="rows.length - rowOffset - visibleRows.length - 1">
@@ -61,7 +61,7 @@ const DEBOUNCE_DELAY = 250;
     }
   `]
 })
-export class SuperTableBody implements OnChanges {
+export class SuperTableBodyComponent implements OnChanges {
   @Input() rows: Array<any>;
   @Input() tableClasses: any;
   @Input() bodyHeight: number;
