@@ -7,7 +7,12 @@ import { SuperTableState } from './super-table-state';
     <table [ngClass]="tableClasses">
       <thead>
         <tr>
-          <th scope="col" *ngFor="let column of state.columns" super-table-header [column]="column" [ngClass]="{ hasSort: column.hasSort }"></th>
+          <th
+            *ngFor="let column of state.columns"
+            super-table-header
+            scope="col"
+            [column]="column"
+            [ngClass]="{ hasSort: column.hasSort }"></th>
         </tr>
         <tr *ngIf="state.hasAnyFilters" class="filter-row">
           <td *ngFor="let column of state.columns">
