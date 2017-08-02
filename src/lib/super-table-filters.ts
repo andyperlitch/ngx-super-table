@@ -1,4 +1,4 @@
-import {FILTER_TYPE, ISuperTableFilter} from './interfaces';
+import { FILTER_TYPE, ISuperTableFilter } from './interfaces';
 
 export interface IBuiltInFilters {
   STRING: ISuperTableFilter;
@@ -39,6 +39,7 @@ function parseDateFilter(str: string): number {
   }
   return total;
 }
+
 export const superTableFilters: IBuiltInFilters = {
   STRING: {
     type: 'TEXT',

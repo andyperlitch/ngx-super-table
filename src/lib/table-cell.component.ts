@@ -12,7 +12,8 @@ import {
 import { ColumnState } from './interfaces';
 
 @Component({
-  selector: '[table-cell]',
+  /* tslint:disable-next-line */
+  selector: '[super-table-cell]',
   template: `
     <span *ngIf="!column.def.component" [attr.title]="getFormattedValue()">{{ getFormattedValue() }}</span>
     <span *ngIf="column.def.component" #cmpContainer></span>
@@ -25,7 +26,7 @@ import { ColumnState } from './interfaces';
     }
   `]
 })
-export class TableCell implements AfterViewInit, OnDestroy {
+export class TableCellComponent implements AfterViewInit, OnDestroy {
   @Input() row: any;
   @Input() column: ColumnState;
   @ViewChild('cmpContainer', { read: ViewContainerRef }) cmpContainer: ViewContainerRef;

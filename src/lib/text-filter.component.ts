@@ -2,10 +2,11 @@ import { Component, Input, Output, ElementRef, EventEmitter } from '@angular/cor
 import { ISuperTableFilter, ColumnState } from './interfaces';
 import { Observable } from 'rxjs/Observable';
 import { debounce } from 'lodash';
-import { SuperTableState } from './SuperTableState';
+import { SuperTableState } from './super-table-state';
 
 @Component({
-  selector: '[text-filter]',
+  /* tslint:disable-next-line */
+  selector: '[super-table-text-filter]',
   template: `
     <input
       class="form-control input-sm"
@@ -16,7 +17,7 @@ import { SuperTableState } from './SuperTableState';
       [attr.title]="filter.title"
       [ngClass]="{ hasContent: !!column.filterValue }" />
 
-    <button *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
+    <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
   `,
   styles: [`
     :host {
@@ -42,7 +43,7 @@ import { SuperTableState } from './SuperTableState';
     }
   `]
 })
-export class TextFilter {
+export class TextFilterComponent {
   @Input() filter: ISuperTableFilter;
   @Input() column: ColumnState;
 
