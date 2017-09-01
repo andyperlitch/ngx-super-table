@@ -25,7 +25,6 @@ A table component built in [angular](https://angular.io) with the following feat
 
 > **Note:** This project was formerly named `ng2-super-table`.
 
-
 ## Demo
 
 [https://andyperlitch.github.io/ngx-super-table/demo/](https://andyperlitch.github.io/ngx-super-table/demo/)
@@ -100,7 +99,7 @@ Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/bl
 ## Documentation
 All documentation is auto-generated from the source via typedoc and can be viewed here:
 
-[https://andyperlitch.github.io/ngx-super-table/docs/](https://andyperlitch.github.io/ngx-super-table/docs/)
+[https://andyperlitch.github.io/ngx-super-table/doc/](https://andyperlitch.github.io/ngx-super-table/doc/)
 
 ## Development
 
