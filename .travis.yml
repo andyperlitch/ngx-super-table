@@ -16,10 +16,16 @@ before_install:
   - # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:4200 &
 
-
 script:
   - yarn test:ci
   - yarn e2e:ci
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  on:
+    branch: master
 
 notifications:
   email: false

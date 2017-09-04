@@ -28,7 +28,7 @@
     "test:ci": "ng test --browser ChromeHeadless --watch false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "e2e:ci": "ng e2e --config protractor-ci.conf.js",
+    "e2e:ci": "ng e2e --config protractor-ci.conf.js --watch false",
     "gh-pages": "git checkout gh-pages && git merge master && npm run build -- --base-href=/ngx-super-table/demo/ --output-path=demo && npm run typedoc && git add . && git commit -m 'chore: build demo and docs' && git push && git checkout master",
     "prerelease": "npm test",
     "release": "cd src/lib && standard-version",
