@@ -33,7 +33,8 @@
     "gh-pages": "git checkout gh-pages && git merge master && npm run build:demo && npm run typedoc && git add . && git commit -m 'chore: build demo and docs' && git push && git checkout master",
     "prerelease": "npm test",
     "release": "cd src/lib && standard-version",
-    "typedoc": "typedoc --options typedoc.json ngx-super-table.ts src/*.ts && echo '#nojekyll' > doc/.nojekyll"
+    "typedoc": "typedoc --options typedoc.json ngx-super-table.ts src/*.ts",
+    "posttypedoc": "./scripts/posttypedoc.sh"
   },
   "private": true,
   "dependencies": {
