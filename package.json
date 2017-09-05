@@ -20,6 +20,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:dist": "./scripts/build.sh",
+    "build:demo": "ng build --base-href=/ngx-super-table/demo/ --output-path=demo",
     "build:clean": "rimraf build dist waste deploy",
     "prepublish": "npm run build:clean",
     "publish": "git push origin master && git push --tags origin master && npm run build:dist && ./scripts/publish.sh",
@@ -29,7 +30,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2e:ci": "ng e2e --config protractor-ci.conf.js --watch false",
-    "gh-pages": "git checkout gh-pages && git merge master && npm run build -- --base-href=/ngx-super-table/demo/ --output-path=demo && npm run typedoc && git add . && git commit -m 'chore: build demo and docs' && git push && git checkout master",
+    "gh-pages": "git checkout gh-pages && git merge master && npm run build:demo && npm run typedoc && git add . && git commit -m 'chore: build demo and docs' && git push && git checkout master",
     "prerelease": "npm test",
     "release": "cd src/lib && standard-version",
     "typedoc": "typedoc --options typedoc.json ngx-super-table.ts src/*.ts && echo '#nojekyll' > doc/.nojekyll"

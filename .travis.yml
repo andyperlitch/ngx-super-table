@@ -19,6 +19,9 @@ before_install:
 script:
   - yarn test:ci
   - yarn e2e:ci
+  - yarn build:dist
+  - yarn build:demo
+  - yarn typedoc
 
 deploy:
   provider: pages
