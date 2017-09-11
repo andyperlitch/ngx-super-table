@@ -6,6 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/andyperlitch/ngx-super-table.svg)](https://github.com/andyperlitch/ngx-super-table/issues)
 [![GitHub stars](https://img.shields.io/github/stars/andyperlitch/ngx-super-table.svg)](https://github.com/andyperlitch/ngx-super-table/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/andyperlitch/ngx-super-table/master/MIT-LICENSE)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 A table component built in [angular](https://angular.io) with the following features:
 
@@ -159,3 +160,14 @@ npm run release
 ## License
 
 MIT
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars2.githubusercontent.com/u/1390651?v=4" width="100px;"/><br /><sub>Andy Perlitch</sub>](https://github.com/andyperlitch)<br />[💬](#question-andyperlitch "Answering Questions") [💻](https://github.com/andyperlitch/ngx-super-table/commits?author=andyperlitch "Code") [🎨](#design-andyperlitch "Design") [📖](https://github.com/andyperlitch/ngx-super-table/commits?author=andyperlitch "Documentation") [💡](#example-andyperlitch "Examples") [🤔](#ideas-andyperlitch "Ideas, Planning, & Feedback") [👀](#review-andyperlitch "Reviewed Pull Requests") | [<img src="https://avatars0.githubusercontent.com/u/735717?v=4" width="100px;"/><br /><sub>Chris McKnight</sub>](https://github.com/cmckni3)<br />[💻](https://github.com/andyperlitch/ngx-super-table/commits?author=cmckni3 "Code") [🎨](#design-cmckni3 "Design") [📖](https://github.com/andyperlitch/ngx-super-table/commits?author=cmckni3 "Documentation") [💡](#example-cmckni3 "Examples") [🤔](#ideas-cmckni3 "Ideas, Planning, & Feedback") [🚇](#infra-cmckni3 "Infrastructure (Hosting, Build-Tools, etc)") [👀](#review-cmckni3 "Reviewed Pull Requests") [🔧](#tool-cmckni3 "Tools") |
+| :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
