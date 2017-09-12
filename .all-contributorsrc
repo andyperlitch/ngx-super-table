@@ -1,0 +1,42 @@
+{
+  "projectName": "ngx-super-table",
+  "projectOwner": "andyperlitch",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "andyperlitch",
+      "name": "Andy Perlitch",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1390651?v=4",
+      "profile": "https://github.com/andyperlitch",
+      "contributions": [
+        "question",
+        "code",
+        "design",
+        "doc",
+        "example",
+        "ideas",
+        "review"
+      ]
+    },
+    {
+      "login": "cmckni3",
+      "name": "Chris McKnight",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/735717?v=4",
+      "profile": "https://github.com/cmckni3",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "example",
+        "ideas",
+        "infra",
+        "review",
+        "tool"
+      ]
+    }
+  ]
+}
