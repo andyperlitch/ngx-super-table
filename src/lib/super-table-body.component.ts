@@ -108,7 +108,7 @@ export class SuperTableBodyComponent implements OnChanges {
     this.rowOffset = startIndex;
 
     endIndex = Math.ceil((currentScroll + this.bodyHeight) / this.rowHeight + PADDING_ROW_COUNT);
-    endIndex = Math.min(this.rows.length - 1, endIndex);
+    endIndex = Math.min(this.rows.length, endIndex);
     this.visibleRows = this.rows.slice(startIndex, endIndex);
     setTimeout( () => {
       this.detectRowHeight();
