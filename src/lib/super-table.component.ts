@@ -9,7 +9,7 @@ import {
   OnInit,
   SimpleChanges
 } from '@angular/core';
-import { ISuperTableColumn, ColumnState, ISuperTableOptions } from './interfaces';
+import { SuperTableColumn, ColumnState, SuperTableOptions } from './interfaces';
 import { SuperTableState } from './super-table-state';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -50,8 +50,8 @@ export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges,
 
   // inputs
   @Input() rows: Array<any>;
-  @Input() columns: Array<ISuperTableColumn>;
-  @Input() options: ISuperTableOptions;
+  @Input() columns: Array<SuperTableColumn>;
+  @Input() options: SuperTableOptions;
   @Input() tableClasses: any;
 
   // properties

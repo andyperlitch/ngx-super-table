@@ -9,7 +9,7 @@ import {
   ComponentRef,
   Injector
 } from '@angular/core';
-import { ISuperTableFilter, ColumnState } from './interfaces';
+import { SuperTableFilter, ColumnState } from './interfaces';
 import { SuperTableState } from './super-table-state';
 import { Subscription } from 'rxjs/Subscription';
 import { forEach, values } from 'lodash';
@@ -138,7 +138,7 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   `]
 })
 export class EnumFilterComponent implements OnInit, OnDestroy {
-  @Input() filter: ISuperTableFilter;
+  @Input() filter: SuperTableFilter;
   @Input() column: ColumnState;
 
   private dropdown: ComponentRef<EnumFilterDropdownComponent>;

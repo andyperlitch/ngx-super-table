@@ -7,7 +7,7 @@ import {
  SimpleChanges
 } from '@angular/core';
 import { SuperTableState } from './super-table-state';
-import { ISuperTableOptions } from './interfaces';
+import { SuperTableOptions } from './interfaces';
 import { debounce } from 'lodash';
 
 const DEFAULT_ROW_HEIGHT = 20;
@@ -65,7 +65,7 @@ export class SuperTableBodyComponent implements OnChanges {
   @Input() rows: Array<any>;
   @Input() tableClasses: any;
   @Input() bodyHeight: number;
-  @Input() options: ISuperTableOptions;
+  @Input() options: SuperTableOptions;
 
   visibleRows: Array<any> = [];
 

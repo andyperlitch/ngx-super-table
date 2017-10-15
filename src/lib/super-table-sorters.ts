@@ -1,6 +1,6 @@
-import { ISuperTableSorter, IBuiltInSorters } from './interfaces';
+import { SuperTableSorter, BuiltInSorters } from './interfaces';
 
-export const superTableSorters: IBuiltInSorters = {
+export const superTableSorters: BuiltInSorters = {
   STRING: function(val1: string, val2: string): number {
     return val1.localeCompare(val2);
   },

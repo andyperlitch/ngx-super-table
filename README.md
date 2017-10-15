@@ -53,7 +53,7 @@ Then use it in your app like so:
 
 ```typescript
 import { Component } from '@angular/core';
-import { SuperTable, ISuperTableColumn } from 'ngx-super-table';
+import { SuperTable, SuperTableColumn } from 'ngx-super-table';
 
 @Component({
   selector: 'demo-app',
@@ -71,7 +71,7 @@ export class DemoApp {
     { name: 'cat', age: 10 },
     { name: 'fish', age: 1 },
   ];
-  columns: ISuperTableColumn[] = [
+  columns: SuperTableColumn[] = [
     {
       id: 'name',
       key: 'name'
