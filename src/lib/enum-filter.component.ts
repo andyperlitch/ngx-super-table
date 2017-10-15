@@ -12,7 +12,8 @@ import {
 import { SuperTableFilter, ColumnState } from './interfaces';
 import { SuperTableState } from './super-table-state';
 import { Subscription } from 'rxjs/Subscription';
-import { forEach, values } from 'lodash';
+import forEach from 'lodash-es/forEach';
+import values from 'lodash-es/values';
 
 @Component({
   selector: 'super-table-enum-filter-dropdown',

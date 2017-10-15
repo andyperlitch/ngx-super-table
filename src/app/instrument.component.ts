@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { SuperTableCellComponent } from '../lib';
+import { SuperTableCellComponent } from '../lib/public_api';
 
 @Component({
   selector: 'app-instrument-cell',

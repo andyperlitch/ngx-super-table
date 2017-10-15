@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { SuperTableState } from './super-table-state';
 import { SuperTableOptions } from './interfaces';
-import { debounce } from 'lodash';
+import debounce from 'lodash-es/debounce';
 
 const DEFAULT_ROW_HEIGHT = 20;
 const PADDING_ROW_COUNT = 20;

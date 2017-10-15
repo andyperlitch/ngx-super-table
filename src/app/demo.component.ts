@@ -6,7 +6,7 @@ import {
   superTableSorters,
   superTableFilters,
   ColumnState
-} from '../lib';
+} from '../lib/public_api';
 import { InstrumentComponent } from './instrument.component';
 
 type INSTRUMENT_TYPE = 'sax' | 'trumpet' | 'trombone' | 'piano' | 'keys' | 'drums';
