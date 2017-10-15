@@ -51,7 +51,7 @@ export class TextFilterComponent {
     this.state.notify();
   }, 200);
 
-  public clearFilter(): void {
+  public clearFilter() {
     this.column.filterValue = '';
     this.state.notify();
   }

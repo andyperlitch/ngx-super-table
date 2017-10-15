@@ -47,7 +47,7 @@ export class TableCellComponent implements AfterViewInit, OnDestroy {
     return this.getValue();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     if (this.column.def.component) {
       if (this.componentRef) {
         this.componentRef.destroy();
@@ -64,7 +64,7 @@ export class TableCellComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     if (this.componentRef) {
       this.componentRef.destroy();
     }

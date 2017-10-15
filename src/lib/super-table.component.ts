@@ -63,11 +63,11 @@ export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges,
 
   constructor (private el: ElementRef, private state: SuperTableState) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.subscription = this.state.stateChanged$.subscribe(() => this.sortAndFilterRows());
   }
 
-  ngAfterContentInit(): void {
+  ngAfterContentInit() {
     if (this.options.autoHeight) {
       const parentHeight: number = this.el.nativeElement.parentElement.clientHeight;
       this.setTableHeight(parentHeight);
@@ -75,7 +75,7 @@ export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges,
     this.isReady = true;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges) {
     // Inform state of columns changes
     if (changes['columns'] && changes['columns'].isFirstChange()) {
       this.state.setColumns(changes['columns'].currentValue);
@@ -83,18 +83,18 @@ export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges,
     this.sortAndFilterRows();
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  private setTableHeight(totalHeight: number): void {
+  private setTableHeight(totalHeight: number) {
     // calculate header height
     const headerHeight: number = this.el.nativeElement.querySelector('super-table-head').offsetHeight;
     // subtract it from totalHeight, set bodyHeight to result
     this.bodyHeight = totalHeight - headerHeight;
   }
 
-  private sortAndFilterRows(): void {
+  private sortAndFilterRows() {
     // Filtering
     const activeFilterColumns: ColumnState[] = this.state.columns.filter((c) => {
       return !!c.def.filter && !!c.def.filter.isActive(c.filterValue);

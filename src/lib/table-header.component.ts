@@ -42,7 +42,7 @@ export class ResizerComponent {
   }
 
   @HostListener('mousedown', ['$event'])
-  grab(grabEvt: MouseEvent): void {
+  grab(grabEvt: MouseEvent) {
     grabEvt.preventDefault();
     const mousedownTime: number = Date.now();
     const initClientX: number = grabEvt.clientX;
@@ -63,7 +63,7 @@ export class ResizerComponent {
   }
 
   @HostListener('click', ['$event'])
-  stopClick(event: MouseEvent): void {
+  stopClick(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
   }
@@ -137,7 +137,7 @@ export class TableHeaderComponent {
   }
 
   @HostListener('click', ['$event'])
-  handleClick(event: MouseEvent): void {
+  handleClick(event: MouseEvent) {
     event.preventDefault();
     if (this.column.hasSort) {
       this.state.toggleSort(this.column, event.shiftKey);

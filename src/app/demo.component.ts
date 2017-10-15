@@ -117,7 +117,7 @@ export class DemoComponent implements OnInit {
 
   private instruments: string[] = INSTRUMENTS;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.rows = this.generateRows(this.NUM_ROWS);
   }
 
