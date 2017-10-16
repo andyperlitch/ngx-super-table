@@ -1,10 +1,10 @@
-import { FILTER_TYPE, ISuperTableFilter } from './interfaces';
+import { FILTER_TYPE, SuperTableFilter } from './interfaces';
 
-export interface IBuiltInFilters {
-  STRING: ISuperTableFilter;
-  NUMBER: ISuperTableFilter;
-  DATE: ISuperTableFilter;
-  ENUM: ISuperTableFilter;
+export interface BuiltInFilters {
+  STRING: SuperTableFilter;
+  NUMBER: SuperTableFilter;
+  DATE: SuperTableFilter;
+  ENUM: SuperTableFilter;
 }
 
 // For date filter
@@ -40,7 +40,7 @@ function parseDateFilter(str: string): number {
   return total;
 }
 
-export const superTableFilters: IBuiltInFilters = {
+export const superTableFilters: BuiltInFilters = {
   STRING: {
     type: 'TEXT',
     title: 'Search by text, eg. "foo". Use "!" to ' +

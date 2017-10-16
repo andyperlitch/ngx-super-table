@@ -7,7 +7,7 @@ import {
  SimpleChanges
 } from '@angular/core';
 import { SuperTableState } from './super-table-state';
-import { ISuperTableOptions } from './interfaces';
+import { SuperTableOptions } from './interfaces';
 import { debounce } from 'lodash';
 
 const DEFAULT_ROW_HEIGHT = 20;
@@ -65,7 +65,7 @@ export class SuperTableBodyComponent implements OnChanges {
   @Input() rows: Array<any>;
   @Input() tableClasses: any;
   @Input() bodyHeight: number;
-  @Input() options: ISuperTableOptions;
+  @Input() options: SuperTableOptions;
 
   visibleRows: Array<any> = [];
 
@@ -85,7 +85,7 @@ export class SuperTableBodyComponent implements OnChanges {
 
   constructor (private el: ElementRef, public state: SuperTableState) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges) {
     this.updateVisibleRows();
   }
 
@@ -99,7 +99,7 @@ export class SuperTableBodyComponent implements OnChanges {
     this.resizeHandler();
   }
 
-  private updateVisibleRows(): void {
+  private updateVisibleRows() {
     let startIndex: number, endIndex: number;
     const currentScroll: number = this.el.nativeElement.scrollTop;
 
@@ -116,7 +116,7 @@ export class SuperTableBodyComponent implements OnChanges {
 
   }
 
-  private detectRowHeight(): void {
+  private detectRowHeight() {
     const tr: HTMLTableSectionElement = this.el.nativeElement.querySelector('tbody.visible-rows tr');
     if (tr != null) {
       this.rowHeight = tr.offsetHeight;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { ISuperTableColumn, ColumnState, SORT_ORDER } from './interfaces';
+import { SuperTableColumn, ColumnState, SORT_ORDER } from './interfaces';
 
 const sortCycle: SORT_ORDER[] = ['ASC', 'DESC', null];
 const getNextSortOrder: Function = function(currentSortOrder: SORT_ORDER): SORT_ORDER {
@@ -25,7 +25,7 @@ export class SuperTableState {
     this.stateChanged$ = this.stateChangedSource.asObservable();
   }
 
-  public setColumns(columns: Array<ISuperTableColumn>): void {
+  public setColumns(columns: Array<SuperTableColumn>) {
     this.columns = columns.map(c => {
       if (!!c.filter) {
         this.hasAnyFilters = true;
@@ -43,7 +43,7 @@ export class SuperTableState {
     });
   }
 
-  toggleSort(colState: ColumnState, doNotClear: boolean): void {
+  toggleSort(colState: ColumnState, doNotClear: boolean) {
 
     // Set next sort order
     colState.sortOrder = getNextSortOrder(colState.sortOrder);
@@ -68,7 +68,7 @@ export class SuperTableState {
     this.notify();
   }
 
-  notify(): void {
+  notify() {
     this.stateChangedSource.next(this);
   }
 

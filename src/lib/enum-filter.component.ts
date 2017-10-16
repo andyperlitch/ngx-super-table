@@ -9,7 +9,7 @@ import {
   ComponentRef,
   Injector
 } from '@angular/core';
-import { ISuperTableFilter, ColumnState } from './interfaces';
+import { SuperTableFilter, ColumnState } from './interfaces';
 import { SuperTableState } from './super-table-state';
 import { Subscription } from 'rxjs/Subscription';
 import { forEach, values } from 'lodash';
@@ -67,24 +67,24 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
     private el: ElementRef
   ) {}
 
-  ngOnInit (): void {
+  ngOnInit () {
     const styles: CSSStyleDeclaration = this.el.nativeElement.style;
     styles.top = this.top + 'px';
     styles.left = this.left + 'px';
     styles.width = this.width + 'px';
   }
 
-  ngOnDestroy (): void {
+  ngOnDestroy () {
     // to ensure that references to parent component
     // do not prevent GC
     this.destroyMe = null;
   }
 
-  onChoiceChange(): void {
+  onChoiceChange() {
     this.state.notify();
   }
 
-  showAll(): void {
+  showAll() {
     forEach(this.column.filterValue, (val, key) => {
       this.column.filterValue[key] = true;
     });
@@ -138,7 +138,7 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   `]
 })
 export class EnumFilterComponent implements OnInit, OnDestroy {
-  @Input() filter: ISuperTableFilter;
+  @Input() filter: SuperTableFilter;
   @Input() column: ColumnState;
 
   private dropdown: ComponentRef<EnumFilterDropdownComponent>;
@@ -153,7 +153,7 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
     private resolver: ComponentFactoryResolver
   ) {}
 
-  ngOnInit (): void {
+  ngOnInit () {
     // initialize filtered values to include all
     this.column.filterValue = {};
     this.column.def.filterChoices.forEach(choice => {
@@ -166,11 +166,11 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy (): void {
+  ngOnDestroy () {
     this.subscription.unsubscribe();
   }
 
-  toggleVisibility(): void {
+  toggleVisibility() {
     if (this.dropdown) {
       this.dropdown.destroy();
       this.dropdown = null;

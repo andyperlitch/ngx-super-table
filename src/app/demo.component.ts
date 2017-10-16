@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   SuperTableModule,
-  ISuperTableColumn,
-  ISuperTableOptions,
+  SuperTableColumn,
+  SuperTableOptions,
   superTableSorters,
   superTableFilters,
   ColumnState
@@ -47,7 +47,7 @@ export class DemoComponent implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
   rows: MyRow[] = [];
   NUM_ROWS = 10000;
-  columns: ISuperTableColumn[] = [
+  columns: SuperTableColumn[] = [
     {
       id: 'firstName',
       key: 'firstName',
@@ -93,7 +93,7 @@ export class DemoComponent implements OnInit {
       filter: superTableFilters.DATE
     }
   ];
-  options: ISuperTableOptions = {
+  options: SuperTableOptions = {
     autoHeight: true // auto size the table to the parent element
   };
 
@@ -117,7 +117,7 @@ export class DemoComponent implements OnInit {
 
   private instruments: string[] = INSTRUMENTS;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.rows = this.generateRows(this.NUM_ROWS);
   }
 

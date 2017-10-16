@@ -1,5 +1,5 @@
 import { Component, Input, Output, ElementRef, EventEmitter } from '@angular/core';
-import { ISuperTableFilter, ColumnState } from './interfaces';
+import { SuperTableFilter, ColumnState } from './interfaces';
 import { Observable } from 'rxjs/Observable';
 import { debounce } from 'lodash';
 import { SuperTableState } from './super-table-state';
@@ -44,14 +44,14 @@ import { SuperTableState } from './super-table-state';
   `]
 })
 export class TextFilterComponent {
-  @Input() filter: ISuperTableFilter;
+  @Input() filter: SuperTableFilter;
   @Input() column: ColumnState;
 
   onModelChange: Function = debounce(function() {
     this.state.notify();
   }, 200);
 
-  public clearFilter(): void {
+  public clearFilter() {
     this.column.filterValue = '';
     this.state.notify();
   }
