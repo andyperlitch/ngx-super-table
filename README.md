@@ -44,12 +44,28 @@ A table component for Angular projects
 
 ## Installation
 
-Install through npm:
-```
+* Install using `npm` or `yarn`
+
+```bash
 npm install --save ngx-super-table
+# yarn add ngx-super-table
 ```
 
-Then use it in your app like so:
+* Add `SuperTableModule` to `AppModule`
+
+```typescript
+import { SuperTableModule } from 'ngx-super-table';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, FormsModule, SuperTableModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+* Then use it in your app like so:
 
 ```typescript
 import { Component } from '@angular/core';
