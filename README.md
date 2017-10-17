@@ -57,7 +57,6 @@ import { SuperTable, SuperTableColumn } from 'ngx-super-table';
 
 @Component({
   selector: 'demo-app',
-  directives: [SuperTable],
   template: `<super-table
     [rows]="rows"
     [columns]="columns"
@@ -87,15 +86,13 @@ export class DemoApp {
 }
 ```
 
+  Note: The `I` prefix was removed from interfaces
+
 Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/blob/master/src/app/demo.component.ts) for a much more feature-complete example.
 
 ### Usage without a module bundler
-```
-<script src="node_modules/ngx-super-table/index.js"></script>
-<script>
-    // everything is exported ngxSuperTable namespace
-</script>
-```
+
+Use `node_modules/ngx-super-table/index.umd.js`
 
 ## Documentation
 All documentation is auto-generated from the source via typedoc and can be viewed here:
