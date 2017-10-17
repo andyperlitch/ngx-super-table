@@ -86,7 +86,7 @@ export class DemoApp {
 }
 ```
 
-  Note: The `I` prefix was removed from interfaces
+> **Note:** The `I` prefix was removed from interfaces
 
 Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/blob/master/src/app/demo.component.ts) for a much more feature-complete example.
 
