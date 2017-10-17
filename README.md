@@ -46,6 +46,8 @@ A table component for Angular projects
 
 * Install using `npm` or `yarn`
 
+**NB:** Please, keep in mind that the master branch may refer to dependencies that are not on npmjs.org yet!
+
 ```bash
 npm install --save ngx-super-table
 # yarn add ngx-super-table
@@ -102,7 +104,7 @@ export class DemoApp {
 }
 ```
 
-> **Note:** The `I` prefix was removed from interfaces
+**Note:** The `I` prefix was removed from [interfaces](https://github.com/andyperlitch/ngx-super-table/pull/30/commits/e93f0e3dfd7a8f6f9bd8b29fa75987ce50b59616)
 
 Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/blob/master/src/app/demo.component.ts) for a much more feature-complete example.
 
