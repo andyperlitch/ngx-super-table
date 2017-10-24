@@ -12,7 +12,6 @@
   "license": "MIT",
   "author": "Andy Perlitch",
   "version": "0.0.2",
-  "angular-cli": {},
   "scripts": {
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -99,5 +98,12 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "angular-cli": {},
+  "bundlesize": [
+    {
+      "path": "./dist/packages-dist/ngx-super-table.umd.js",
+      "maxSize": "10 kB"
+    }
+  ]
 }
