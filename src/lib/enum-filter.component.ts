@@ -61,7 +61,7 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   top: number;
   left: number;
   width: number;
-  destroyMe: Function;
+  destroyMe?: Function;
 
   constructor(
     private state: SuperTableState,
@@ -78,7 +78,7 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   ngOnDestroy () {
     // to ensure that references to parent component
     // do not prevent GC
-    this.destroyMe = null;
+    this.destroyMe = undefined;
   }
 
   onChoiceChange() {
@@ -90,7 +90,9 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
       this.column.filterValue[key] = true;
     });
     this.state.notify();
-    this.destroyMe();
+    if (this.destroyMe) {
+      this.destroyMe();
+    }
   }
 }
 
@@ -142,7 +144,7 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
   @Input() filter: SuperTableFilter;
   @Input() column: ColumnState;
 
-  private dropdown: ComponentRef<EnumFilterDropdownComponent>;
+  private dropdown?: ComponentRef<EnumFilterDropdownComponent>;
   private disabledChoices: Set<any> = new Set<any>();
   disabledFilterCount = 0;
   private subscription: Subscription;
@@ -157,9 +159,11 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
   ngOnInit () {
     // initialize filtered values to include all
     this.column.filterValue = {};
-    this.column.def.filterChoices.forEach(choice => {
-      this.column.filterValue[choice] = true;
-    });
+    if (this.column.def.filterChoices) {
+      this.column.def.filterChoices.forEach(choice => {
+        this.column.filterValue[choice] = true;
+      });
+    }
     this.subscription = this.state.stateChanged$.subscribe(() => {
       this.disabledFilterCount = values(this.column.filterValue)
         .filter(isEnabled => !isEnabled)
@@ -174,7 +178,7 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
   toggleVisibility() {
     if (this.dropdown) {
       this.dropdown.destroy();
-      this.dropdown = null;
+      this.dropdown = undefined;
     } else {
       const clientRect: ClientRect = this.el.nativeElement.getBoundingClientRect();
       const cmpFactory = this.resolver.resolveComponentFactory(EnumFilterDropdownComponent);

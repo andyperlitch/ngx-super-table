@@ -55,7 +55,7 @@ export class ResizerComponent {
       window.removeEventListener('mousemove', drag);
       window.removeEventListener('mouseup', unbindDrag);
       if (Date.now() - mousedownTime < ResizerComponent.MAX_CLICK_WAIT) {
-        this.column.width = null;
+        this.column.width = undefined;
       }
     };
     window.addEventListener('mousemove', drag);

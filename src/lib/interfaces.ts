@@ -1,5 +1,5 @@
 export type FILTER_TYPE = 'TEXT' | 'ENUM';
-export type SORT_ORDER = 'ASC' | 'DESC';
+export type SORT_ORDER = 'ASC' | 'DESC' | undefined;
 
 export type SuperTableSorter = (row1Value: any, row2Value: any, row1: Object, row2: Object) => number;
 
@@ -16,10 +16,10 @@ export interface SuperTableOptions {
 
 export interface ColumnState {
   id: string;
-  filterValue: any;
-  sortOrder: SORT_ORDER;
+  filterValue?: any;
+  sortOrder?: SORT_ORDER;
   isHidden: boolean;
-  width: number;
+  width?: number;
   def: SuperTableColumn;
   hasSort: boolean;
   hasFilter: boolean;
