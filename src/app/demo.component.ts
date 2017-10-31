@@ -34,14 +34,7 @@ const INSTRUMENTS: string[] = [
       [tableClasses]="tableClasses">
     </super-table>
   `,
-  styles: [`
-    :host {
-      width: 80%;
-      display: block;
-      margin: 0 auto;
-      height: 600px;
-    }
-  `]
+  styleUrls: ['./demo.component.css']
 })
 export class DemoComponent implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];

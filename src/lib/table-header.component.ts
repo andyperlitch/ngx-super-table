@@ -6,25 +6,7 @@ import { SuperTableState } from './super-table-state';
   /* tslint:disable-next-line */
   selector: '[super-table-resizer]',
   template: `<div class="notch" [ngClass]="{ explicit: column.width }"></div>`,
-  styles: [`
-    :host {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 5px;
-      height: 100%;
-      cursor: col-resize;
-    }
-    .notch.explicit {
-      background-color: rgba(22, 140, 239, 0.2);
-    }
-    .notch {
-      width: 100%;
-      height: 50%;
-      transform: translateY(50%);
-      box-shadow: inset 1px 0 #DDD;
-    }
-  `]
+  styles: ['./table-header.component.css']
 })
 export class ResizerComponent {
 

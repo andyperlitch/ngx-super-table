@@ -26,34 +26,7 @@ import { forEach, values } from 'lodash';
     </div>
     <button role="button" class="close-dropdown" (click)="destroyMe()">&times;</button>
   `,
-  styles: [`
-    :host {
-      position: absolute;
-      background: white;
-      padding: 5px 10px;
-      border: 1px solid #ddd;
-      box-shadow: 0 1px 10px -1px rgba(0,0,0,0.2);
-    }
-    .clear-filter {
-      border-bottom: 1px solid #DDD;
-      padding: 5px 0;
-    }
-    .close-dropdown {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      border: none;
-      background: transparent;
-      color: #CCC;
-      display: block;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-    }
-    .close-dropdown:hover {
-      color: #AAA;
-    }
-  `]
+  styleURLS : ['./enum-filter.component.css']
 })
 export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   @Input() column: ColumnState;

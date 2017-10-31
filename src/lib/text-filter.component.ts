@@ -19,29 +19,7 @@ import { SuperTableState } from './super-table-state';
 
     <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
   `,
-  styles: [`
-    :host {
-      position: relative;
-    }
-    input {
-      width: 100%;
-      font-size: 90%;
-      border: none;
-      border-radius: 0;
-    }
-    .hasContent {
-      background: #dff7ff;
-    }
-    .clear-btn {
-      position: absolute;
-      background: transparent;
-      color: black;
-      right: 0;
-      top: 0;
-      border: none;
-      font-size: 120%;
-    }
-  `]
+  styleUrls: ['./text-filter.component.css']
 })
 export class TextFilterComponent {
   @Input() filter: SuperTableFilter;

@@ -1,0 +1,19 @@
+host {
+  display: block;
+  overflow: auto;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+thead.sizing-thead th {
+  padding: 0 !important;
+  border-width: 0;
+}
+
+tbody.dummy-rows, tbody.visible-rows {
+  border-top: none;
+}

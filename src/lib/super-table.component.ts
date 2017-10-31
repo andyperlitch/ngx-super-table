@@ -35,15 +35,7 @@ import { Subscription } from 'rxjs/Subscription';
 
     <div *ngIf="hasError">An error occurred.</div>
   `,
-  styles: [`
-    :host {
-      position: relative;
-      display: block;
-    }
-    .loading-message {
-      text-align: center;
-    }
-  `],
+  styleUrls: [`./super-table.component.css`]
   providers: [SuperTableState]
 })
 export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges, OnDestroy {

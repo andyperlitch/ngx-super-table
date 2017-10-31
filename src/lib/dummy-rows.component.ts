@@ -15,18 +15,7 @@ import {
       </td>
     </tr>
   `,
-  styles: [`
-    :host {
-      border: none !important;
-    }
-    td {
-      padding: 0 !important;
-      border: none !important;
-      background-repeat: repeat;
-      background-position: 0 -1px;
-    }
-
-  `]
+  styleUrls: ['./dummy-rows.component.css']
 })
 export class DummyRowsComponent {
 
