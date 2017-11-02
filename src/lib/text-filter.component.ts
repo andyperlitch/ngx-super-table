@@ -8,16 +8,18 @@ import { SuperTableState } from './super-table-state';
   /* tslint:disable-next-line */
   selector: '[super-table-text-filter]',
   template: `
-    <input
-      class="form-control input-sm"
-      type="text"
-      [(ngModel)]="column.filterValue"
-      (ngModelChange)="onModelChange($event)"
-      [attr.placeholder]="filter.placeholder"
-      [attr.title]="filter.title"
-      [ngClass]="{ hasContent: !!column.filterValue }" />
+    <div class="super-table-text-filter">
+      <input
+        class="form-control input-sm"
+        type="text"
+        [(ngModel)]="column.filterValue"
+        (ngModelChange)="onModelChange($event)"
+        [attr.placeholder]="filter.placeholder"
+        [attr.title]="filter.title"
+        [ngClass]="{ hasContent: !!column.filterValue }" />
 
-    <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
+      <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
+    </div>
   `,
   styleUrls: ['./text-filter.component.css']
 })

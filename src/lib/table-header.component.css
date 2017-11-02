@@ -1,4 +1,4 @@
-host {
+.super-table-resizer {
   position: absolute;
   right: 0;
   top: 0;
@@ -16,4 +16,31 @@ host {
   height: 50%;
   transform: translateY(50%);
   box-shadow: inset 1px 0 #DDD;
+}
+
+.super-table-header {
+  position:relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.super-table-header .sort-icon {
+  opacity: 1;
+}
+.table-header-div {
+  position: relative;
+}
+.sort-icon {
+  font-size: 70%;
+  opacity: 1;
+  color: #168cef;
+  text-shadow: 0 1px 2px rgba(22, 140, 239, 0.6);
+}
+.sort-icon .no-sort {
+  opacity: 0.3;
+  text-shadow: none;
+  color: black;
 }

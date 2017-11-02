@@ -7,13 +7,15 @@ import {
   /* tslint:disable-next-line */
   selector: '[super-table-dummy-rows]',
   template: `
-    <tr [style.height]="rowStyleHeight()">
-      <td
-        [attr.colspan]="columnCount"
-        [style.backgroundImage]="'url(' + BG_IMAGE_DATA + ')'"
-        [style.backgroundSize]="backgroundSize()">
-      </td>
-    </tr>
+    <div class="super-table-dummy-rows">
+      <tr [style.height]="rowStyleHeight()">
+        <td
+          [attr.colspan]="columnCount"
+          [style.backgroundImage]="'url(' + BG_IMAGE_DATA + ')'"
+          [style.backgroundSize]="backgroundSize()">
+          </td>
+      </tr>
+    </div>
   `,
   styleUrls: ['./dummy-rows.component.css']
 })

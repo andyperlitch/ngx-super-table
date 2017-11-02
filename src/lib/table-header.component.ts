@@ -5,8 +5,11 @@ import { SuperTableState } from './super-table-state';
 @Component({
   /* tslint:disable-next-line */
   selector: '[super-table-resizer]',
-  template: `<div class="notch" [ngClass]="{ explicit: column.width }"></div>`,
-  styles: ['./table-header.component.css']
+  template: `
+    <div class="super-table-resizer">
+      <div class="notch" [ngClass]="{ explicit: column.width }"></div>
+    </div>`,
+  styleUrls: ['./table-header.component.css']
 })
 export class ResizerComponent {
 
@@ -60,46 +63,21 @@ export class ResizerComponent {
   /* tslint:disable-next-line */
   selector: '[super-table-header]',
   template: `
-    <div *ngIf="!noHeight" class="table-header-div" [title]="SORT_TITLE">
-      <span *ngIf="column.def.sort" class="sort-icon">
-        <span [ngSwitch]="column.sortOrder">
-          <span class="asc-sort glyphicon glyphicon-sort-by-attributes" *ngSwitchCase="'ASC'"></span>
-          <span class="desc-sort glyphicon glyphicon-sort-by-attributes-alt" *ngSwitchCase="'DESC'"></span>
-          <span class="no-sort glyphicon glyphicon-sort" *ngSwitchDefault></span>
+    <div class="super-table-header">
+      <div *ngIf="!noHeight" class="table-header-div" [title]="SORT_TITLE">
+        <span *ngIf="column.def.sort" class="sort-icon">
+          <span [ngSwitch]="column.sortOrder">
+            <span class="asc-sort glyphicon glyphicon-sort-by-attributes" *ngSwitchCase="'ASC'"></span>
+            <span class="desc-sort glyphicon glyphicon-sort-by-attributes-alt" *ngSwitchCase="'DESC'"></span>
+            <span class="no-sort glyphicon glyphicon-sort" *ngSwitchDefault></span>
+          </span>
         </span>
-      </span>
-      {{ getValue() }}
+        {{ getValue() }}
+      </div>
+      <div *ngIf="!noHeight && !column.def.lockWidth" super-table-resizer [column]="column"></div>
     </div>
-    <div *ngIf="!noHeight && !column.def.lockWidth" super-table-resizer [column]="column"></div>
   `,
-  styles: [`
-    :host {
-      position:relative;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    :host:hover .sort-icon {
-      opacity: 1;
-    }
-    .table-header-div {
-      position: relative;
-    }
-    .sort-icon {
-      font-size: 70%;
-      opacity: 1;
-      color: #168cef;
-      text-shadow: 0 1px 2px rgba(22, 140, 239, 0.6);
-    }
-    .sort-icon .no-sort {
-      opacity: 0.3;
-      text-shadow: none;
-      color: black;
-    }
-  `]
+  styleUrls: [`./table-header.component.css`]
 })
 export class TableHeaderComponent {
   @Input() column: ColumnState;

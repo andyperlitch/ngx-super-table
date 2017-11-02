@@ -16,24 +16,26 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'super-table',
   template: `
-    <super-table-head [tableClasses]="tableClasses"></super-table-head>
+    <div class="super-table">
+      <super-table-head [tableClasses]="tableClasses"></super-table-head>
 
-    <super-table-body
-      *ngIf="isReady"
-      [rows]="filteredSortedRows"
-      [tableClasses]="tableClasses"
-      [options]="options"
-      [style.height]="bodyHeight + 'px'"
-      [bodyHeight]="bodyHeight">
-    </super-table-body>
+      <super-table-body
+        *ngIf="isReady"
+        [rows]="filteredSortedRows"
+        [tableClasses]="tableClasses"
+        [options]="options"
+        [style.height]="bodyHeight + 'px'"
+        [bodyHeight]="bodyHeight">
+      </super-table-body>
 
-    <div
-      class="loading-message"
-      *ngIf="!isReady && !hasError">
-      Loading...
+      <div
+        class="loading-message"
+        *ngIf="!isReady && !hasError">
+        Loading...
+      </div>
+
+      <div *ngIf="hasError">An error occurred.</div>
     </div>
-
-    <div *ngIf="hasError">An error occurred.</div>
   `,
   styleUrls: [`./super-table.component.css`],
   providers: [SuperTableState]
