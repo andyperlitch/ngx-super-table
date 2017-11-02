@@ -8,40 +8,20 @@ import { SuperTableState } from './super-table-state';
   /* tslint:disable-next-line */
   selector: '[super-table-text-filter]',
   template: `
-    <input
-      class="form-control input-sm"
-      type="text"
-      [(ngModel)]="column.filterValue"
-      (ngModelChange)="onModelChange($event)"
-      [attr.placeholder]="filter.placeholder"
-      [attr.title]="filter.title"
-      [ngClass]="{ hasContent: !!column.filterValue }" />
+    <div class="super-table-text-filter">
+      <input
+        class="form-control input-sm"
+        type="text"
+        [(ngModel)]="column.filterValue"
+        (ngModelChange)="onModelChange($event)"
+        [attr.placeholder]="filter.placeholder"
+        [attr.title]="filter.title"
+        [ngClass]="{ hasContent: !!column.filterValue }" />
 
-    <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
+      <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
+    </div>
   `,
-  styles: [`
-    :host {
-      position: relative;
-    }
-    input {
-      width: 100%;
-      font-size: 90%;
-      border: none;
-      border-radius: 0;
-    }
-    .hasContent {
-      background: #dff7ff;
-    }
-    .clear-btn {
-      position: absolute;
-      background: transparent;
-      color: black;
-      right: 0;
-      top: 0;
-      border: none;
-      font-size: 120%;
-    }
-  `]
+  styleUrls: ['./text-filter.component.css']
 })
 export class TextFilterComponent {
   @Input() filter: SuperTableFilter;

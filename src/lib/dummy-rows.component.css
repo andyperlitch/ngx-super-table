@@ -1,0 +1,10 @@
+.super-table-dummy-rows {
+  border: none !important;
+}
+
+td {
+  padding: 0 !important;
+  border: none !important;
+  background-repeat: repeat;
+  background-position: 0 -1px;
+}

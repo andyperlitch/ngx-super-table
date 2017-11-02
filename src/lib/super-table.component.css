@@ -1,0 +1,8 @@
+.super-table {
+  position: relative;
+  display: block;
+}
+
+.loading-message {
+  text-align: center;
+}

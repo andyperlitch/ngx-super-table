@@ -15,16 +15,12 @@ import { ColumnState } from './interfaces';
   /* tslint:disable-next-line */
   selector: '[super-table-cell]',
   template: `
-    <span *ngIf="!column.def.component" [attr.title]="getFormattedValue()">{{ getFormattedValue() }}</span>
-    <span *ngIf="column.def.component" #cmpContainer></span>
+    <div class="super-table-cell">
+      <span *ngIf="!column.def.component" [attr.title]="getFormattedValue()">{{ getFormattedValue() }}</span>
+      <span *ngIf="column.def.component" #cmpContainer></span>
+    </div>
   `,
-  styles: [`
-    :host {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  `]
+  styleUrls: ['./table-cell.component.css']
 })
 export class TableCellComponent implements AfterViewInit, OnDestroy {
   @Input() row: any;

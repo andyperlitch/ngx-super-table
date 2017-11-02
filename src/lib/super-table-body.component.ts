@@ -17,49 +17,34 @@ const DEBOUNCE_DELAY = 250;
 @Component({
   selector: 'super-table-body',
   template: `
-    <table [ngClass]="tableClasses">
-      <thead class="sizing-thead">
-        <tr>
-          <th scope="col" *ngFor="let column of state.columns" super-table-header [column]="column" [noHeight]="true"></th>
-        </tr>
-      </thead>
-      <tbody
-        class="dummy-rows"
-        super-table-dummy-rows
-        [columnCount]="state.columns.length"
-        [rowHeight]="rowHeight"
-        [rowCount]="rowOffset">
-      </tbody>
-      <tbody class="visible-rows">
-        <tr *ngFor="let row of visibleRows" super-table-row [row]="row"></tr>
-      </tbody>
-      <tbody
-        class="dummy-rows"
-        super-table-dummy-rows
-        [columnCount]="state.columns.length"
-        [rowHeight]="rowHeight"
-        [rowCount]="rows.length - rowOffset - visibleRows.length - 1">
-      </tbody>
-    </table>
+    <div class="super-table-body">
+      <table [ngClass]="tableClasses">
+        <thead class="sizing-thead">
+          <tr>
+            <th scope="col" *ngFor="let column of state.columns" super-table-header [column]="column" [noHeight]="true"></th>
+          </tr>
+        </thead>
+        <tbody
+          class="dummy-rows"
+          super-table-dummy-rows
+          [columnCount]="state.columns.length"
+          [rowHeight]="rowHeight"
+          [rowCount]="rowOffset">
+        </tbody>
+        <tbody class="visible-rows">
+          <tr *ngFor="let row of visibleRows" super-table-row [row]="row"></tr>
+        </tbody>
+        <tbody
+          class="dummy-rows"
+          super-table-dummy-rows
+          [columnCount]="state.columns.length"
+          [rowHeight]="rowHeight"
+          [rowCount]="rows.length - rowOffset - visibleRows.length - 1">
+        </tbody>
+      </table>
+    </div>
   `,
-  styles: [`
-    :host {
-      display: block;
-      overflow: auto;
-    }
-    table {
-      table-layout: fixed;
-      width: 100%;
-      margin-bottom: 0;
-    }
-    thead.sizing-thead th {
-      padding: 0 !important;
-      border-width: 0;
-    }
-    tbody.dummy-rows, tbody.visible-rows {
-      border-top: none;
-    }
-  `]
+  styleUrls: ['./super-table-body.component.css']
 })
 export class SuperTableBodyComponent implements OnChanges {
   @Input() rows: Array<any>;

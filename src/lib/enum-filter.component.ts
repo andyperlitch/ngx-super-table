@@ -17,43 +17,18 @@ import { forEach, values } from 'lodash';
 @Component({
   selector: 'super-table-enum-filter-dropdown',
   template: `
-    <div class="clear-filter">
-      <button class="btn btn-secondary clear-filter-btn" role="button" (click)="showAll()">show all</button>
+    <div class="super-table-enum-filter">
+      <div class="clear-filter">
+        <button class="btn btn-secondary clear-filter-btn" role="button" (click)="showAll()">show all</button>
+      </div>
+      <div *ngFor="let choice of column.def.filterChoices">
+        <input type="checkbox" [(ngModel)]="column.filterValue[choice]" (ngModelChange)="onChoiceChange($event)" />
+        {{ choice }}
+      </div>
+      <button role="button" class="close-dropdown" (click)="destroyMe()">&times;</button>
     </div>
-    <div *ngFor="let choice of column.def.filterChoices">
-      <input type="checkbox" [(ngModel)]="column.filterValue[choice]" (ngModelChange)="onChoiceChange($event)" />
-      {{ choice }}
-    </div>
-    <button role="button" class="close-dropdown" (click)="destroyMe()">&times;</button>
   `,
-  styles: [`
-    :host {
-      position: absolute;
-      background: white;
-      padding: 5px 10px;
-      border: 1px solid #ddd;
-      box-shadow: 0 1px 10px -1px rgba(0,0,0,0.2);
-    }
-    .clear-filter {
-      border-bottom: 1px solid #DDD;
-      padding: 5px 0;
-    }
-    .close-dropdown {
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      border: none;
-      background: transparent;
-      color: #CCC;
-      display: block;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-    }
-    .close-dropdown:hover {
-      color: #AAA;
-    }
-  `]
+  styleUrls : ['./enum-filter.component.css']
 })
 export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   @Input() column: ColumnState;
