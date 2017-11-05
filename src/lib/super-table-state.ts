@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { SuperTableColumn, ColumnState, SORT_ORDER } from './interfaces';
 
-const sortCycle: SORT_ORDER[] = ['ASC', 'DESC', null];
+const sortCycle: SORT_ORDER[] = ['ASC', 'DESC', undefined];
 const getNextSortOrder: Function = function(currentSortOrder: SORT_ORDER): SORT_ORDER {
   const nextIndex: number = (sortCycle.indexOf(currentSortOrder) + 1) % sortCycle.length;
   return sortCycle[nextIndex];
@@ -32,10 +32,10 @@ export class SuperTableState {
       }
       return {
         id: c.id,
-        filterValue: null,
-        sortOrder: null,
+        filterValue: undefined,
+        sortOrder: undefined,
         isHidden: false,
-        width: c.width || null,
+        width: c.width || undefined,
         def: c,
         hasSort: !! c.sort,
         hasFilter: !!c.filter
@@ -60,7 +60,7 @@ export class SuperTableState {
       this.sortStack = colState.sortOrder ? [colState] : [];
       this.columns.forEach((column) => {
         if (column !== colState) {
-          column.sortOrder = null;
+          column.sortOrder = undefined;
         }
       });
     }

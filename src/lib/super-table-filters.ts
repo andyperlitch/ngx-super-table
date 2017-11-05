@@ -26,7 +26,7 @@ function parseDateFilter(str: string): number {
   // parse each clause
   for (let i = 0; i < clauses.length; i++) {
     const clause: string = clauses[i].trim();
-    const terms: RegExpExecArray = clauseExp.exec(clause);
+    const terms: RegExpExecArray | null = clauseExp.exec(clause);
     if (!terms) {
       continue;
     }

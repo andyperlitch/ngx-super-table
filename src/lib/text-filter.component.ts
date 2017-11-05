@@ -1,7 +1,7 @@
 import { Component, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 import { SuperTableFilter, ColumnState } from './interfaces';
 import { Observable } from 'rxjs/Observable';
-import { debounce } from 'lodash';
+import debounce from 'lodash-es/debounce';
 import { SuperTableState } from './super-table-state';
 
 @Component({

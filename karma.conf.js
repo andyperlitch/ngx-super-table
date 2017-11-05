@@ -19,17 +19,6 @@ module.exports = function (config) {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
     },
-    customLaunchers: {
-      ChromeHeadless: {
-        base: 'Chrome',
-        flags: [
-          '--no-sandbox',
-          '--headless',
-          '--disable-gpu',
-          '--remote-debugging-port=9222'
-        ]
-      }
-    },
     angularCli: {
       environment: 'dev'
     },

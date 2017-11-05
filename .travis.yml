@@ -15,10 +15,12 @@ before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:4200 &
 
 script:
-  - yarn test:ci
-  - yarn e2e:ci
   - yarn build:dist
   - yarn build:demo
+  - yarn bundlesize
+  - yarn lint --type-check
+  - yarn test:ci
+  - yarn e2e:ci
   - yarn typedoc
 
 deploy:

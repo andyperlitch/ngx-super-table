@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DemoComponent } from './demo.component';
 import { InstrumentComponent } from './instrument.component';
 
-import { SuperTableModule } from '../lib';
+import { SuperTableModule } from '../lib/public_api';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;

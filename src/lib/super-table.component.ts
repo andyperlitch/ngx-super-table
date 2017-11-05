@@ -101,13 +101,16 @@ export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges,
     });
 
     if (activeFilterColumns.length) {
-      this.filteredSortedRows = this.rows.filter((row) => {
+      this.filteredSortedRows = this.rows.filter(row => {
         for (let i = 0; i < activeFilterColumns.length; i++) {
           const colState: ColumnState = activeFilterColumns[i];
           const val: any = row[colState.def.key];
-          const filterResult: boolean = colState.def.filter.fn(colState.filterValue, val, row);
-          if (filterResult === false) {
-            return false;
+          let filterResult = false;
+          if (colState.def.filter) {
+            filterResult = colState.def.filter.fn(colState.filterValue, val, row);
+            if (filterResult === false) {
+              return false;
+            }
           }
         }
         return true;
@@ -122,9 +125,12 @@ export class SuperTableComponent implements OnInit, AfterContentInit, OnChanges,
         const colState: ColumnState = this.state.sortStack[i];
         const val1 = a[colState.def.key];
         const val2 = b[colState.def.key];
-        const compareResult: number = colState.sortOrder === 'ASC'
-          ? colState.def.sort(val1, val2, a, b)
-          : colState.def.sort(val2, val1, b, a);
+        let compareResult = 0;
+        if (colState.def.sort) {
+          compareResult = colState.sortOrder === 'ASC'
+            ? colState.def.sort(val1, val2, a, b)
+            : colState.def.sort(val2, val1, b, a);
+        }
         if (compareResult !== 0) {
           return compareResult;
         }
