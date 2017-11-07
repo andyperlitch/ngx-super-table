@@ -105,7 +105,7 @@ function verifyVersions() {
   console.log(versions);
   versions.map(version => {
     if (version !== pkg.version) {
-      throw new Error('Versions mistmatch');
+      throw new Error('Versions mismatch');
     }
   });
 }
