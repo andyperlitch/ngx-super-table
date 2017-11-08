@@ -36,7 +36,7 @@ const INSTRUMENTS: string[] = [
       </super-table>
     </div>
   `,
-  styleUrls: ['./masterStyle.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class DemoComponent implements OnInit {
   tableClasses: string[] = ['table', 'table-bordered'];
