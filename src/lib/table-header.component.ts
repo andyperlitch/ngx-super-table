@@ -9,7 +9,7 @@ import { SuperTableState } from './super-table-state';
     <div class="super-table-resizer">
       <div class="notch" [ngClass]="{ explicit: column.width }"></div>
     </div>`,
-  styleUrls: ['./table-header.component.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class ResizerComponent {
 
@@ -77,7 +77,7 @@ export class ResizerComponent {
       <div *ngIf="!noHeight && !column.def.lockWidth" super-table-resizer [column]="column"></div>
     </div>
   `,
-  styleUrls: [`./table-header.component.css`]
+  styleUrls: ['../masterStyle.css']
 })
 export class TableHeaderComponent {
   @Input() column: ColumnState;

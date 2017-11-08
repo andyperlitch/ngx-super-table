@@ -17,7 +17,7 @@ import {
       </tr>
     </div>
   `,
-  styleUrls: ['./dummy-rows.component.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class DummyRowsComponent {
 

@@ -44,7 +44,7 @@ const DEBOUNCE_DELAY = 250;
       </table>
     </div>
   `,
-  styleUrls: ['./super-table-body.component.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class SuperTableBodyComponent implements OnChanges {
   @Input() rows: Array<any>;

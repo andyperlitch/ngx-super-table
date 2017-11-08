@@ -28,7 +28,7 @@ import { forEach, values } from 'lodash';
       <button role="button" class="close-dropdown" (click)="destroyMe()">&times;</button>
     </div>
   `,
-  styleUrls : ['./enum-filter.component.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   @Input() column: ColumnState;

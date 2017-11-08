@@ -20,7 +20,7 @@ import { ColumnState } from './interfaces';
       <span *ngIf="column.def.component" #cmpContainer></span>
     </div>
   `,
-  styleUrls: ['./table-cell.component.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class TableCellComponent implements AfterViewInit, OnDestroy {
   @Input() row: any;

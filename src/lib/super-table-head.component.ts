@@ -27,7 +27,7 @@ import { SuperTableState } from './super-table-state';
       </table>
     </div>
   `,
-  styleUrls: ['./super-table-head.component.css']
+  styleUrls: ['../masterStyle.css']
 })
 export class SuperTableHeadComponent {
   @Input() tableClasses: any;
