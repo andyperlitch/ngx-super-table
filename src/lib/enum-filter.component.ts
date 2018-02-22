@@ -101,7 +101,7 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
     <button
       [attr.title]="filter.title"
       role="button"
-      (click)="toggleVisibility($event)"
+      (click)="toggleVisibility()"
       [ngClass]="{ hasDisabled : disabledFilterCount }">
       <strong>{{ filter.placeholder }}:</strong>
       <span [hidden]="disabledFilterCount != 0">showing all</span>
