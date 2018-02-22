@@ -142,9 +142,9 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
   @Input() filter: SuperTableFilter;
   @Input() column: ColumnState;
 
+  disabledFilterCount = 0;
   private dropdown?: ComponentRef<EnumFilterDropdownComponent>;
   private disabledChoices: Set<any> = new Set<any>();
-  disabledFilterCount = 0;
   private subscription: Subscription;
 
   constructor(private el: ElementRef,
