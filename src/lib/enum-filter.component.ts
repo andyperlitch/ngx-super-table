@@ -22,7 +22,7 @@ import values from 'lodash-es/values';
       <button class="btn btn-secondary clear-filter-btn" role="button" (click)="showAll()">show all</button>
     </div>
     <div *ngFor="let choice of column.def.filterChoices">
-      <input type="checkbox" [(ngModel)]="column.filterValue[choice]" (ngModelChange)="onChoiceChange($event)" />
+      <input type="checkbox" [(ngModel)]="column.filterValue[choice]" (ngModelChange)="onChoiceChange()" />
       {{ choice }}
     </div>
     <button role="button" class="close-dropdown" (click)="destroyMe()">&times;</button>
@@ -63,10 +63,8 @@ export class EnumFilterDropdownComponent implements OnInit, OnDestroy {
   width: number;
   destroyMe?: Function;
 
-  constructor(
-    private state: SuperTableState,
-    private el: ElementRef
-  ) {}
+  constructor(private el: ElementRef,
+              private state: SuperTableState) {}
 
   ngOnInit () {
     const styles: CSSStyleDeclaration = this.el.nativeElement.style;
@@ -149,12 +147,10 @@ export class EnumFilterComponent implements OnInit, OnDestroy {
   disabledFilterCount = 0;
   private subscription: Subscription;
 
-  constructor(
-    private state: SuperTableState,
-    private el: ElementRef,
-    private viewContainer: ViewContainerRef,
-    private resolver: ComponentFactoryResolver
-  ) {}
+  constructor(private el: ElementRef,
+              private resolver: ComponentFactoryResolver,
+              private state: SuperTableState,
+              private viewContainer: ViewContainerRef) {}
 
   ngOnInit () {
     // initialize filtered values to include all
