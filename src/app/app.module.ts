@@ -1,27 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
-import { SuperTableModule } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
-import { DemoComponent } from './demo.component';
-import { InstrumentComponent } from './instrument.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
-    InstrumentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    SuperTableModule
+    AppRoutingModule,
+    HomeModule
   ],
-  entryComponents: [InstrumentComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

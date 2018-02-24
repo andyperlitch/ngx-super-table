@@ -1,12 +1,15 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/deploy
-/tmp
+dist
+ngx-super-table
+tmp
+out-tsc
+docs/developer/*
 
 # dependencies
 /node_modules
+libraries/super-table/node_modules
 
 # IDEs and editors
 /.idea

@@ -1,44 +1,31 @@
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
-import { DemoComponent } from './demo.component';
-import { InstrumentComponent } from './instrument.component';
-
-import { SuperTableModule } from '../lib/public_api';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        DemoComponent,
-        InstrumentComponent
+        AppComponent
       ],
       imports: [
-        SuperTableModule
+        RouterTestingModule
       ]
-    })
-      .overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [
-            InstrumentComponent
-          ]
-        }
-      })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
   });
 
-  it('should create', async(() => {
-    const app = fixture.debugElement.componentInstance;
-    fixture.detectChanges();
+  it('should create the app', async(() => {
     expect(app).toBeTruthy();
   }));
 

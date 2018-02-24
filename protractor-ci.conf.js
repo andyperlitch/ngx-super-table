@@ -15,11 +15,11 @@ exports.config = {
         '--no-sandbox',
         '--headless',
         '--disable-gpu'
-      ] 
+      ]
      }
   },
   directConnect: true,
-  baseUrl: 'http://localhost/',
+  baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
