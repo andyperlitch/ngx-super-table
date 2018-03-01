@@ -46,7 +46,8 @@ A table component for Angular projects
 
 * Install using `npm` or `yarn`
 
-**NB:** Please, keep in mind that the master branch may refer to dependencies that are not on npmjs.org yet!
+**NB:** Please, keep in mind that the master branch may contain code
+*not* published to npmjs.org yet!
 
 ```bash
 npm install --save ngx-super-table
@@ -106,13 +107,14 @@ export class DemoApp {
 
 **Note:** The `I` prefix was removed from [interfaces](https://github.com/andyperlitch/ngx-super-table/pull/30/commits/e93f0e3dfd7a8f6f9bd8b29fa75987ce50b59616)
 
-Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/blob/master/src/app/demo.component.ts) for a much more feature-complete example.
+Please view the [demo source](https://github.com/andyperlitch/ngx-super-table/blob/master/src/app/modules/home/demo.component.ts) for a much more feature-complete example.
 
 ### Usage without a module bundler
 
 Use `node_modules/ngx-super-table/index.umd.js`
 
 ## Documentation
+
 All documentation is auto-generated from the source via typedoc and can be viewed here:
 
 [https://andyperlitch.github.io/ngx-super-table/doc/](https://andyperlitch.github.io/ngx-super-table/doc/)
@@ -122,15 +124,23 @@ All documentation is auto-generated from the source via typedoc and can be viewe
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
 ### Prepare your environment
+
 * Install [Node.js](http://nodejs.org/) and NPM (should come with)
 * Install local dev dependencies: `npm install` while current directory is this repo
 
 ### Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+To build the `ngx-super-table` package run `yarn build:lib`
+To compile the test app with the built version of ngx-super-table run: `yarn start --app 1`
+
+Then navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You will have to run `yarn build:lib` anytime you make changes to the library in order to see those changes in the test app.
 
 ### Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Run `ng g c component-name --app 2` to generate a new component for `ngx-super-table`.
+
+You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 

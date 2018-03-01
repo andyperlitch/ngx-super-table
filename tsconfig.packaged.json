@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "ngx-super-table": ["ngx-super-table"]
+    }
+  }
+}
