@@ -19,8 +19,8 @@ script:
   - yarn build:demo
   - yarn bundlesize
   - yarn lint
-  - yarn test:ci
-  - yarn e2e:ci
+  # - yarn test:ci
+  # - yarn e2e:ci
   - yarn typedoc
 
 deploy:

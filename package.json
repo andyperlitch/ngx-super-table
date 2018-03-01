@@ -86,7 +86,7 @@
   },
   "bundlesize": [
     {
-      "path": "./dist/packages-dist/ngx-super-table.umd.js",
+      "path": "./ngx-super-table/bundles/ngx-super-table.umd.js",
       "maxSize": "10 kB"
     }
   ]
