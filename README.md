@@ -92,16 +92,16 @@ export class DemoApp {
   columns: SuperTableColumn[] = [
     {
       id: 'name',
-      key: 'name'
+      key: 'name',
       label: 'Name'
     },
     {
       id: 'age',
-      key: 'age'
+      key: 'age',
       label: 'Age'
     }
   ];
-  options = {}
+  options = {};
 }
 ```
 
