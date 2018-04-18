@@ -1,0 +1,45 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "name": "ngx-super-table",
+  "version": "0.0.2",
+  "description": "A table component for angular projects (angular versions >=2)",
+  "author": "Andy Perlitch",
+  "homepage": "https://github.com/andyperlitch/ngx-super-table#readme",
+  "bugs": {
+    "url": "https://github.com/andyperlitch/ngx-super-table/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyperlitch/ngx-super-table.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular2"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "bootstrap": "^4.0.0",
+    "lodash-es": "^4.17.0",
+    "rxjs": "^5.4.2"
+  },
+  "ngPackage": {
+    "dest": "../../ngx-super-table",
+    "lib": {
+      "entryFile": "public_api.ts",
+      "cssUrl": "inline",
+      "umdModuleIds": {
+        "lodash-es/debounce": "_.debounce",
+        "lodash-es/forEach": "_.forEach",
+        "lodash-es/values": "_.values"
+      }
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 3 versions"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "name": "super-table-test",
+  "version": "0.0.2",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "bundlesize": "bundlesize",
+    "commit": "git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "ng": "ng",
+    "start": "ng serve --aot",
+    "build": "ng build --aot --prod",
+    "build:demo": "ng build --base-href=/ngx-super-table/demo/ --output-path=demo --app 1",
+    "build:lib": "rimraf ngx-super-table && ng-packagr -p libraries/super-table/package.json",
+    "build:clean": "rimraf ngx-super-table deploy demo",
+    "test": "ng test",
+    "test:ci": "ng test --browser ChromeHeadless --watch false",
+    "lint": "ng lint --type-check",
+    "e2e": "ng e2e",
+    "e2e:ci": "ng e2e --config protractor-ci.conf.js --watch false",
+    "prepublish": "npm run build:clean",
+    "publish": "git push origin master && git push --tags origin master && npm run build:dist && cd deploy && npm publish",
+    "postpublish": "npm run gh-pages",
+    "gh-pages": "git checkout gh-pages && git merge master && npm run build:demo && npm run typedoc && git add . && git commit -m 'chore: build demo and docs' && git push && git checkout master",
+    "prerelease": "npm test",
+    "release": "cd src/lib && standard-version",
+    "typedoc": "typedoc --options typedoc.json ngx-super-table.ts src/*.ts"
+  },
+  "dependencies": {
+    "@angular/animations": "^5.2.0",
+    "@angular/common": "^5.2.0",
+    "@angular/compiler": "^5.2.0",
+    "@angular/core": "^5.2.0",
+    "@angular/forms": "^5.2.0",
+    "@angular/http": "^5.2.0",
+    "@angular/platform-browser": "^5.2.0",
+    "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/router": "^5.2.0",
+    "bootstrap": "^4.0.0",
+    "core-js": "^2.4.1",
+    "lodash-es": "^4.17.0",
+    "rxjs": "^5.5.6",
+    "web-animations-js": "^2.3.1",
+    "zone.js": "^0.8.19"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.7.1",
+    "@angular/compiler-cli": "^5.2.0",
+    "@angular/language-service": "^5.2.0",
+    "@types/jasmine": "~2.8.3",
+    "@types/jasminewd2": "~2.0.2",
+    "@types/lodash-es": "^4.14.0",
+    "@types/node": "~6.0.60",
+    "all-contributors-cli": "^4.4.0",
+    "bundlesize": "^0.15.2",
+    "codelyzer": "^4.0.1",
+    "commitizen": "~2.8.1",
+    "conventional-changelog": "~1.1.0",
+    "conventional-changelog-cli": "~1.2.0",
+    "cz-conventional-changelog": "~1.2.0",
+    "ghooks": "~1.3.2",
+    "jasmine-core": "~2.8.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~2.0.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "^1.2.1",
+    "karma-jasmine": "~1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^2.0.0",
+    "protractor": "~5.1.2",
+    "rimraf": "^2.6.2",
+    "standard-version": "^4.2.0",
+    "ts-node": "~4.1.0",
+    "tslint": "~5.9.1",
+    "typedoc": "^0.8.0",
+    "typescript": "~2.5.3",
+    "validate-commit-msg": "~2.8.0"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "bundlesize": [
+    {
+      "path": "./ngx-super-table/bundles/ngx-super-table.umd.js",
+      "maxSize": "10 kB"
+    }
+  ]
+}
