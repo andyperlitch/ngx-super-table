@@ -3,7 +3,7 @@
     "prettier --write",
     "git add"
   ],
-  "*.{html}": [
+  "*.html": [
     "yarn format:html",
     "git add"
   ],
