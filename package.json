@@ -70,6 +70,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lint-staged": "^10.0.0",
     "ng-packagr": "^2.0.0",
+    "prettier": "^2.0.0",
     "protractor": "~5.1.2",
     "rimraf": "^2.6.2",
     "standard-version": "^4.2.0",
@@ -79,11 +80,13 @@
     "typescript": "~2.5.3",
     "validate-commit-msg": "~2.8.0"
   },
-  "config": {
+  "husky": {
     "hooks": {
       "commit-msg": "validate-commit-msg",
       "pre-commit": "lint-staged"
-    },
+    }
+  },
+  "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
