@@ -78,7 +78,8 @@
   },
   "config": {
     "ghooks": {
-      "commit-msg": "validate-commit-msg"
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "./node_modules/.bin/js-beautify --type=html -r 'src/**/*.html'"
     },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

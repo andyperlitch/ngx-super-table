@@ -1,0 +1,11 @@
+{
+  "editorconfig": true,
+  "html": {
+    "wrap_attributes": "force-aligned",
+    "wrap_line_length": 0,
+    "extra_liners": "",
+    "unformatted": "wbr,link,meta",
+    "indent_inner_html": true,
+    "indent_handlebars": true
+  }
+}
