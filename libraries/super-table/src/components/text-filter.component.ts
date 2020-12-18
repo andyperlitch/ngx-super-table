@@ -17,39 +17,50 @@ import { SuperTableState } from '../services/super-table-state.service';
       (ngModelChange)="onModelChange()"
       [attr.placeholder]="filter.placeholder"
       [attr.title]="filter.title"
-      [ngClass]="{ hasContent: !!column.filterValue }" />
+      [ngClass]="{ hasContent: !!column.filterValue }"
+    />
 
-    <button tabindex="-1" *ngIf="column.filterValue" class="clear-btn" role="button" (click)="clearFilter($event)">&times;</button>
+    <button
+      tabindex="-1"
+      *ngIf="column.filterValue"
+      class="clear-btn"
+      role="button"
+      (click)="clearFilter()"
+    >
+      &times;
+    </button>
   `,
-  styles: [`
-    :host {
-      position: relative;
-    }
-    input {
-      width: 100%;
-      font-size: 90%;
-      border: none;
-      border-radius: 0;
-    }
-    .hasContent {
-      background: #dff7ff;
-    }
-    .clear-btn {
-      position: absolute;
-      background: transparent;
-      color: black;
-      right: 0;
-      top: 0;
-      border: none;
-      font-size: 120%;
-    }
-  `]
+  styles: [
+    `
+      :host {
+        position: relative;
+      }
+      input {
+        width: 100%;
+        font-size: 90%;
+        border: none;
+        border-radius: 0;
+      }
+      .hasContent {
+        background: #dff7ff;
+      }
+      .clear-btn {
+        position: absolute;
+        background: transparent;
+        color: black;
+        right: 0;
+        top: 0;
+        border: none;
+        font-size: 120%;
+      }
+    `,
+  ],
 })
 export class TextFilterComponent {
   @Input() filter: SuperTableFilter;
   @Input() column: ColumnState;
 
-  onModelChange: Function = debounce(function() {
+  onModelChange: Function = debounce(function () {
     this.state.notify();
   }, 200);
 
@@ -59,5 +70,4 @@ export class TextFilterComponent {
   }
 
   constructor(private state: SuperTableState) {}
-
 }
