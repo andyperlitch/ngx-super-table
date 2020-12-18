@@ -1,0 +1,14 @@
+{
+  "*.{ts,json,md,scss}": [
+    "prettier --write",
+    "git add"
+  ],
+  "*.{html}": [
+    "yarn format:html",
+    "git add"
+  ],
+  "*.ts": [
+    "tslint --fix",
+    "git add"
+  ]
+}
