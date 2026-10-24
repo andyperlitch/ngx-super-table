@@ -161,7 +161,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Release
 
-* Bump the version in `src/lib/package.json` (once the module hits 1.0 this will become automatic)
+* Bump the version in `libraries/super-table/package.json` (once the module hits 1.0 this will become automatic)
 
 ```bash
 npm run release
